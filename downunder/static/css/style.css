@@ -1,0 +1,153 @@
+/* Global Styles */
+
+
+* {
+    box-sizing: border-box;
+  
+    /* Smooth scroll enabled for back to top button */
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: "Montserrat", sans-serif;
+    color: #55433c;
+    background-color: #debb98;
+  }
+  
+  /* **** NAVBAR **** */
+  .navbar, .bg-light, .navbar-light {
+      background: white !important;
+  }
+  
+  .main-nav-links .nav-item {
+    margin: 0 60px;
+  }
+  
+  .customer-links .nav-item {
+    margin-left: 30px;
+  }
+  
+  .navbar-brand {
+    margin-left: 30px; 
+  }
+  
+  .navbar-toggler {
+    border: none;
+  }
+  
+  /* **** MASTHEAD **** */
+  
+  .masthead {
+    position: relative;
+    background: url("../images/sydney-harbour.jpg") no-repeat left center;
+    background-size: cover;
+    height: 350px;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 100, 0.4);
+  }
+  
+  .masthead-content {
+    margin-top: 10%;
+  }
+  
+  .masthead-content h1 {
+    font-weight: 700;
+    font-size: 3rem;
+    letter-spacing: 0.1rem;
+  }
+  
+  .search-bar {
+    max-width: 400px;
+    margin: auto;
+  }
+  
+  .search-button {
+    background-color: #FBAC35;
+    border: none;
+  }
+  
+  .search-button:hover,
+  .search-button:active,
+  .search-button:focus,
+  .search-button:active:focus {
+    background-color: #00008B;
+  }
+  
+  .input-group input {
+    padding: 25px;
+    border-radius: 25px;
+  }
+  
+  .input-group>.input-group-append>.btn {
+    border-radius: 0 25px 25px 0;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  /* Media Queries */
+  
+  /* **** MIN WIDTH **** */
+  
+  @media screen and (min-width: 1400px) {
+  
+  }
+  
+  @media screen and (min-width: 1200px) {
+    
+  }
+  
+  @media screen and (min-width: 992px) {
+    .navbar-brand {
+      margin-right: 40px;
+    }
+  }
+  
+  @media screen and (min-width: 768px) {
+    
+  }
+  
+  @media screen and (min-width: 576px) {
+    
+  }
+  
+  /* **** MAX WIDTH **** */
+  
+  @media screen and (max-width: 576px) {
+  
+  }
+  
+  @media screen and (max-width: 768px) {
+    .search-bar {
+      max-width: 75%;
+    }
+  }
+  
+  @media screen and (max-width: 992px) {
+    
+  .masthead-content h1 {
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: 0rem;
+  }
+  
+  .masthead {
+    height: 250px;
+  }
+  }
+  
+  @media screen and (max-width: 1200px) {
+    .main-nav-links .nav-item {
+      margin: 0 40px;
+    }
+  }
+  
+  @media screen and (max-width: 1400px) {
+    
+  }
