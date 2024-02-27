@@ -36,7 +36,7 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" href="{{ url_for('routes.index') }}"
+      <a class="navbar-brand" href="{{ url_for('home') }}"
         ><img
           src="../static/images/Logo.png"
           width="150"
@@ -46,26 +46,26 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ml-auto main-nav-links">
           <li class="nav-item active">
-            <a class="nav-link" href="{{ url_for('routes.index') }}"
+            <a class="nav-link" href="{{ url_for('home') }}"
               >Home <span class="sr-only">(current)</span></a
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('routes.about') }}">About</a>
+            <a class="nav-link" href="">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('routes.topics') }}">Topics</a>
+            <a class="nav-link" href="">Topics</a>
           </li>
         </ul>
         <ul class="nav navbar-nav customer-links">
           <!-- **** Used stack overflow for signup login layout https://stackoverflow.com/questions/53339351/how-to-create-navigation-bar-with-login-sign-up-button-in-bootstrap-4 **** -->
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('routes.signup') }}"
+            <a class="nav-link" href=""
               ><span class="fas fa-user"></span> Sign Up</a
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('routes.login') }}"
+            <a class="nav-link" href=""
               ><span class="fas fa-sign-in-alt"></span> Login</a
             >
           </li>
@@ -119,5 +119,6 @@
       integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
       crossorigin="anonymous"
     ></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>"
   </body>
 </html>
