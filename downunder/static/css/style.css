@@ -13,7 +13,18 @@
     color: #55433c;
     background-color: #debb98;
   }
-  
+
+  a {
+    color: #00008B;
+  }
+
+  /* ****BTNS**** */
+  .acc-btn {
+    background-color: #00008B;
+    border: none;
+  }
+
+
   /* **** NAVBAR **** */
   .navbar, .bg-light, .navbar-light {
       background: white !important;
@@ -115,7 +126,7 @@
     font-size: 0.8rem;
   }
 
-  .sign-up-title {
+  .account-title {
     margin-bottom: 20px;
   }
   
