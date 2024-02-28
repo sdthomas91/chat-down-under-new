@@ -10,12 +10,15 @@ def home():
 def sign_up():
     if request.method == 'POST':
         email = request.form.get('email')
+        username = request.form.get('username')
         fname = request.form.get('fname')
         lname = request.form.get('lname')
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
     
-        if len(fname) < 1:
+        if len(username) < 1:
+            flash('Username cannot be left blank')
+        elif len(fname) < 1:
             flash('First Name cannot be left blank', category='error')
         elif len(lname) < 1:
             flash('Last Name cannot be left blank', category='error')

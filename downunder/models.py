@@ -1,12 +1,26 @@
 from downunder import db
 from flask_login import UserMixin
+from sqlalchemy.sql import func
 
-# Models have been adapted from a previous project of mine 
+
+
+# User database (Guidance on user database from Tech with Tim 
+# youtube videos)
+class User(db.Model, UserMixin):
+    #schema for the User Database Model
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(50), unique=True)
+    email = db.Column(db.String(100), unique=True)
+    password = db.Column(db.String(50))
+    fname = db.Column(db.String(50))
+    lname = db.Column(db.String(50))
+
+# Following models have been adapted from a previous project of mine 
 # (https://github.com/sdthomas91/python-project-1/tree/main/taskmanager), 
 # though adapted for this setup.
-# Removed cascade deletion as I intend to allow questions to be tagged with
-# multiple topics. Cascade deletion runs risk of causing Questions to be 
-# unnecessarily deleted in the event of a topic removal
+# Removed cascade deletion as I intend to allow questions to be tagged 
+# with multiple topics. Cascade deletion runs risk of causing 
+# Questions to be unnecessarily deleted in the event of a topic removal
 
 class Topic(db.Model):
     # schema for the Topic model
@@ -29,17 +43,11 @@ class Question(db.Model):
     is_urgent = db.Column(db.Boolean, default=False, nullable=False)
     topic_id = db.Column(db.Integer, db.ForeignKey("topic.id"), 
     nullable=False)
+    date = db.Column(db.DateTime(timezone=True), default=func.now())
+    user_id = db.Column(db.Integer, db.ForeignKey('user.username'))
+
 
     def __repr__(self):
         return "Question #{0} - Title: {1} | Urgent: {2}".format(
             self.id, self.question_title, self.is_urgent
         )
-
-# User database
-class User(db.Model, UserMixin):
-    #schema for the User Database Model
-    id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(100), unique=True)
-    password = db.Column(db.String(50))
-    fname = db.Column(db.String(50))
-    lname = db.Column(db.String(50))
