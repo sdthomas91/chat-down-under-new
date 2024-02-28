@@ -90,6 +90,34 @@
     padding-left: 20px;
     padding-right: 20px;
   }
+
+  /* ****SIGN UP**** */
+
+  /* **SignUp Form** */
+
+  .sign-up-container {
+    background-color: rgba(250, 250, 250, 0.4);
+    width: 50%;
+    padding: 40px 0;
+    margin-top: 25px;
+    border-radius: 15px;
+  }
+
+  .small-text {
+      color: #424242;
+  }
+
+  #signUpSmall {
+    font-size: 1rem;
+  }
+
+  #signUpHelp {
+    font-size: 0.8rem;
+  }
+
+  .sign-up-title {
+    margin-bottom: 20px;
+  }
   
   /* Media Queries */
   
@@ -107,6 +135,7 @@
     .navbar-brand {
       margin-right: 40px;
     }
+
   }
   
   @media screen and (min-width: 768px) {
@@ -120,12 +149,16 @@
   /* **** MAX WIDTH **** */
   
   @media screen and (max-width: 576px) {
-  
+    
   }
   
   @media screen and (max-width: 768px) {
     .search-bar {
       max-width: 75%;
+    }
+
+    .sign-up-container {
+      width: 80%;
     }
   }
   
@@ -140,6 +173,8 @@
   .masthead {
     height: 250px;
   }
+
+
   }
   
   @media screen and (max-width: 1200px) {

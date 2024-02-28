@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+<!-- Page Title -->
+{% block title %}CDU | Sign Up{% endblock %}
+
+<!-- Page Content -->
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 text-center mt-4 text-uppercase"><h1>{{page_title}}</h1></div>
+  </div>
+</div>
+<!-- Bootstrap form template used (https://getbootstrap.com/docs/4.6/components/forms/) -->
+<div class="container-fluid sign-up-container">
+  <div class="row">
+    <div class="col-1 col-md-2">
+    </div>
+    <div class="col-10 col-md-8">
+      <form method="POST" class="sign-up-form"></form>
+        <h3 class="text-center sign-up-title">Register your Account</h3> 
+        <small id="signUpSmall" class="form-text text-muted small-text">Please fill out all fields</small>
+        <div class="form-group">
+          <label for="signUpEmail">Email address</label>
+          <input type="email" class="form-control" id="signUpEmail" name="signUpEmail" placeholder="Enter Email Address" required>
+        </div>
+        <div class="form-group">
+          <label for="fname">First Name</label>
+          <input type="text" class="form-control" id="fname" name="fname" placeholder="Enter First Name" required>
+        </div>
+        <div class="form-group">
+          <label for="password1">Password</label>
+          <input type="password" name="password1" class="form-control" id="password1" placeholder="Enter Password" required>
+        </div>
+        <div class="form-group">
+          <label for="password2">Confirm Password</label>
+          <input type="password" name="password2" class="form-control" id="password2" placeholder="Confirm Password" required>
+        </div>
+        <div class="form-group form-check">
+          <input type="checkbox" class="form-check-input" id="termsCheck" name="termsCheck">
+          <label class="form-check-label" for="termsCheck">I agree to the <a href="">Terms & Conditions</a></label>
+        </div>
+        <small id="signUpHelp" class="form-text text-muted small-text" >We'll never share your details with anyone else.</small>
+        <br>
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+      </form>
+    </div>
+    <div class="col-1 col-md-2">
+
+    </div>
+  </div>
+
+</div>
+{% endblock %}
