@@ -1,4 +1,5 @@
 from downunder import db
+from flask_login import UserMixin
 
 # Models have been adapted from a previous project of mine 
 # (https://github.com/sdthomas91/python-project-1/tree/main/taskmanager), 
@@ -33,3 +34,12 @@ class Question(db.Model):
         return "Question #{0} - Title: {1} | Urgent: {2}".format(
             self.id, self.question_title, self.is_urgent
         )
+
+# User database
+class User(db.Model, UserMixin):
+    #schema for the User Database Model
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(100), unique=True)
+    password = db.Column(db.String(50))
+    fname = db.Column(db.String(50))
+    lname = db.Column(db.String(50))
