@@ -15,9 +15,7 @@ def sign_up():
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
     
-        if len(email) < 6:
-            flash('Email Address must be more than 5 characters', category='error')
-        elif len(fname) < 1:
+        if len(fname) < 1:
             flash('First Name cannot be left blank', category='error')
         elif len(lname) < 1:
             flash('Last Name cannot be left blank', category='error')
