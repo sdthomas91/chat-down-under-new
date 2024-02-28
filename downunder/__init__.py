@@ -13,12 +13,14 @@ db = SQLAlchemy(app)
 
 from downunder import routes #noqa
 
-
-#Flask CLI workaround for db creation - Python3 command not 
+#- ython3 command not 
 # working as per my previous project - code found here
 # https://stackoverflow.com/questions/
 # 77477706/how-can-i-create-database-file-with-flask
 @app.cli.command("create_db")
 def create_db():
+    """
+    Flask CLI workaround for db creation 
+    """
     db.create_all()
     print("Database tables created")

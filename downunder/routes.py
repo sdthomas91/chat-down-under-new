@@ -4,10 +4,20 @@ from downunder.models import Topic, Question
 
 @app.route("/")
 def home():
-    return render_template("index.html", page_title="Welcome to Chat Down Under")
+    """
+    Navigate to home page and load latest questions
+    to the main discussion area
+    """
+    return render_template("index.html", 
+    page_title="Welcome to Chat Down Under")
 
 @app.route("/sign_up", methods=['GET', 'POST'])
 def sign_up():
+    """
+    Creating routing for sign up process and
+    data collection - peform a POST to submit new
+    user details
+    """
     if request.method == 'POST':
         email = request.form.get('email')
         username = request.form.get('username')
@@ -34,4 +44,9 @@ def sign_up():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
+    """
+    Allow customers to navigate to login page and 
+    perform login with their details as long as 
+    they exist in the db
+    """
     return render_template("login.html", page_title="Log In!")
