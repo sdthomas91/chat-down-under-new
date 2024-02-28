@@ -52,3 +52,33 @@ class Question(db.Model):
         return "Question #{0} - Title: {1} | Urgent: {2}".format(
             self.id, self.question_title, self.is_urgent
         )
+
+#Add reply model 
+class Reply(db.Model):
+    """
+    Schema for the Reply model to allow for active user to
+    reply to a question : author_id and question_id will be 
+    used to auto populate the fields of the reply
+    """
+    id = db.Column(db.Integer, primary_key=True)
+    reply_body = db.Column(db.Text, nullable=False)
+    date_posted = db.Column(db.DateTime(timezone=True), default=func.now())
+    author_id = db.Column(
+        db.Integer, 
+        db.ForeignKey('user.id'), 
+        nullable=False)
+    question_id = db.Column(
+        db.Integer, 
+        db.ForeignKey('question.id'), 
+        nullable=False
+    )
+
+    # Relationships
+    author = db.relationship('User', backref='replies')
+    question = db.relationship('Question', backref='replies')
+
+    def __repr__(self):
+        return (
+            f'Reply #{self.id} by User ID {self.author_id} '
+            f'on Question ID {self.question_id}'
+        )

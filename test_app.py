@@ -1,6 +1,7 @@
 import unittest # using pythons unittest documentation (https://docs.python.org/3/library/unittest.html)
 from downunder import app, db
 from downunder.models import User
+#add forgotten password_hash necessities 
 from werkzeug.security import generate_password_hash, check_password_hash
 
 class UserTestCase(unittest.TestCase):
