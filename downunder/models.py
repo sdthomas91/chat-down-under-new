@@ -11,7 +11,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True)
     email = db.Column(db.String(100), unique=True)
-    password = db.Column(db.String(50))
+    password = db.Column(db.String(255))
     fname = db.Column(db.String(50))
     lname = db.Column(db.String(50))
     questions = db.relationship('Question')
@@ -45,7 +45,7 @@ class Question(db.Model):
     topic_id = db.Column(db.Integer, db.ForeignKey("topic.id"), 
     nullable=False)
     date = db.Column(db.DateTime(timezone=True), default=func.now())
-    author = db.Column(db.Integer, db.ForeignKey('user.username'))
+    author = db.Column(db.String(50), db.ForeignKey('user.username'))
 
 
     def __repr__(self):

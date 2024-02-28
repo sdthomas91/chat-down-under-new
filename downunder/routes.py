@@ -39,14 +39,29 @@ def sign_up():
         elif password1 != password2:
             flash('Your passwords do not match', category='error')
         elif len(password1) < 8:
-            flash('Password too short - your password must be at least 8 characters', category='error')
+            flash(
+                'Password too short - your password must be at least 8 characters', 
+                category='error'
+            )
         else:
             #add new user to database
-            new_user = User(email=email, username=username, fname=fname, lname=lname, password=generate_password_hash(password1, method="sha256"))
+            new_user = User(
+                email=email, 
+                username=username, 
+                fname=fname, 
+                lname=lname, 
+                password=generate_password_hash(
+                    password1, 
+                    method="pbkdf2:sha256"
+                )
+            )
             db.session.add(new_user)
             db.session.commit()
             # Success message flash
-            flash('Account Created! Please proceed to login', category='success')
+            flash(
+                'Account Created! Please proceed to login', 
+                category='success'
+            )
             return redirect(url_for('home'))
 
     return render_template("sign_up.html", page_title="Sign Up!")
