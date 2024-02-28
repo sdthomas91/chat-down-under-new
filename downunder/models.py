@@ -44,7 +44,7 @@ class Question(db.Model):
     topic_id = db.Column(db.Integer, db.ForeignKey("topic.id"), 
     nullable=False)
     date = db.Column(db.DateTime(timezone=True), default=func.now())
-    user_id = db.Column(db.Integer, db.ForeignKey('user.username'))
+    author = db.Column(db.Integer, db.ForeignKey('user.username'))
 
 
     def __repr__(self):
