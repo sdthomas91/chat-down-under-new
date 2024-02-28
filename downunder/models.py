@@ -14,6 +14,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(50))
     fname = db.Column(db.String(50))
     lname = db.Column(db.String(50))
+    questions = db.relationship('Question')
 
 # Following models have been adapted from a previous project of mine 
 # (https://github.com/sdthomas91/python-project-1/tree/main/taskmanager), 
