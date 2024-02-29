@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+<!-- Page Title -->
+{% block title %}CDU | Search{% endblock %}
+
+<!-- Page Content -->
+{% block content %}
+
+<div class="container-fluid home-container">
+  <div class="row">
+    <div class="col-12 question-container">
+      <h1>Results for {{ search-query }}</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="col-4 user-info">
+        <h3>{{ search_result.id }}</h3>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
