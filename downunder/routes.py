@@ -15,6 +15,13 @@ def home():
     return render_template("index.html", 
     page_title="Welcome to Chat Down Under")
 
+
+@app.route("/topics")
+def topics():
+    # topics = list(Topic.query.order_by(Topic.topic_name).all())
+    return render_template("topics.html")
+
+
 @app.route("/sign_up", methods=['GET', 'POST'])
 def sign_up():
     """
