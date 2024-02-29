@@ -143,14 +143,12 @@ def sign_up():
             #add user to system
             db.session.add(new_user)
             db.session.commit()
-            #Log user in after successful signup - no auto remember
-            login_user(user, remember=False) 
             # Success message flash
             flash(
                 'Account Created! Please proceed to login', 
                 category='success'
             )
-            return redirect(url_for('home'))
+            return redirect(url_for('login'))
 
     return render_template("sign_up.html", page_title="Sign Up!", user=current_user)
 

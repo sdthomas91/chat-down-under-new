@@ -17,14 +17,14 @@
 </div>
 <div class="row">
   {% for topic in topics %}
-  <div class="col-12 col-md-4 col-lg-3">
+  <div class="col-4 col-md-3 col-lg-2">
     <div class="card">
       <div class="card-content white-text">
         <span class="card-title">{{ topic.topic_name }}</span>
       </div>
       <div class="card-action">
         <a
-          href="{{ url_for('edit_topic', topic_id=topic.id) }}"
+          href=""
           class="btn green accent-4"
           >Edit</a
         >
@@ -41,7 +41,7 @@
           </div>
           <div class="modal-footer">
             <a
-              href="{{ url_for('delete_topic', topic_id=topic.id) }}"
+              href=""
               class="btn red"
               >Delete</a
             >
