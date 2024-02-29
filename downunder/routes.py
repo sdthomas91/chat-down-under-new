@@ -36,7 +36,7 @@ def reply():
 @login_required
 def submit_question():
     #Initiates submit_question textbox allocating author and timestampe
-    print(submit_question)
+    return render_template("submit_question.html")
 
 @app.route("/sign_up", methods=['GET', 'POST'])
 def sign_up():
