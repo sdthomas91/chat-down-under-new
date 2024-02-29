@@ -30,7 +30,7 @@ def sign_up():
     user details
     """
     if request.method == 'POST':
-        email = request.form.get('email')
+        email = request.form.get('email').lower()
         username = request.form.get('username')
         fname = request.form.get('fname')
         lname = request.form.get('lname')
@@ -99,11 +99,13 @@ def login():
     they exist in the db
     """
     if request.method == 'POST':
-        email = request.form.get('email')
+        email = request.form.get('loginEmail').lower()
         password = request.form.get('password')
+        print(f"Attempting login with email: {email}")
 
         user = User.query.filter_by(email=email).first()
         if user:
+            print(f"User found: {user.email}")  # Debug print
             if check_password_hash(user.password, password):
                 flash('You are Logged In!', category='success')
             else:
