@@ -29,9 +29,25 @@ def sign_up():
         lname = request.form.get('lname')
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
+
+        # Validate user email and ensure it is unique
+        user = User.query.filter_by(email=email).first() 
+        if user:
+            flash(
+                'Email already registered. Please use another',
+                category='error'
+            )
+        
+        #Validate username and ensure it is unique
+        user_name = User.query.filter_by(username=username).first()
+        if user_name:
+            flash(
+                'This username is unavaialble. Please use another',
+                category='error'
+            )
     
         if len(username) < 1:
-            flash('Username cannot be left blank')
+            flash('Username cannot be left blank', category='error')
         elif len(fname) < 1:
             flash('First Name cannot be left blank', category='error')
         elif len(lname) < 1:
@@ -51,12 +67,14 @@ def sign_up():
                 fname=fname, 
                 lname=lname, 
                 password=generate_password_hash(
-                    password1, 
-                    method="pbkdf2:sha256"
+                    request.form.get("password1")
                 )
             )
+            #add user to system
             db.session.add(new_user)
             db.session.commit()
+
+            # session["user"] = request.form.get("username").lower()
             # Success message flash
             flash(
                 'Account Created! Please proceed to login', 
@@ -73,4 +91,23 @@ def login():
     perform login with their details as long as 
     they exist in the db
     """
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+
+        user = User.query.filter_by(email=email).first()
+        if user:
+            if check_password_hash(user.password, password):
+                flash('You are Logged In!', category='success')
+            else:
+                flash(
+                    'Password incorrect - please try again!', 
+                    category='error'
+                )
+        else:
+            flash(
+                'Invalid login attempt - email not registered', 
+                category='error'
+            )
+
     return render_template("login.html", page_title="Log In!")
