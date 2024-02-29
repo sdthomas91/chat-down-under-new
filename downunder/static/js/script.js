@@ -35,3 +35,15 @@ document.addEventListener('DOMContentLoaded', function() {
     updateTime();
     setInterval(updateTime, 60000);
 });
+
+
+// Allow customers to open a "new Topic" input to add a new topic to the topics database
+document.addEventListener('DOMContentLoaded', () => {
+    const topicSelect = document.getElementById('question_topics');
+    const newTopicGroup = document.getElementById('new_topic_name_group');
+    
+    topicSelect.addEventListener('change', () => {
+      const selected = Array.from(topicSelect.options).some(option => option.value === "new_topic" && option.selected);
+      newTopicGroup.style.display = selected ? 'block' : 'none';
+    });
+  });
