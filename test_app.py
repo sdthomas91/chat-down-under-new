@@ -50,5 +50,48 @@ class UserTestCase(unittest.TestCase):
             self.assertIsNotNone(user)
             self.assertTrue(check_password_hash(user.password, 'securepassword'))
 
+    def test_submit_question(self):
+        """
+        Test the question submission process
+        """
+        # First, create a user and log them in
+        user_data = {
+            'email': 'user@example.com',
+            'username': 'user',
+            'fname': 'User',
+            'lname': 'Example',
+            'password1': 'password',
+            'password2': 'password'
+        }
+        self.client.post('/sign_up', data=user_data, follow_redirects=True)
+        self.login('user@example.com', 'password')
+
+        # Create a topic for the question to be associated with
+        with app.app_context():
+            new_topic = Topic(topic_name="Test Topic")
+            db.session.add(new_topic)
+            db.session.commit()
+            topic = Topic.query.filter_by(topic_name="Test Topic").first()
+
+        # Now submit a question
+        response = self.submit_question(
+            question_title="Test Question",
+            question_body="This is a test question.",
+            topic_ids=[str(topic.id)]
+        )
+
+        # Check for successful submission message
+        self.assertIn(b'Your question has been added!', response.data)
+
+        # Verify that the question was added to the database
+        with app.app_context():
+            question = Question.query.filter_by(question_title="Test Question").first()
+            self.assertIsNotNone(question)
+            self.assertEqual(question.question_body, "This is a test question.")
+            self.assertEqual(question.topics[0].topic_name, "Test Topic")
+            self.assertEqual(question.author.username, 'user')
+
+
+        
 if __name__ == '__main__':
     unittest.main()

@@ -123,6 +123,10 @@
   .city-times-container {
     margin-bottom: 10px;
   }
+
+  .city-times { 
+    margin-bottom: 10px;
+  }
   /* ****SIGN UP**** */
 
   /* **SignUp Form** */
@@ -172,6 +176,10 @@
     overflow-y: auto;
   }
 
+  .submit-question-form {
+    width: 80%;
+    margin: auto;
+  }
   /* ****FOOTER**** */
   .footer{
     background-color: #f5f5f5;
@@ -191,33 +199,55 @@
   /* Media Queries */
   
   /* **** MIN WIDTH **** */
-  
-  @media screen and (min-width: 1400px) {
-  
-  }
-  
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 576px) {
     
   }
-  
+
+  @media screen and (min-width: 768px) {
+    .submit-question-form {
+      width: 80%;
+      margin: auto;
+    }
+  }
+
+
   @media screen and (min-width: 992px) {
     .navbar-brand {
       margin-right: 40px;
     }
 
   }
-  
-  @media screen and (min-width: 768px) {
-    
+
+  @media screen and (min-width: 1200px) {
+    .submit-question-form {
+      width: 70%;
+      margin: auto;
+    }
   }
+
+  @media screen and (min-width: 1400px) {
   
-  @media screen and (min-width: 576px) {
-    
   }
   
   /* **** MAX WIDTH **** */
   
-  @media screen and (max-width: 576px) {
+  @media screen and (max-width: 1400px) {
+    
+  }
+
+  @media screen and (max-width: 1200px) {
+    .main-nav-links .nav-item {
+      margin: 0 40px;
+    }
+  }
+
+  @media screen and (max-width: 992px) {
+
+    .masthead-content h1 {
+      font-weight: 700;
+      font-size: 2rem;
+      letter-spacing: 0rem;
+    }
     
   }
   
@@ -229,29 +259,14 @@
     .sign-up-container {
       width: 80%;
     }
-  }
-  
-  @media screen and (max-width: 992px) {
-    
-  .masthead-content h1 {
-    font-weight: 700;
-    font-size: 2rem;
-    letter-spacing: 0rem;
-  }
-  
-  .masthead {
-    height: 250px;
-  }
 
-
-  }
-  
-  @media screen and (max-width: 1200px) {
-    .main-nav-links .nav-item {
-      margin: 0 40px;
+    .masthead {
+      height: 400px;
     }
   }
-  
-  @media screen and (max-width: 1400px) {
-    
+
+  @media screen and (max-width: 576px) {
+    .masthead {
+      height: 450px;
+    }
   }
