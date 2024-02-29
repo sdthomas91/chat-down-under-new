@@ -38,15 +38,18 @@
 
       <ul class="nav navbar-nav customer-links">
         <!-- **** Used stack overflow for signup login layout https://stackoverflow.com/questions/53339351/how-to-create-navigation-bar-with-login-sign-up-button-in-bootstrap-4 **** -->
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('logout') }}"><span class="fas fa-sign-out-alt"></span> Log Out</a>
+        </li>
+        {% else %}
         <li class="nav-item">
           <a class="nav-link" href="{{ url_for('sign_up') }}"><span class="fas fa-user"></span> Sign Up</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ url_for('login') }}"><span class="fas fa-sign-in-alt"></span> Log In</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('logout') }}"><span class="fas fa-sign-out-alt"></span> Log Out</a>
-        </li>
+        {% endif %}
       </ul>
     </div>
   </nav>

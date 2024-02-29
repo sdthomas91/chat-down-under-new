@@ -15,7 +15,8 @@ def home():
     """
     # questions = list(Question.query.order_by(Question.id).all())
     return render_template("index.html", 
-    page_title="Welcome to Chat Down Under"
+    page_title="Welcome to Chat Down Under",
+    user=current_user
     )
 
 
@@ -105,7 +106,7 @@ def sign_up():
             )
             return redirect(url_for('home'))
 
-    return render_template("sign_up.html", page_title="Sign Up!")
+    return render_template("sign_up.html", page_title="Sign Up!", user=current_user)
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
@@ -141,7 +142,7 @@ def login():
                 category='error'
             )
 
-    return render_template("login.html", page_title="Log In!")
+    return render_template("login.html", page_title="Log In!", user=current_user)
 
 @app.route('/logout')
 #ensure users can only log out if logged in
