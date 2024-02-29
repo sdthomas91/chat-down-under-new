@@ -3,6 +3,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 if os.path.exists("env.py"):
     import env
+from flask_login import LoginManager
 
 
 app = Flask(__name__)

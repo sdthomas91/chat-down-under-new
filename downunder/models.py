@@ -45,8 +45,14 @@ class Question(db.Model):
     topic_id = db.Column(db.Integer, db.ForeignKey("topic.id"), 
     nullable=False)
     date = db.Column(db.DateTime(timezone=True), default=func.now())
-    author = db.Column(db.String(50), db.ForeignKey('user.username'))
+    author_id = db.Column(
+    db.Integer,
+    db.ForeignKey('user.id'),
+    nullable=False
+    )
 
+    #relationship
+    author = db.relationship('User', backref='questions')
 
     def __repr__(self):
         return "Question #{0} - Title: {1} | Urgent: {2}".format(

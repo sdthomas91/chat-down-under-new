@@ -3,6 +3,7 @@ from downunder import app,db
 from downunder.models import Topic, Question
 from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import login_user, login_required, logout_user, current_user, LoginManager
 
 
 
@@ -21,6 +22,12 @@ def topics():
     # topics = list(Topic.query.order_by(Topic.topic_name).all())
     return render_template("topics.html")
 
+@app.route('/reply')
+#Only logged in users can reply to questions
+@login_required
+def reply():
+    #Initiates reply textbox allocating author and question
+    print(reply)
 
 @app.route("/sign_up", methods=['GET', 'POST'])
 def sign_up():
@@ -80,8 +87,8 @@ def sign_up():
             #add user to system
             db.session.add(new_user)
             db.session.commit()
-
-            # session["user"] = request.form.get("username").lower()
+            #Log user in after successful signup - no auto remember
+            login_user(user, remember=False) 
             # Success message flash
             flash(
                 'Account Created! Please proceed to login', 
@@ -101,6 +108,7 @@ def login():
     if request.method == 'POST':
         email = request.form.get('loginEmail').lower()
         password = request.form.get('password')
+        remember_me = 'remember_me' in request.form
         print(f"Attempting login with email: {email}")
 
         user = User.query.filter_by(email=email).first()
@@ -108,6 +116,11 @@ def login():
             print(f"User found: {user.email}")  # Debug print
             if check_password_hash(user.password, password):
                 flash('You are Logged In!', category='success')
+                if remember_me:
+                    login_user(user, remember=True)
+                else:
+                    login_user(user, remember=False)
+                return redirect(url_for('home'))
             else:
                 flash(
                     'Password incorrect - please try again!', 
@@ -120,3 +133,11 @@ def login():
             )
 
     return render_template("login.html", page_title="Log In!")
+
+@app.route('/logout')
+#ensure users can only log out if logged in
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
+    flash('You have successfully logged out', category='success')
