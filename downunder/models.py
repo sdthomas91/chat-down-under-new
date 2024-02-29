@@ -14,7 +14,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(255))
     fname = db.Column(db.String(50))
     lname = db.Column(db.String(50))
-    questions = db.relationship('Question', back_populates='author')
+    # questions = db.relationship('Question')
 
 # Following models have been adapted from a previous project of mine 
 # (https://github.com/sdthomas91/python-project-1/tree/main/taskmanager), 
@@ -52,11 +52,11 @@ class Question(db.Model):
     )
 
     #relationship
-    author = db.relationship('User', back_populates='questions')
+    author = db.relationship('User', backref='questions')
 
     def __repr__(self):
         return "Question #{0} - Title: {1} | Urgent: {2}".format(
-            self.id, self.question_title, self.is_urgent
+            self.id, self.question_title, self.author_id
         )
 
 #Add reply model 

@@ -5,12 +5,22 @@
 <!-- Page Content -->
 {% block content %}
 
-<div class="container-fluid home-container">
+<div class="container home-container">
   <div class="row">
-    <div class="col-5 offset-1 question-container">
-      <h1>Questions</h1>
+    <div class="col-6 offset-1 home-blocks question-container">
+      <h2>Latest Questions</h2>
+      {% for question in questions %}
+        <div class="question-block">
+          <div class="question-title">
+            {{ question.question_title }}
+          </div>
+          <div class="question-body">
+            {{ question.question_body }}
+          </div>
+        </div>
+      {% endfor %}
     </div>
-    <div class="col-4 user-info">
+    <div class="col-4 offset-1 home-blocks user-info">
       <h3>User</h3>
     </div>
   </div>
