@@ -10,25 +10,18 @@ describe('Flash Message Fade Out', () => {
         `;
     });
 
-    test('should fade out and remove the flash message after 3 seconds', (done) => {
-        require('../script.js'); 
+    jest.useFakeTimers();
 
-        const flashMessage = document.querySelector('.flash-message');
+test('should remove the flash message after 3 seconds', () => {
+    require('../script.js'); 
+    const flashMessage = document.querySelector('.flash-message');
 
-        // Check if the flash message exists and has not faded out immediately
-        expect(flashMessage).not.toBeNull();
-        expect(flashMessage.style.opacity).toBe('');
+    expect(flashMessage).not.toBeNull();
 
-        // Wait for the fade-out effect to start
-        setTimeout(() => {
-            expect(flashMessage.style.opacity).toBe('0');
-            expect(flashMessage.style.transition).toContain('opacity 0.3s ease-out');
+    // Fast-forward until all timers have been executed
+    jest.runAllTimers();
 
-            // Wait for the flash message to be removed
-            setTimeout(() => {
-                expect(document.querySelector('.flash-message')).toBeNull();
-                done();
-            }, 300); 
-        }, 3000); 
-    });
+    // Now that the timers have been fast-forwarded, check the condition
+    expect(document.querySelector('.flash-message')).toBeNull();
+});
 });

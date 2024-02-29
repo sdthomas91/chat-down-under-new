@@ -70,7 +70,7 @@
     position: relative;
     background: url("../images/sydney-harbour.jpg") no-repeat left center;
     background-size: cover;
-    height: 350px;
+    height: 380px;
   }
   
   .overlay {
@@ -120,6 +120,9 @@
     padding-right: 20px;
   }
 
+  .city-times-container {
+    margin-bottom: 10px;
+  }
   /* ****SIGN UP**** */
 
   /* **SignUp Form** */
