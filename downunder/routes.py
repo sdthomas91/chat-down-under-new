@@ -13,8 +13,10 @@ def home():
     Navigate to home page and load latest questions
     to the main discussion area
     """
+    # questions = list(Question.query.order_by(Question.id).all())
     return render_template("index.html", 
-    page_title="Welcome to Chat Down Under")
+    page_title="Welcome to Chat Down Under"
+    )
 
 
 @app.route("/topics")
@@ -28,6 +30,13 @@ def topics():
 def reply():
     #Initiates reply textbox allocating author and question
     print(reply)
+
+@app.route('/submit_question')
+#Only logged in users can submit questions
+@login_required
+def submit_question():
+    #Initiates submit_question textbox allocating author and timestampe
+    print(submit_question)
 
 @app.route("/sign_up", methods=['GET', 'POST'])
 def sign_up():
