@@ -38,30 +38,27 @@ def submit_question():
     if request.method == 'POST':
         question_title = request.form.get('question_title')
         question_body = request.form.get('question_body')
-        topic_id = request.form.get('question_topic') 
-        is_urgent = request.form.get('is_urgent') == 'on'
+        selected_topic_ids = request.form.getlist('question_topics')  # This gets all selected topic IDs
+        new_topic_name = request.form.get('new_topic_name').strip()
 
-        # Assuming topic_id is a string representing an integer
-        topic = Topic.query.get(int(topic_id))
-        if not topic:
-            flash('Invalid topic.', category='error')
-            return render_template("submit_question.html", page_title="Submit Your Question")
+        # Handle new topic creation
+        if "new_topic" in selected_topic_ids and new_topic_name:
+            new_topic = Topic(topic_name=new_topic_name)
+            db.session.add(new_topic)
+            db.session.flush()  # Flush to assign an ID to the new topic without committing the transaction
+            selected_topic_ids.append(str(new_topic.id))  # Add new topic ID to the list
 
-        new_question = Question(
-            question_title=question_title,
-            question_body=question_body,
-            is_urgent=is_urgent,
-            topic_id=topic.id,  
-            author_id=current_user.id  
-        )
+        selected_topics = Topic.query.filter(Topic.id.in_([int(tid) for tid in selected_topic_ids if tid.isdigit()])).all()
+
+        new_question = Question(question_title=question_title, question_body=question_body, author_id=current_user.id, topics=selected_topics)
         db.session.add(new_question)
         db.session.commit()
 
-        flash('Your question has been added!', category='success')
+        flash('Your question has been added!', 'success')
         return redirect(url_for('home'))
 
-    topics = Topic.query.all() 
-    return render_template("submit_question.html", page_title="Submit Your Question", topics=topics, user=current_user)
+    topics = Topic.query.all()
+    return render_template("submit_question.html", page_title="Ask Your Question", topics=topics, user=current_user)
 
 @app.route("/sign_up", methods=['GET', 'POST'])
 def sign_up():
