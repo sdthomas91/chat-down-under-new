@@ -14,6 +14,10 @@
     background-color: #debb98;
   }
 
+  h1, h2, h3, h4 {
+    font-family: "Archivo Black", sans-serif;
+  }
+
   a {
     color: #00008B;
   }
@@ -130,6 +134,16 @@
     margin-bottom: 20px;
   }
   
+  /* ****FOOTER**** */
+  .footer-container {
+    background-color: #fefefe;
+    padding: 30px 0;
+  }
+
+  .logo-text {
+    color: #fba018;
+  }
+
   /* Media Queries */
   
   /* **** MIN WIDTH **** */
