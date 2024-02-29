@@ -4,6 +4,10 @@ from downunder.models import Topic, Question
 from .models import User, Question
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, login_required, logout_user, current_user, LoginManager
+# Added flask forms having looked at the potential benefits (https://flask.palletsprojects.com/en/2.3.x/patterns/wtforms/)
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField
+from wtforms.validators import DataRequired
 
 
 
@@ -22,8 +26,29 @@ def home():
 
 @app.route("/topics")
 def topics():
-    # topics = list(Topic.query.order_by(Topic.topic_name).all())
-    return render_template("topics.html", page_title="Browse by Topic", user=current_user)
+    topics = list(Topic.query.order_by(Topic.topic_name).all())
+    return render_template("topics.html", page_title="Browse by Topic", user=current_user, topics=topics)
+
+class AddTopicForm(FlaskForm):
+    topic_name = StringField('Topic Name', validators=[DataRequired()])
+    submit = SubmitField('Add Topic')
+
+@app.route("/add_topic", methods=["GET", "POST"])
+@login_required  # if admin-only feature
+def add_topic():
+    form = AddTopicForm()
+    if form.validate_on_submit():
+        existing_topic = Topic.query.filter_by(topic_name=form.topic_name.data).first()
+        if existing_topic is None:
+            topic = Topic(topic_name=form.topic_name.data)
+            db.session.add(topic)
+            db.session.commit()
+            flash('Topic added successfully.', 'success')
+            return redirect(url_for("topics"))
+        else:
+            flash('Topic already exists.', 'error')
+    return render_template("add_topic.html", page_title="Add a Topic", form=form, user=current_user)
+
 
 @app.route('/reply')
 #Only logged in users can reply to questions
