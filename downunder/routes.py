@@ -1,7 +1,7 @@
 from flask import render_template, request, flash, redirect, url_for
 from downunder import app,db
 from downunder.models import Topic, Question
-from .models import User
+from .models import User, Question
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, login_required, logout_user, current_user, LoginManager
 
@@ -23,7 +23,7 @@ def home():
 @app.route("/topics")
 def topics():
     # topics = list(Topic.query.order_by(Topic.topic_name).all())
-    return render_template("topics.html")
+    return render_template("topics.html", page_title="Browse by Topic", user=current_user)
 
 @app.route('/reply')
 #Only logged in users can reply to questions
@@ -32,12 +32,36 @@ def reply():
     #Initiates reply textbox allocating author and question
     print(reply)
 
-@app.route('/submit_question')
-#Only logged in users can submit questions
+@app.route('/submit_question', methods=['GET', 'POST'])
 @login_required
 def submit_question():
-    #Initiates submit_question textbox allocating author and timestampe
-    return render_template("submit_question.html")
+    if request.method == 'POST':
+        question_title = request.form.get('question_title')
+        question_body = request.form.get('question_body')
+        topic_id = request.form.get('question_topic') 
+        is_urgent = request.form.get('is_urgent') == 'on'
+
+        # Assuming topic_id is a string representing an integer
+        topic = Topic.query.get(int(topic_id))
+        if not topic:
+            flash('Invalid topic.', category='error')
+            return render_template("submit_question.html", page_title="Submit Your Question")
+
+        new_question = Question(
+            question_title=question_title,
+            question_body=question_body,
+            is_urgent=is_urgent,
+            topic_id=topic.id,  
+            author_id=current_user.id  
+        )
+        db.session.add(new_question)
+        db.session.commit()
+
+        flash('Your question has been added!', category='success')
+        return redirect(url_for('home'))
+
+    topics = Topic.query.all() 
+    return render_template("submit_question.html", page_title="Submit Your Question", topics=topics, user=current_user)
 
 @app.route("/sign_up", methods=['GET', 'POST'])
 def sign_up():
