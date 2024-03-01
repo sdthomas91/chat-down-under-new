@@ -1,3 +1,17 @@
+import $ from 'jquery';
+import 'select2';
+
+// Initialize select2
+
+$(function() {
+    $('#question_topics').select2({
+        placeholder: "Select Topics",
+        allowClear: true
+    });
+});
+
+
+
 // Add an auto close for flash messages
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
