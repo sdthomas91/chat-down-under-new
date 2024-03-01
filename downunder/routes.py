@@ -17,10 +17,10 @@ def home():
     Navigate to home page and load latest questions
     to the main discussion area
     """
-    # questions = list(Question.query.order_by(Question.id).all())
+    questions = list(Question.query.order_by(Question.id).all())
     return render_template("index.html", 
     page_title="Welcome to Chat Down Under",
-    user=current_user
+    user=current_user, questions=questions
     )
 
 

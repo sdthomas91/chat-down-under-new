@@ -8,17 +8,32 @@
 <div class="container home-container">
   <div class="row">
     <div class="col-12 col-md-7  home-blocks question-container">
-      <h2>Latest Questions</h2>
-      {% for question in questions %}
-        <div class="question-block">
-          <div class="question-title">
-            {{ question.question_title }}
-          </div>
-          <div class="question-body">
-            {{ question.question_body }}
+      <h2>Urgent Questions</h2>
+      <p>Can you help? To view all recent questions, <a href="">click here</a></p>
+      <div class="row">
+        {% for question in questions %}
+        <div class="col12 col-md-6">
+          <div class="question-block">
+            <div class="question-title">
+              <h5>{{ question.question_title }}</h5>
+            </div>
+            <div class="question-body">
+              <p>{{ question.question_body }}</p>
+            </div>
+            <div class="question-tags">
+              {% for topic in question.topics %}
+                <span class="topic-badge">{{ topic.topic_name }}</span>
+              {% endfor %}
+            </div>
+            <div class="question-author">
+              {{ question.author.username }}
+            </div>
           </div>
         </div>
-      {% endfor %}
+        {% endfor %}
+
+      </div>
+
     </div>
     <div class="col-12 col-md-4 offset-md-1 home-blocks user-info">
       <h3>User</h3>
