@@ -14,6 +14,34 @@ $(document).ready(function () {
     });
 });
 
+// AJAX call to dynamically update the topics list 
+$('#addTopicForm').submit(function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    var formData = $(this).serialize(); // Serialize the form data
+
+    $.ajax({
+        type: 'POST',
+        url: '/add_topic', // Adjust if your route differs
+        data: formData,
+        success: function(response) {
+            // Assuming the server responds with the new topic's ID and name
+            if(response.topicId && response.topicName) {
+                // Append the new topic to the Select2 dropdown
+                var newOption = new Option(response.topicName, response.topicId, true, true);
+                $('#question_topics').append(newOption).trigger('change');
+
+                // Optionally, clear the input field in the modal
+                $('#topicName').val('');
+            }
+        },
+        error: function(xhr, status, error) {
+            // Handle errors (e.g., topic already exists)
+            console.error("Error adding topic:", error);
+        }
+    });
+});
+
 // Add an auto close for flash messages
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {

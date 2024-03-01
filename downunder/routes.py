@@ -1,4 +1,4 @@
-from flask import render_template, request, flash, redirect, url_for
+from flask import render_template, request, flash, redirect, url_for, jsonify
 from downunder import app,db
 from downunder.models import Topic, Question
 from .models import User, Question
@@ -27,27 +27,57 @@ def home():
 @app.route("/topics")
 def topics():
     topics = list(Topic.query.order_by(Topic.topic_name).all())
-    return render_template("topics.html", page_title="Browse by Topic", user=current_user, topics=topics)
+    return render_template(
+        "topics.html", 
+        page_title="Browse by Topic", 
+        user=current_user, 
+        topics=topics
+        )
 
 class AddTopicForm(FlaskForm):
     topic_name = StringField('Topic Name', validators=[DataRequired()])
     submit = SubmitField('Add Topic')
 
 @app.route("/add_topic", methods=["GET", "POST"])
-@login_required  # if admin-only feature
+@login_required
 def add_topic():
     form = AddTopicForm()
     if form.validate_on_submit():
-        existing_topic = Topic.query.filter_by(topic_name=form.topic_name.data).first()
+        existing_topic = Topic.query.filter_by(
+            topic_name=form.topic_name.data
+            ).first()
         if existing_topic is None:
-            topic = Topic(topic_name=form.topic_name.data)
-            db.session.add(topic)
+            new_topic = Topic(topic_name=form.topic_name.data)  # Define new_topic here for scope
+            db.session.add(new_topic)
             db.session.commit()
             flash('Topic added successfully.', 'success')
-            return redirect(url_for("topics"))
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                # Return JSON response for AJAX request
+                return jsonify({
+                    'topicId': new_topic.id, 
+                    'topicName': new_topic.topic_name
+                    })
+            else:
+                return redirect(url_for("topics"))
         else:
             flash('Topic already exists.', 'error')
-    return render_template("add_topic.html", page_title="Add a Topic", form=form, user=current_user)
+            # Issues with deprecated is_xhr (https://stackoverflow.com/
+            # questions/60992849/
+            # attributeerror-request-object-has-no-attribute-is-xhr)
+            #X-requested-with used instead ()
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                # Alternative AJAX error handling (https://stackoverflow.com/
+                # questions/6949628/how-should-error-corresponding
+                # -to-an-ajax-request-be-passed-to-and-handled-at-th)
+                return jsonify({'error': 'Topic already exists'}), 409
+
+    # Complete if not AJAX
+    return render_template(
+        "add_topic.html", 
+        page_title="Add a Topic", 
+        form=form, 
+        user=current_user
+        )
 
 
 @app.route('/reply')
