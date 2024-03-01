@@ -198,6 +198,10 @@ a {
   margin: auto;
 }
 
+.add-topic-link {
+  margin-bottom: 20px;
+}
+
 /* **SELECT2** */
 
 .select2-selection__choice {
