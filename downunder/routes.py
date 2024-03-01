@@ -76,22 +76,6 @@ def submit_question():
                                 )
         db.session.add(new_question)
 
-        #Additional logic for new topic handling
-        if 'new_topic' in selected_topic_ids:
-            #added strip to make new topic compatible
-            new_topic_name = request.form.get('new_topic_name').strip()
-            if new_topic_name:
-                new_topic = Topic(topic_name=new_topic_name)
-                db.session.add(new_topic)
-                """(https://www.geeksforgeeks.org/
-                file-flush-method-in-python/) Several resources used to find 
-                the correct option - decided on flush(). I needed a function 
-                that would register the value of a new topic without
-                completing the form submission in order to allow all 
-                selected topics to be added first. I believe this was the
-                most effective way of achieving this """
-                db.session.flush() 
-                new_question.topics.append(new_topic)
 
         selected_topic_ids = [topicid for topicid in selected_topic_ids if topicid != 'new_topic']
 
