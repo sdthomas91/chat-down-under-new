@@ -34,10 +34,10 @@
             </div>
             <!-- Jinja templating will be used to display a series of buttons depending on user login status and author status -->
             {% if current_user.is_authenticated %}
-            <div class="btn btn-primary">Reply</div>
+            <a class="btn btn-primary">Reply</a>
               {% if current_user.id == question.author_id %}
-              <div class="btn btn-primary">Edit</div>
-              <div class="btn btn-primary">Delete</div>
+              <a href="{{url_for('edit_question', question_id=question.id)}}" class="btn btn-primary">Edit</a>
+              <a class="btn btn-danger">Delete</a>
               {% endif %}
             {% endif %}
 

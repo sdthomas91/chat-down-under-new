@@ -57,6 +57,7 @@ def reply():
     #Initiates reply textbox allocating author and question
     print(reply)
 
+### QUESTION SPECIFIC ROUTES ###
 @app.route('/submit_question', methods=['GET', 'POST'])
 @login_required
 def submit_question():
@@ -107,7 +108,46 @@ def submit_question():
     topics = Topic.query.all()
     return render_template("submit_question.html", page_title="Ask Your Question", topics=topics, user=current_user)
 
+@app.route('/edit_question/<int:question_id>', methods=['GET', 'POST'])
+@login_required
+def edit_question(question_id):
+    """
+    Load edit question page and allow resubmission and editing of question
+    """
+    question = Question.query.get_or_404(question_id)
+    #Safety measure to ensure only author can edit the question
+    if current_user.id != question.author_id:
+        flash('You can only edit your own questions.', category='error')
+        return redirect(url_for('home'))
 
+    topics = Topic.query.all()
+
+    if request.method == 'POST':
+        # Collect data from form
+        question_title = request.form['question_title']
+        question_body = request.form['question_body']
+        selected_topics_ids = request.form.getlist('topics')
+        # Update question data
+        question.question_title = question_title
+        question.question_body = question_body
+        question.topics = [
+            Topic.query.get(int(topicid)) for topicid in selected_topics_ids
+            ]
+        #commit this edit
+        db.session.commit()
+        flash('Question updated successfully!', 'success')
+        return redirect(url_for('home', question_id=question.id))
+
+    return render_template(
+                        'edit_question.html',
+                        question_id=question.id,
+                        page_title="Edit Question", 
+                        question=question, 
+                        topics=topics, 
+                        user=current_user
+                        )
+
+### AUTHETNTICATION ROUTES ###
 @app.route("/sign_up", methods=['GET', 'POST'])
 def sign_up():
     """
