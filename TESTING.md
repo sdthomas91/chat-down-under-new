@@ -102,7 +102,7 @@ For this element I wanted to allow logged in users to view their profile informa
 
 #### New Question and Edit question 
 
-- I opted to not use the code to process a neew topic being added during the question submission. Having researched and thinking about a modal I discoverd an AJAX process that would allow me to open a modal with the add_topic template, add the topic and then dynamically update the form so users don't have to navigate away from the form in order to update. Unused code in routes.py : 
+- I opted to not use the code to process a neew topic being added during the question submission. Having [researched](https://wpmudev.com/blog/load-posts-ajax/#:~:text=AJAX%20(Asynchronous%20JavaScript%20and%20XML,all%20without%20reloading%20the%20page.) and thinking about a modal I discoverd an AJAX process that would allow me to open a modal with the add_topic template, add the topic and then dynamically update the form so users don't have to navigate away from the form in order to update. Unused code in routes.py : 
 
         #Additional logic for new topic handling
         if 'new_topic' in selected_topic_ids:
