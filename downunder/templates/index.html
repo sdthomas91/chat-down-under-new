@@ -32,6 +32,15 @@
             <div class="question-author">
               <p>Author: <span class=font-weight-bold>{{ question.author.username }}</span> </p>
             </div>
+            <!-- Jinja templating will be used to display a series of buttons depending on user login status and author status -->
+            {% if current_user.is_authenticated %}
+            <div class="btn btn-primary">Reply</div>
+              {% if current_user.id == question.author_id %}
+              <div class="btn btn-primary">Edit</div>
+              <div class="btn btn-primary">Delete</div>
+              {% endif %}
+            {% endif %}
+
           </div>
         </div>
         {% endif %}
