@@ -3,14 +3,16 @@ import 'select2';
 
 // Initialize select2
 
-$(function() {
+$(document).ready(function () {
     $('#question_topics').select2({
-        placeholder: "Select Topics",
-        allowClear: true
+        placeholder: "Select or add topics (up to 3)",
+        // enable tagging function ( https://stackoverflow.com/questions/53804359/allow-tags-in-select2-elements#:~:text=To%20enable%20tagging%2C%20set%20the%20tags%20option%20to%20true.&text=Note%20that%20when%20tagging%20is,the%20search%20box%20so%20far.)
+        tags: true,
+        tokenSeparators: [',', ' '],
+        // apply selection limit with Select2 (https://select2.org/selections)
+        maximumSelectionLength: 3,
     });
 });
-
-
 
 // Add an auto close for flash messages
 document.addEventListener('DOMContentLoaded', () => {
@@ -25,10 +27,13 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Add a time function that displays the times for major cities in Australia 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const updateTime = () => {
         // Simple minute and hour display - no need for seconds, was too busy
-        const options = { hour: '2-digit', minute: '2-digit' };
+        const options = {
+            hour: '2-digit',
+            minute: '2-digit'
+        };
 
         // Timezones required for the display
         const timeZones = {
@@ -40,7 +45,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Set time for each city listed 
         for (const [city, timeZone] of Object.entries(timeZones)) {
-            const timeString = new Intl.DateTimeFormat('en-AU', { ...options, timeZone }).format(new Date());
+            const timeString = new Intl.DateTimeFormat('en-AU', {
+                ...options,
+                timeZone
+            }).format(new Date());
             document.getElementById(`time${city}`).textContent = timeString;
         }
     };
@@ -55,9 +63,9 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', () => {
     const topicSelect = document.getElementById('question_topics');
     const newTopicGroup = document.getElementById('new_topic_name_group');
-    
+
     topicSelect.addEventListener('change', () => {
-      const selected = Array.from(topicSelect.options).some(option => option.value === "new_topic" && option.selected);
-      newTopicGroup.style.display = selected ? 'block' : 'none';
+        const selected = Array.from(topicSelect.options).some(option => option.value === "new_topic" && option.selected);
+        newTopicGroup.style.display = selected ? 'block' : 'none';
     });
-  });
+});

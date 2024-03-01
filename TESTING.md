@@ -99,3 +99,24 @@ For this element I wanted to allow logged in users to view their profile informa
   | ![CSS No Errors](/assets/images/no-error-css.png) |
 
 ## Unused Code
+
+#### New Question and Edit question 
+
+- I opted to not use the code to process a neew topic being added during the question submission. Having researched and thinking about a modal I discoverd an AJAX process that would allow me to open a modal with the add_topic template, add the topic and then dynamically update the form so users don't have to navigate away from the form in order to update. Unused code in routes.py : 
+
+        #Additional logic for new topic handling
+        if 'new_topic' in selected_topic_ids:
+            #added strip to make new topic compatible
+            new_topic_name = request.form.get('new_topic_name').strip()
+            if new_topic_name:
+                new_topic = Topic(topic_name=new_topic_name)
+                db.session.add(new_topic)
+                """(https://www.geeksforgeeks.org/
+                file-flush-method-in-python/) Several resources used to find 
+                the correct option - decided on flush(). I needed a function 
+                that would register the value of a new topic without
+                completing the form submission in order to allow all 
+                selected topics to be added first. I believe this was the
+                most effective way of achieving this """
+                db.session.flush() 
+                new_question.topics.append(new_topic)
