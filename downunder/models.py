@@ -27,13 +27,27 @@ class Topic(db.Model):
     # schema for the Topic model
     id = db.Column(db.Integer, primary_key=True)
     topic_name = db.Column(db.String(50), unique=True, nullable=False)
-    #note, no cascade deletion
-    questions = db.relationship("Question", backref="category", lazy=True)
+    
 
     def __repr__(self):
         #__repr___ to represent itself in the form of a string
         return self.topic_name
 
+#Association table to implement the many-to-many relationship
+question_topic_association = db.Table('question_topic_association',
+    db.Column(
+        'question_id', 
+        db.Integer, 
+        db.ForeignKey('question.id'), 
+        primary_key=True
+        ),
+    db.Column(
+        'topic_id', 
+        db.Integer, 
+        db.ForeignKey('topic.id'), 
+        primary_key=True
+        )
+)
 
 class Question(db.Model):
     # schema for the Question model
@@ -42,8 +56,12 @@ class Question(db.Model):
     nullable=False)
     question_body = db.Column(db.Text, nullable=False)
     is_urgent = db.Column(db.Boolean, default=False, nullable=False)
-    topic_id = db.Column(db.Integer, db.ForeignKey("topic.id"), 
-    nullable=False)
+    topics = db.relationship(
+                            'Topic', 
+                            secondary=question_topic_association, 
+                            lazy='subquery',
+                            backref=db.backref('questions', lazy=True)
+                            )
     date = db.Column(db.DateTime(timezone=True), default=func.now())
     author_id = db.Column(
     db.Integer,

@@ -37,5 +37,8 @@ def create_db():
     """
     Flask CLI workaround for db creation 
     """
+    # (https://docs.sqlalchemy.org/en/20/core/metadata.html)
+    #Use drop_all() during development to ensure tables are purged and updated
+    db.drop_all()
     db.create_all()
     print("Database tables created")

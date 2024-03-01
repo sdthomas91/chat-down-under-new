@@ -63,27 +63,50 @@ def submit_question():
     if request.method == 'POST':
         question_title = request.form.get('question_title')
         question_body = request.form.get('question_body')
-        selected_topic_ids = request.form.getlist('question_topics')  # This gets all selected topic IDs
-        new_topic_name = request.form.get('new_topic_name').strip()
+        #Gather all selected topic Id's
+        selected_topic_ids = request.form.getlist('question_topics')
+        is_urgent = request.form.get('is_urgent') == 'on'
 
-        # Handle new topic creation
-        if "new_topic" in selected_topic_ids and new_topic_name:
-            new_topic = Topic(topic_name=new_topic_name)
-            db.session.add(new_topic)
-            db.session.flush()  # Flush to assign an ID to the new topic without committing the transaction
-            selected_topic_ids.append(str(new_topic.id))  # Add new topic ID to the list
-
-        selected_topics = Topic.query.filter(Topic.id.in_([int(tid) for tid in selected_topic_ids if tid.isdigit()])).all()
-
-        new_question = Question(question_title=question_title, question_body=question_body, author_id=current_user.id, topics=selected_topics)
+        new_question = Question(
+                                question_title=question_title, 
+                                question_body=question_body, 
+                                author_id=current_user.id, 
+                                is_urgent=is_urgent
+                                )
         db.session.add(new_question)
-        db.session.commit()
 
+        #Additional logic for new topic handling
+        if 'new_topic' in selected_topic_ids:
+            #added strip to make new topic compatible
+            new_topic_name = request.form.get('new_topic_name').strip()
+            if new_topic_name:
+                new_topic = Topic(topic_name=new_topic_name)
+                db.session.add(new_topic)
+                """(https://www.geeksforgeeks.org/
+                file-flush-method-in-python/) Several resources used to find 
+                the correct option - decided on flush(). I needed a function 
+                that would register the value of a new topic without
+                completing the form submission in order to allow all 
+                selected topics to be added first. I believe this was the
+                most effective way of achieving this """
+                db.session.flush() 
+                new_question.topics.append(new_topic)
+
+        selected_topic_ids = [topicid for topicid in selected_topic_ids if topicid != 'new_topic']
+
+        # Add/append each topic to the question
+        for topicid in selected_topic_ids:
+            topic = Topic.query.get(int(topicid))
+            if topic:
+                new_question.topics.append(topic)
+
+        db.session.commit()
         flash('Your question has been added!', 'success')
         return redirect(url_for('home'))
 
     topics = Topic.query.all()
     return render_template("submit_question.html", page_title="Ask Your Question", topics=topics, user=current_user)
+
 
 @app.route("/sign_up", methods=['GET', 'POST'])
 def sign_up():
