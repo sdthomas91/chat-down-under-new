@@ -3,7 +3,8 @@ from downunder import app,db
 from downunder.models import Topic, Question
 from .models import User, Question
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import login_user, login_required, logout_user, current_user, LoginManager
+from flask_login import login_user, login_required, logout_user 
+from flask_login import current_user, LoginManager
 # Added flask forms having looked at the potential benefits (https://flask.palletsprojects.com/en/2.3.x/patterns/wtforms/)
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
@@ -39,7 +40,7 @@ class AddTopicForm(FlaskForm):
     submit = SubmitField('Add Topic')
 
 @app.route("/add_topic", methods=["GET", "POST"])
-@login_required
+@login_required  # if admin-only feature
 def add_topic():
     form = AddTopicForm()
     if form.validate_on_submit():
@@ -47,37 +48,18 @@ def add_topic():
             topic_name=form.topic_name.data
             ).first()
         if existing_topic is None:
-            new_topic = Topic(topic_name=form.topic_name.data)  # Define new_topic here for scope
-            db.session.add(new_topic)
+            topic = Topic(topic_name=form.topic_name.data)
+            db.session.add(topic)
             db.session.commit()
             flash('Topic added successfully.', 'success')
-            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-                # Return JSON response for AJAX request
-                return jsonify({
-                    'topicId': new_topic.id, 
-                    'topicName': new_topic.topic_name
-                    })
-            else:
-                return redirect(url_for("topics"))
+            return redirect(url_for("topics"))
         else:
             flash('Topic already exists.', 'error')
-            # Issues with deprecated is_xhr (https://stackoverflow.com/
-            # questions/60992849/
-            # attributeerror-request-object-has-no-attribute-is-xhr)
-            #X-requested-with used instead ()
-            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-                # Alternative AJAX error handling (https://stackoverflow.com/
-                # questions/6949628/how-should-error-corresponding
-                # -to-an-ajax-request-be-passed-to-and-handled-at-th)
-                return jsonify({'error': 'Topic already exists'}), 409
-
-    # Complete if not AJAX
     return render_template(
-        "add_topic.html", 
+        "add_topic.html",
         page_title="Add a Topic", 
         form=form, 
-        user=current_user
-        )
+        user=current_user)
 
 
 @app.route('/reply')
@@ -107,7 +89,9 @@ def submit_question():
         db.session.add(new_question)
 
 
-        selected_topic_ids = [topicid for topicid in selected_topic_ids if topicid != 'new_topic']
+        selected_topic_ids = [
+            topicid for topicid in selected_topic_ids if topicid != 'new_topic'
+            ]
 
         # Add/append each topic to the question
         for topicid in selected_topic_ids:
@@ -120,7 +104,11 @@ def submit_question():
         return redirect(url_for('home'))
 
     topics = Topic.query.all()
-    return render_template("submit_question.html", page_title="Ask Your Question", topics=topics, user=current_user)
+    return render_template(
+        "submit_question.html", 
+        page_title="Ask Your Question", 
+        topics=topics, 
+        user=current_user)
 
 @app.route('/edit_question/<int:question_id>', methods=['GET', 'POST'])
 @login_required
@@ -203,7 +191,7 @@ def sign_up():
             flash('Your passwords do not match', category='error')
         elif len(password1) < 8:
             flash(
-                'Password too short - your password must be at least 8 characters', 
+                'Password too short - your password must be at least 8 chars', 
                 category='error'
             )
         else:
@@ -227,7 +215,11 @@ def sign_up():
             )
             return redirect(url_for('login'))
 
-    return render_template("sign_up.html", page_title="Sign Up!", user=current_user)
+    return render_template(
+        "sign_up.html", 
+        page_title="Sign Up!", 
+        user=current_user
+        )
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
@@ -263,7 +255,11 @@ def login():
                 category='error'
             )
 
-    return render_template("login.html", page_title="Log In!", user=current_user)
+    return render_template(
+        "login.html", 
+        page_title="Log In!", 
+        user=current_user)
+
 
 @app.route('/logout')
 #ensure users can only log out if logged in
