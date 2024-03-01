@@ -4,53 +4,43 @@
 
 <!-- Page Content -->
 {% block content %}
-
-<div class="row">
-  <div class="col-12 justify-content-center text-center">
-    <a
-      href="{{url_for('add_topic')}}"
-      class="btn btn-primary acc-btn"
-    >
-      Add Topic <i class="fas fa-plus-square right"></i>
-    </a>
-  </div>
-</div>
-<div class="row">
-  {% for topic in topics %}
-  <div class="col-4 col-md-3 col-lg-2">
-    <div class="card">
-      <div class="card-content white-text">
-        <span class="card-title">{{ topic.topic_name }}</span>
-      </div>
-      <div class="card-action">
-        <a
-          href=""
-          class="btn green accent-4"
-          >Edit</a
-        >
-        <!-- Modal Trigger -->
-        <a class="btn red modal-trigger" href="#modal-{{ topic.id }}"
-          >Delete</a
-        >
-
-        <!-- Modal Structure -->
-        <div id="modal-{{ topic.id }}" class="modal">
-          <div class="modal-content">
-            <h4>Are you sure you want to delete this topic?</h4>
-            <p>This action cannot be undone.</p>
-          </div>
-          <div class="modal-footer">
-            <a
-              href=""
-              class="btn red"
-              >Delete</a
-            >
-            <a href="#!" class="modal-close btn green accent-4">Cancel</a>
-          </div>
-        </div>
-      </div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 justify-content-center text-center">
+      <a href="{{url_for('add_topic')}}" class="btn btn-primary acc-btn add-topic-btn">
+        Add Topic <i class="fas fa-plus-square right"></i>
+      </a>
     </div>
   </div>
-  {% endfor %}
+  <div class="row container-fluid topic-container">
+    {% for topic in topics %}
+    <div class="col-10 offset-1 offset-md-0 col-md-4 col-lg-3 col-xl-2">
+      <div class="card topic-card">
+        <div class="card-content white-text topic-content">
+          <h5 class="card-title topic-card-title text-uppercase">{{ topic.topic_name }}</h5>
+        </div>
+        {% if not current_user.is_authenticated %}
+        <div class="card-action">
+          <a href="" class="btn green accent-4">Edit</a>
+          <!-- Modal Trigger -->
+          <a class="btn red modal-trigger" href="#modal-{{ topic.id }}">Delete</a>
+
+          <!-- Modal Structure -->
+          <div id="modal-{{ topic.id }}" class="modal">
+            <div class="modal-content">
+              <h4>Are you sure you want to delete this topic?</h4>
+              <p>This action cannot be undone.</p>
+            </div>
+            <div class="modal-footer">
+              <a href="" class="btn red">Delete</a>
+              <a href="#!" class="modal-close btn green accent-4">Cancel</a>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
 </div>
 {% endblock %}
