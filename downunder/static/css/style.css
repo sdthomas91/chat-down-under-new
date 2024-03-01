@@ -168,6 +168,17 @@
     padding: 10px 20px;
   }
 
+  .question-block {
+    background: rgba(250, 250, 250, 0.8);
+    border-radius: 10px; 
+    padding: 20px 25px;
+    margin-bottom: 20px;
+  }
+
+  .question-title {
+    font-family: 'Archivo Black', arial, sans-serif;
+    text-transform: capitalize;
+  }
 
   /* ****NEW QUESTION**** */
   .custom-select[multiple] {

@@ -7,12 +7,16 @@
 
 <div class="container home-container">
   <div class="row">
-    <div class="col-12 col-md-7  home-blocks question-container">
+    <div class="col-12 {{'col-md-8' if current_user.is_authenticated else 'col-md-12' }} home-blocks question-container">
       <h2>Urgent Questions</h2>
       <p>Can you help? To view all recent questions, <a href="">click here</a></p>
-      <div class="row">
+      {% if not current_user.is_authenticated %}
+      <p><a href="{{url_for('login')}}">Log In</a> or <a href="{{url_for('sign_up')}}">Sign Up</a> to help answer questions and get involved in the conversation!</p>
+      {% endif %}
+      <div class="row question-container">
         {% for question in questions %}
-        <div class="col12 col-md-6">
+        {% if question.is_urgent %}
+        <div class="col12 {{'col-md-6' if current_user.is_authenticated else 'col-md-4'}}">
           <div class="question-block">
             <div class="question-title">
               <h5>{{ question.question_title }}</h5>
@@ -26,18 +30,25 @@
               {% endfor %}
             </div>
             <div class="question-author">
-              {{ question.author.username }}
+              <p>Author: <span class=font-weight-bold>{{ question.author.username }}</span> </p>
             </div>
           </div>
         </div>
+        {% endif %}
         {% endfor %}
 
       </div>
 
     </div>
-    <div class="col-12 col-md-4 offset-md-1 home-blocks user-info">
-      <h3>User</h3>
+    {% if current_user.is_authenticated %}
+    <div class="col-12 col-md-3 offset-md-1 home-blocks">
+      <h4>Hi, {{ current_user.fname }}</h4>
+      <p>Take a look at your current profile info</p>
+      <div class="user-info">
+        <p>Username: {{ current_user.username }}</p>
+      </div>
     </div>
+    {% endif %}
   </div>
 </div>
 {% endblock %}
