@@ -8,7 +8,7 @@ The purpose of this document is to identify key testing stages and instances whe
 
 - Wanted to include a record of found and resolved bugs
 
-1. One-to-many or many-to-many : Issues arose with my existing question model obtaining a topic_id. I had it set to a one-to-many relationship. Within user testing and error resolution I resolved that a many-to-many relationship makes more sense. This was users can select up to 3 topics relevant to their question, enhancing the filtering capabilities and reducing user difficulty in defining a single topic. 
+1. One-to-many or many-to-many : Issues arose with my existing question model obtaining a topic_id. I had it set to a one-to-many relationship. Within user testing and error resolution I resolved that a many-to-many relationship makes more sense. This was users can select up to 3 topics relevant to their question, enhancing the filtering capabilities and reducing user difficulty in defining a single topic. Found [this](https://support.microsoft.com/en-gb/office/video-create-many-to-many-relationships-e65bcc53-8e1c-444a-b4fb-1c0b8c1f5653#:~:text=A%20many%2Dto%2Dmany%20relationship%20exists%20when%20one%20or%20more,more%20items%20in%20another%20table.) very useful for learning how to create a many-to-many relationship. 
 
 1. 
 
@@ -52,6 +52,9 @@ The purpose of this document is to identify key testing stages and instances whe
 
 - Originally designed the form using bootstrap but for authentication and ease of use I decided to implement a Flask form. It didn't respond as nicely across viewports so added some bootstrap via spans to allow for a nicer user experience. 
 
+- Finally resolved the issues with the many-to-many relationship. Main issue encountered was trying to maintain a standard one-to-many relationship without realising. I left the topic_id in as an individual requirement whilst also trying to use the association table to connect the multiple topics to the question. 
+
+- I decided to display the question in such a way that it shows title, body, tags and author. This allows for good community interaction. 
 
 ### View on homepage
 
