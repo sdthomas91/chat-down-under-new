@@ -19,21 +19,33 @@
         <div class="card-content white-text topic-content">
           <h5 class="card-title topic-card-title text-uppercase">{{ topic.topic_name }}</h5>
         </div>
-        {% if not current_user.is_authenticated %}
+        {% if current_user.is_authenticated %}
         <div class="card-action">
-          <a href="" class="btn green accent-4">Edit</a>
+          <button class="btn btn-primary acc-btn">Edit</button>
           <!-- Modal Trigger -->
-          <a class="btn red modal-trigger" href="#modal-{{ topic.id }}">Delete</a>
-
+          <button type="button" class="btn btn-danger" data-toggle="modal"
+            data-target="#modal-{{ topic.id }}">Delete</button>
           <!-- Modal Structure -->
-          <div id="modal-{{ topic.id }}" class="modal">
-            <div class="modal-content">
-              <h4>Are you sure you want to delete this topic?</h4>
-              <p>This action cannot be undone.</p>
-            </div>
-            <div class="modal-footer">
-              <a href="" class="btn red">Delete</a>
-              <a href="#!" class="modal-close btn green accent-4">Cancel</a>
+          <div class="modal fade" id="modal-{{ topic.id }}" tabindex="-1" role="dialog"
+            aria-labelledby="modal-{{ topic.id }}Label" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="modal-{{ topic.id }}Label">Delete Topic?</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  Are you sure you want to permanently delete this topic? This action cannot be undone.
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <a class="btn btn-danger" href="{{url_for('delete_topic', topic_id=topic.id) }}">
+                    Confirm Delete
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>

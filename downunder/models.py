@@ -14,8 +14,8 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(255))
     fname = db.Column(db.String(50))
     lname = db.Column(db.String(50))
-    is_admin = db.Column(db.Boolean, default=False, nullable=False)
 
+    
 # Following models have been adapted from a previous project of mine 
 # (https://github.com/sdthomas91/python-project-1/tree/main/taskmanager), 
 # though adapted for this setup.

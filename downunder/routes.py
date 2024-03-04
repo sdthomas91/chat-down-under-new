@@ -1,17 +1,17 @@
 from flask import render_template, request, flash, redirect, url_for, jsonify
-from downunder import app,db
-from downunder.models import Topic, Question
-from .models import User, Question
+from downunder import app, db
+from downunder.models import Topic, Question, User, Question
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, login_required, logout_user 
 from flask_login import current_user, LoginManager
-# Added flask forms having looked at the potential benefits (https://flask.palletsprojects.com/en/2.3.x/patterns/wtforms/)
+# Added flask forms having looked at the potential benefits 
+# (https://flask.palletsprojects.com/en/2.3.x/patterns/wtforms/)
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 
 
-
+### Display urgent and latest questions as well as user info on home page ###
 @app.route("/")
 def home():
     """
@@ -25,8 +25,12 @@ def home():
     )
 
 
+### TOPIC SPECIFIC ROUTES ###
 @app.route("/topics")
 def topics():
+    """
+    Renders topics page displaying a grid of current topics
+    """
     topics = list(Topic.query.order_by(Topic.topic_name).all())
     return render_template(
         "topics.html", 
@@ -35,6 +39,8 @@ def topics():
         topics=topics
         )
 
+
+### ADD TOPICS ###
 class AddTopicForm(FlaskForm):
     topic_name = StringField('Topic Name', validators=[DataRequired()])
     submit = SubmitField('Add Topic')
@@ -42,6 +48,9 @@ class AddTopicForm(FlaskForm):
 @app.route("/add_topic", methods=["GET", "POST"])
 @login_required  # if admin-only feature
 def add_topic():
+    """
+    Loads form to add a new topic
+    """
     form = AddTopicForm()
     if form.validate_on_submit():
         existing_topic = Topic.query.filter_by(
@@ -51,28 +60,42 @@ def add_topic():
             topic = Topic(topic_name=form.topic_name.data)
             db.session.add(topic)
             db.session.commit()
-            flash('Topic added successfully.', 'success')
+            flash('Topic added successfully.', category='success')
             return redirect(url_for("topics"))
         else:
-            flash('Topic already exists.', 'error')
+            flash('Topic already exists.', category='error')
     return render_template(
         "add_topic.html",
         page_title="Add a Topic", 
         form=form, 
         user=current_user)
 
-
-@app.route('/reply')
-#Only logged in users can reply to questions
+### DELETE TOPICS ###
+@app.route('/delete_topic/<int:topic_id>')
 @login_required
-def reply():
-    #Initiates reply textbox allocating author and question
-    print(reply)
+def delete_topic(topic_id):
+    """
+    Allows admins to delete topic ID
+    Would like to implement some logic to say "if user is not admin then
+    flash 'you do not have permission to delete'. However, as the buttons will 
+    only show to admin users it is not necessary at this time
+    """
+    topic = Topic.query.get_or_404(topic_id)
+    db.session.delete(topic)
+    db.session.commit()
+    flash('Topic has successfully been deleted')
+    return redirect(url_for('topics'))
+    
+
 
 ### QUESTION SPECIFIC ROUTES ###
 @app.route('/submit_question', methods=['GET', 'POST'])
 @login_required
 def submit_question():
+    """
+    Generates form to allow users to submit a new question
+    Allows users to select from existing topics
+    """
     if request.method == 'POST':
         question_title = request.form.get('question_title')
         question_body = request.form.get('question_body')
@@ -100,7 +123,7 @@ def submit_question():
                 new_question.topics.append(topic)
 
         db.session.commit()
-        flash('Your question has been added!', 'success')
+        flash('Your question has been added!', category='success')
         return redirect(url_for('home'))
 
     topics = Topic.query.all()
@@ -137,7 +160,7 @@ def edit_question(question_id):
             ]
         #commit this edit
         db.session.commit()
-        flash('Question updated successfully!', 'success')
+        flash('Question updated successfully!', category='success')
         return redirect(url_for('home', question_id=question.id))
 
     return render_template(
@@ -148,6 +171,18 @@ def edit_question(question_id):
                         topics=topics, 
                         user=current_user
                         )
+
+
+### REPLY SPECIFIC ROUTES ###
+@app.route('/reply')
+#Only logged in users can reply to questions
+@login_required
+def reply():
+    """
+    Initiates reply textbox allocating author and question
+    """
+    print(reply)
+
 
 ### AUTHETNTICATION ROUTES ###
 @app.route("/sign_up", methods=['GET', 'POST'])

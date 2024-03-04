@@ -239,9 +239,8 @@ a {
   padding: 10px 15px;
   margin: 10px 0;
   text-align: center;
-  background:#00008b;
-  color: #fefefe;
-  border-radius: 50px;
+  background: rgba(250,250,250,0.4);
+  color: #00008B;
   display: flex;
   align-items: center;
   justify-content: center;
