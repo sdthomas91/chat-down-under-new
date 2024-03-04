@@ -189,15 +189,16 @@ def delete_question(question_id):
     """
     Allows users to delete  their own quetions
     """
+    question = Question.query.get_or_404(question_id)
     if current_user.id != question.author_id:
         flash('You can only delete your own questions.', category='error')
         return redirect(url_for('home'))
 
-    question = Question.query.get_or_404(question_id)
+    
     db.session.delete(question)
     db.session.commit()
     flash('Question has successfully been deleted')
-    return redirect(url_for('questions'))
+    return redirect(url_for('home'))
 
 ### REPLY SPECIFIC ROUTES ###
 @app.route('/reply')
