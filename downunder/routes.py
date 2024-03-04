@@ -210,6 +210,17 @@ def reply():
     print(reply)
 
 
+### SEARCH ROUTES ###
+
+@app.route("/search_results", methods=['GET', 'POST'])
+def search_results():
+    """
+    Loads a search results page using the input from the search bar
+    """
+    search_term = request.args.get('search_term')
+    return render_template('search_results.html', questions=questions, search_term=search_term)
+
+
 ### AUTHETNTICATION ROUTES ###
 @app.route("/sign_up", methods=['GET', 'POST'])
 def sign_up():
