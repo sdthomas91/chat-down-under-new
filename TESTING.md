@@ -10,7 +10,12 @@ The purpose of this document is to identify key testing stages and instances whe
 
 1. One-to-many or many-to-many : Issues arose with my existing question model obtaining a topic_id. I had it set to a one-to-many relationship. Within user testing and error resolution I resolved that a many-to-many relationship makes more sense. This was users can select up to 3 topics relevant to their question, enhancing the filtering capabilities and reducing user difficulty in defining a single topic. Found [this](https://support.microsoft.com/en-gb/office/video-create-many-to-many-relationships-e65bcc53-8e1c-444a-b4fb-1c0b8c1f5653#:~:text=A%20many%2Dto%2Dmany%20relationship%20exists%20when%20one%20or%20more,more%20items%20in%20another%20table.) very useful for learning how to create a many-to-many relationship. 
 
-1. 
+1. Topic Association - I decided to opt for a many-to-many relationship, which meant going with an association table in order to allow questions to be "Tagged" with different topics. However, whenever I try to pull the selected topics into a list it does not properly pull the information.
+  - Tried disabling Select2 as assumed the Javascript may be intefering with the way the form was submitting this data as it was only the topics that were not translating - still bugging.
+  - Realised I had left some historical code in from when I was attempting an "add new topic" functionality within the question form. Removed all "new_topic" code. Still bugging. 
+  - Ran some debug code printing out selected topic id's, nothing. PRinted out the entire request.form and could see the information was there. However, the value of the topic id was being printed outside of the "selected_topic_id" list so it was never providing a value. 
+  - Revised HTML and realised the name was set to "question_topics[]" which I know was correct for producing an array of items. However, I had forgotten to pass the same value in the route when adding the information. Amended from "selected_topic_ids = request.form.getlist('question_topics')" to "selected_topic_ids = request.form.getlist('question_topics[]')"
+  - Topic ID's now being pulled an printed in front end where I had wanted them to. 
 
 # SECTION TESTING
 
