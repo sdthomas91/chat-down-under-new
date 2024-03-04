@@ -100,7 +100,7 @@ def submit_question():
         question_title = request.form.get('question_title')
         question_body = request.form.get('question_body')
         #Gather all selected topic Id's
-        selected_topic_ids = request.form.getlist('question_topics')
+        selected_topic_ids = request.form.getlist('question_topics[]')
         is_urgent = request.form.get('is_urgent') == 'on'
 
         new_question = Question(
@@ -148,7 +148,7 @@ def edit_question(question_id):
         # Collect data from form
         question_title = request.form['question_title']
         question_body = request.form['question_body']
-        selected_topics_ids = request.form.getlist('topics')
+        selected_topics_ids = request.form.getlist('question_topics[]')
         # Update question data
         question.question_title = question_title
         question.question_body = question_body
