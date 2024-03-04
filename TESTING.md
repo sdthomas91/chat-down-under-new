@@ -34,6 +34,9 @@ The purpose of this document is to identify key testing stages and instances whe
 ### Masthead (base.html)
 
 1. Search bar
+    - originally intended to have a search bar in which you could search for topics. However, after some user feedback it was decided that a more generalised searchability would better enhance the UX of the site. That is to say, rather than taking a topic as a search term, I will endeavour to use the search to return results that contain the search in their title, body or topics to allow for greater search functionality. 
+    - 
+
 1. Image
 
    - Main image : was not displaying well behind text and cause contrasting issues. Applied an overlay to ensure text was still fully readable. 
@@ -45,6 +48,7 @@ The purpose of this document is to identify key testing stages and instances whe
    - Faced some issues with JEST testing due to timeout errors - instead tested via user feedback and console check. All timezones now display correctly and increment on the minute rather than the second as this was a bit of a visual overload. 
 
 1. Image height - implemented different viewport stylings to allow for a larger image on mobile view to encompass the world clocks. Otherwise it overlapped and spilt over into main content. 
+
 
 ## Topics
 
