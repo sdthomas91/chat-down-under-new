@@ -109,19 +109,16 @@ def submit_question():
                                 author_id=current_user.id, 
                                 is_urgent=is_urgent
                                 )
-        db.session.add(new_question)
-
-
-        selected_topic_ids = [
-            topicid for topicid in selected_topic_ids if topicid != 'new_topic'
-            ]
 
         # Add/append each topic to the question
-        for topicid in selected_topic_ids:
-            topic = Topic.query.get(int(topicid))
+        for tid in selected_topic_ids:
+            topic = Topic.query.get(int(tid))
+            print(topic)
             if topic:
                 new_question.topics.append(topic)
-
+        print (selected_topic_ids)
+        print(request.form)
+        db.session.add(new_question)
         db.session.commit()
         flash('Your question has been added!', category='success')
         return redirect(url_for('home'))
@@ -156,7 +153,7 @@ def edit_question(question_id):
         question.question_title = question_title
         question.question_body = question_body
         question.topics = [
-            Topic.query.get(int(topicid)) for topicid in selected_topics_ids
+            Topic.query.get(int(tid)) for tid in selected_topics_ids
             ]
         #commit this edit
         db.session.commit()
