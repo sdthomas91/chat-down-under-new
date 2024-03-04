@@ -9,6 +9,8 @@ from flask_login import current_user, LoginManager
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
+#Sort questions by date using SQLAlchemy desc
+from sqlalchemy import desc
 
 
 ### Display urgent and latest questions as well as user info on home page ###
@@ -18,12 +20,18 @@ def home():
     Navigate to home page and load latest questions
     to the main discussion area
     """
-    questions = list(Question.query.order_by(Question.id).all())
-
-    #Use backend to limit number of urgent blocks displayed so as to avoid
-    #cluttering the homepage using list comprehension and slicing
-    urgent_questions = [q for q in questions if q.is_urgent][:4]
+    questions = list(Question.query.order_by(desc(Question.date)).all())
+    """ 
+    Use backend to limit number of urgent blocks displayed so as to avoid
+    cluttering the homepage - originally used comprehension and slcing but 
+    this did not yield the results I wanted. It did not place the most recent
+    questions first. Instead imported sql desc as per this article
+    (https://stackoverflow.com/questions/4186062/
+    sqlalchemy-order-by-descending) 
+    """
+    urgent_questions = Question.query.filter_by(is_urgent=True).order_by(desc(Question.date)).limit(4).all()
     
+
     return render_template("index.html", 
     page_title="Welcome to Chat Down Under",
     user=current_user, questions=questions, urgent_questions=urgent_questions
@@ -174,6 +182,22 @@ def edit_question(question_id):
                         user=current_user
                         )
 
+
+@app.route('/delete_question/<int:question_id>')
+@login_required
+def delete_question(question_id):
+    """
+    Allows users to delete  their own quetions
+    """
+    if current_user.id != question.author_id:
+        flash('You can only delete your own questions.', category='error')
+        return redirect(url_for('home'))
+
+    question = Question.query.get_or_404(question_id)
+    db.session.delete(question)
+    db.session.commit()
+    flash('Question has successfully been deleted')
+    return redirect(url_for('questions'))
 
 ### REPLY SPECIFIC ROUTES ###
 @app.route('/reply')

@@ -7,18 +7,20 @@
 
 <div class="container home-container">
   <div class="row">
-    <div class="col-12 {{'col-md-8' if current_user.is_authenticated else 'col-md-12' }} home-blocks question-container">
+    <div
+      class="col-12 {{'col-md-8' if current_user.is_authenticated else 'col-md-12' }} home-blocks question-container">
       <h2>Urgent Questions</h2>
       <p>Can you help? To view all recent questions, <a href="#recent">click here</a></p>
       {% if not current_user.is_authenticated %}
-      <p><a href="{{url_for('login')}}">Log In</a> or <a href="{{url_for('sign_up')}}">Sign Up</a> to help answer questions and get involved in the conversation!</p>
+      <p><a href="{{url_for('login')}}">Log In</a> or <a href="{{url_for('sign_up')}}">Sign Up</a> to help answer
+        questions and get involved in the conversation!</p>
       {% endif %}
       <div class="row question-container">
         {% for question in urgent_questions %}
         <div class="col12 {{'col-md-6' if current_user.is_authenticated else 'col-md-4'}}">
           <div class="question-block">
             <div class="question-title">
-              <h5>{{ question.question_title }}  </h5>
+              <h5>{{ question.question_title }} </h5>
               {% if question.is_urgent %} <span class="is-urgent">URGENT!</span> {% endif %}
             </div>
             <div class="question-body">
@@ -30,29 +32,62 @@
             </div>
             <div class="container-fluid">
               <div class="row justify-content-left question-tags">
-                  {% set num_topics = question.topics|length %}
-                  {% set col_class = 'col-4' if num_topics < 3 else 'col-3' %}
-                  {% for topic in question.topics %}
-                      <span class="{{ col_class }} topic-badge text-center">{{ topic.topic_name }}</span>
-                  {% endfor %}
-              </div> 
+                {% set num_topics = question.topics|length %}
+                {% set col_class = 'col-4' if num_topics < 3 else 'col-3' %}
+                {% for topic in question.topics %}
+                <span class="{{ col_class }} topic-badge text-center">{{ topic.topic_name }}</span>
+                {% endfor %}
+              </div>
             </div>
             <div class="question-author">
               <p>
                 Author: <span class=font-weight-bold>{{ question.author.username }}</span>
               </p>
             </div>
-            <!-- Jinja templating will be used to display a series of buttons depending on user login status and author status -->
-            {% if current_user.is_authenticated %}
-            <a class="btn btn-primary">Reply</a>
-              {% if current_user.id == question.author_id %}
-              <a href="{{url_for('edit_question', question_id=question.id)}}" class="btn btn-secondary btn-edit">Edit</a>
-              <a class="btn btn-danger">Delete</a>
-              {% endif %}
 
+            <!-- Jinja templating will be used to display a series of buttons depending on user login status and author status -->
+
+            {% if current_user.is_authenticated %}
+            <div class="card-action">
+              <a class="btn btn-primary">Reply</a>
+              {% if current_user.id == question.author_id %}
+              <a href="{{url_for('edit_question', question_id=question.id)}}"
+                class="btn btn-secondary btn-edit">Edit</a>
+              <!-- DELETE QUESTION MODAL TRIGGER -->
+
+              <button type="button" class="btn btn-danger" data-toggle="modal"
+                data-target="#modal-{{ question.id }}">Delete</button>
+
+              <!-- DELETE QUESTION MODAL -->
+
+              <div class="modal fade" id="modal-{{ question.id }}" tabindex="-1" role="dialog"
+                aria-labelledby="modal-{{ question.id }}Label" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="modal-{{ question.id }}Label">Delete Question?</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      Are you sure you want to permanently delete this question? All replies will be removed and you
+                      will no longer be able to view this conversation thread.
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <a class="btn btn-danger" href="{{url_for('delete_question', question_id=question.id) }}">
+                        Confirm Delete
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endif %}
+            </div>
+            {% endif %}
           </div>
         </div>
-        {% endif %}
         {% endfor %}
 
       </div>
@@ -71,7 +106,8 @@
     <div class="col-12 home-blocks all-question-container">
       <h2 id="recent">All Recent Questions</h2>
       {% if not current_user.is_authenticated %}
-      <p>Can you help? <a href="{{url_for('login')}}">Log In</a> or <a href="{{url_for('sign_up')}}">Sign Up</a> to help answer questions and get involved in the conversation!</p>
+      <p>Can you help? <a href="{{url_for('login')}}">Log In</a> or <a href="{{url_for('sign_up')}}">Sign Up</a> to help
+        answer questions and get involved in the conversation!</p>
       {% endif %}
       <div class="row question-container">
         {% for question in questions %}
@@ -90,12 +126,12 @@
             </div>
             <div class="container-fluid">
               <div class="row justify-content-left question-tags">
-                  {% set num_topics = question.topics|length %}
-                  {% set col_class = 'col-4' if num_topics < 3 else 'col-3' %}
-                  {% for topic in question.topics %}
-                      <span class="{{ col_class }} topic-badge text-center">{{ topic.topic_name }}</span>
-                  {% endfor %}
-              </div> 
+                {% set num_topics = question.topics|length %}
+                {% set col_class = 'col-4' if num_topics < 3 else 'col-3' %}
+                {% for topic in question.topics %}
+                <span class="{{ col_class }} topic-badge text-center">{{ topic.topic_name }}</span>
+                {% endfor %}
+              </div>
             </div>
             <div class="question-author">
               <p>Author: <span class=font-weight-bold>{{ question.author.username }}</span> </p>
@@ -103,10 +139,10 @@
             <!-- Jinja templating will be used to display a series of buttons depending on user login status and author status -->
             {% if current_user.is_authenticated %}
             <a class="btn btn-primary">Reply</a>
-              {% if current_user.id == question.author_id %}
-              <a href="{{url_for('edit_question', question_id=question.id)}}" class="btn btn-secondary btn-edit">Edit</a>
-              <a class="btn btn-danger">Delete</a>
-              {% endif %}
+            {% if current_user.id == question.author_id %}
+            <a href="{{url_for('edit_question', question_id=question.id)}}" class="btn btn-secondary btn-edit">Edit</a>
+            <a class="btn btn-danger">Delete</a>
+            {% endif %}
             {% endif %}
 
           </div>
