@@ -23,7 +23,7 @@
     <div class="form-group">
       <label for="question_topics">Select topics (Max. 3)</label>
       <!-- Allow users to select up to 3 topics/tags and add their own if none relevant -->
-      <select class="custom-select" id="question_topics" name="question_topics[]" multiple>
+      <select class="custom-select" id="question_topics" name="question_topics[]" multiple required>
         <option value="" disabled>Select up to 3 topics</option>
         {% for topic in topics %}
         <option value="{{ topic.id }}">{{ topic.topic_name }}</option>

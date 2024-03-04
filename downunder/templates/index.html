@@ -14,12 +14,12 @@
       <p><a href="{{url_for('login')}}">Log In</a> or <a href="{{url_for('sign_up')}}">Sign Up</a> to help answer questions and get involved in the conversation!</p>
       {% endif %}
       <div class="row question-container">
-        {% for question in questions %}
-        {% if question.is_urgent %}
+        {% for question in urgent_questions %}
         <div class="col12 {{'col-md-6' if current_user.is_authenticated else 'col-md-4'}}">
           <div class="question-block">
             <div class="question-title">
-              <h5>{{ question.question_title }}</h5>
+              <h5>{{ question.question_title }}  </h5>
+              {% if question.is_urgent %} <span class="is-urgent">URGENT!</span> {% endif %}
             </div>
             <div class="question-body">
               <p>{{ question.question_body }}</p>
@@ -30,13 +30,17 @@
             </div>
             <div class="container-fluid">
               <div class="row justify-content-left question-tags">
-                {% for topic in question.topics %}
-                  <span class="col topic-badge text-center">{{ topic.topic_name }}</span>
-                {% endfor %}
+                  {% set num_topics = question.topics|length %}
+                  {% set col_class = 'col-4' if num_topics < 3 else 'col-3' %}
+                  {% for topic in question.topics %}
+                      <span class="{{ col_class }} topic-badge text-center">{{ topic.topic_name }}</span>
+                  {% endfor %}
               </div> 
             </div>
             <div class="question-author">
-              <p>Author: <span class=font-weight-bold>{{ question.author.username }}</span> </p>
+              <p>
+                Author: <span class=font-weight-bold>{{ question.author.username }}</span>
+              </p>
             </div>
             <!-- Jinja templating will be used to display a series of buttons depending on user login status and author status -->
             {% if current_user.is_authenticated %}
@@ -45,7 +49,6 @@
               <a href="{{url_for('edit_question', question_id=question.id)}}" class="btn btn-primary">Edit</a>
               <a class="btn btn-danger">Delete</a>
               {% endif %}
-            {% endif %}
 
           </div>
         </div>
@@ -76,17 +79,22 @@
           <div class="question-block">
             <div class="question-title">
               <h5>{{ question.question_title }}</h5>
+              {% if question.is_urgent %} <span class="is-urgent">URGENT!</span> {% endif %}
             </div>
             <div class="question-body">
               <p>{{ question.question_body }}</p>
             </div>
             <br>
-            <div class="container-fluid">
+            <div class="question-topic-title">
               <p><strong>Topic Tags</strong></p>
+            </div>
+            <div class="container-fluid">
               <div class="row justify-content-left question-tags">
-                {% for topic in question.topics %}
-                  <span class="col topic-badge text-center">{{ topic.topic_name }}</span>
-                {% endfor %}
+                  {% set num_topics = question.topics|length %}
+                  {% set col_class = 'col-4' if num_topics < 3 else 'col-3' %}
+                  {% for topic in question.topics %}
+                      <span class="{{ col_class }} topic-badge text-center">{{ topic.topic_name }}</span>
+                  {% endfor %}
               </div> 
             </div>
             <div class="question-author">

@@ -175,6 +175,12 @@ a {
   max-height: 300px;
 }
 
+.is-urgent {
+  font-family: 'Archivo Black', arial, sans-serif;
+  font-size: 0.9rem;
+  color: red;
+}
+
 
 .topic-badge {
   background: #fba018;

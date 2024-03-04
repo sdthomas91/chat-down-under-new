@@ -19,9 +19,14 @@ def home():
     to the main discussion area
     """
     questions = list(Question.query.order_by(Question.id).all())
+
+    #Use backend to limit number of urgent blocks displayed so as to avoid
+    #cluttering the homepage using list comprehension and slicing
+    urgent_questions = [q for q in questions if q.is_urgent][:4]
+    
     return render_template("index.html", 
     page_title="Welcome to Chat Down Under",
-    user=current_user, questions=questions
+    user=current_user, questions=questions, urgent_questions=urgent_questions
     )
 
 
