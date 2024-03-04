@@ -14,6 +14,8 @@ The app will be rigorously User Tested and will be deployed to Heroku for online
 
 1. Comment replies - I would like to incorporate the logic for a user viewing their own question, to reply to answers given by the community. This will enhance user experience - at present they can add a comment but this may cause comment threads to get longer than they may need and out of control. Whereas if a user can reply directly to an answer it will keep it more strucutured. 
 
+1. Add new Topic within Question (user feedback) - I tried several different routes but this was proving a little beyond scope for this project. I would like to incorporate the option so as when a user selects their topic, if a relevant topic is not present they can type their own, submit it and have it either dynamically update the list, so they can select their new topic, or submit the new topic as part of the form and have the backend handle the logic - I did trial this with a new topic as a separate option, but it caused the topic selector to become buggy and not perform as it should. Instead, I tried utilising AJAX to dynamically update the list, but again, this caused issue with Select2 and also continued to refresh the page making for a worse user experience. 
+
 
 ## Known Bugs
 
