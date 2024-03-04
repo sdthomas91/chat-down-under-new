@@ -46,6 +46,19 @@ a {
   font-size: 2.5rem;
 }
 
+
+.btn-edit { 
+  background-color: #fba018;
+  border-color: #fba018;
+}
+
+.btn-edit:active,
+.btn-edit:hover,
+.btn-edit:focus,
+.btn-adit:active:focus {
+  background-color: #e19015;
+  border-color: #e19015;
+}
 /* **** NAVBAR **** */
 .navbar,
 .bg-light,
