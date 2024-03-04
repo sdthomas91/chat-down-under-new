@@ -148,8 +148,17 @@ a {
 
 /* ***SEARCH RESULTS*/
 
+.search-container {
+  max-width: 90%;
+  margin-top: 50px;
+  background-color: rgba(250,250,250, 0.4);
+  padding: 30px 50px;
+  border-radius: 20px;
+}
 
-
+.search-results {
+  margin-top: 35px;
+}
 /* ****SIGN UP**** */
 
 /* **SignUp Form** */

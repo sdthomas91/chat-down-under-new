@@ -5,17 +5,18 @@
 <!-- Page Content -->
 {% block content %}
 
-<h2>Search Results for "{{ search_term }}"</h2>
 
-{% if questions %}
+
+
     
 
-<div class="container-fluid">
-  <h2 id="recent">All Recent Questions</h2>
+<div class="container-fluid search-container">
+  <h2>Search Results for "{{ search_term }}"</h2>
   {% if not current_user.is_authenticated %}
   <p>Can you help? <a href="{{url_for('login')}}">Log In</a> or <a href="{{url_for('sign_up')}}">Sign Up</a> to help
     answer questions and get involved in the conversation!</p>
   {% endif %}
+  {% if questions %}
   <div class="row search-results">
     {% for question in questions %}
     <div class="col12 col-md-4">
