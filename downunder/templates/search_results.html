@@ -5,18 +5,79 @@
 <!-- Page Content -->
 {% block content %}
 
+<h2>Search Results for "{{ search_term }}"</h2>
+
+{% if questions %}
+    
+
+<div class="container-fluid">
+  <h2 id="recent">All Recent Questions</h2>
+  {% if not current_user.is_authenticated %}
+  <p>Can you help? <a href="{{url_for('login')}}">Log In</a> or <a href="{{url_for('sign_up')}}">Sign Up</a> to help
+    answer questions and get involved in the conversation!</p>
+  {% endif %}
+  <div class="row search-results">
+    {% for question in questions %}
+    <div class="col12 col-md-4">
+      <div class="question-block">
+        <div class="question-title">
+          <h5>{{ question.question_title }}</h5>
+          {% if question.is_urgent %} <span class="is-urgent">URGENT!</span> {% endif %}
+        </div>
+        <div class="question-body">
+          <p>{{ question.question_body }}</p>
+        </div>
+        <br>
+        <div class="question-topic-title">
+          <p><strong>Topic Tags</strong></p>
+        </div>
+        <div class="container-fluid">
+          <div class="row justify-content-left question-tags">
+            {% set num_topics = question.topics|length %}
+            {% set col_class = 'col-4' if num_topics < 3 else 'col-3' %}
+            {% for topic in question.topics %}
+            <span class="{{ col_class }} topic-badge text-center">{{ topic.topic_name }}</span>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="question-author">
+          <p>Author: <span class=font-weight-bold>{{ question.author.username }}</span> </p>
+        </div>
+        <!-- Jinja templating will be used to display a series of buttons depending on user login status and author status -->
+        {% if current_user.is_authenticated %}
+        <a class="btn btn-primary">Reply</a>
+        {% if current_user.id == question.author_id %}
+        <a href="{{url_for('edit_question', question_id=question.id)}}" class="btn btn-secondary btn-edit">Edit</a>
+        <a class="btn btn-danger">Delete</a>
+        {% endif %}
+        {% endif %}
+
+      </div>
+    </div>
+    {% endfor %}
+
+  </div>
+
+</div>
+    
+{% else %}
+    <p>No questions found for the given topic.</p>
+{% endif %}
+<!-- 
 <div class="container-fluid home-container">
   <div class="row">
     <div class="col-12 question-container">
-      <h1>Results for {{ search-query }}</h1>
+      <h1>Results for </h1>
     </div>
   </div>
   <div class="row">
     <div class="col-12">
       <div class="col-4 user-info">
-        <h3>{{ search_result.id }}</h3>
+        <h3></h3>
       </div>
     </div>
   </div>
-</div>
+
+  
+</div> -->
 {% endblock %}

@@ -10,7 +10,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 #Sort questions by date using SQLAlchemy desc
-from sqlalchemy import desc
+from sqlalchemy import desc, or_
 
 
 ### Display urgent and latest questions as well as user info on home page ###
@@ -215,10 +215,30 @@ def reply():
 @app.route("/search_results", methods=['GET', 'POST'])
 def search_results():
     """
-    Loads a search results page using the input from the search bar
+    Loads a search results page using the input from the search bar :
+    imported or_ from sqlalchemy - found more on operators here
+    (https://docs.sqlalchemy.org/en/20/core/operators.html)
+    Needed a way to combine multiple search terms in one function and having 
+    read through a number of articles this
+    https://stackoverflow.com/questions/7942547/using-or-in-sqlalchemy came up
+    with the best solution
     """
     search_term = request.args.get('search_term')
-    return render_template('search_results.html', questions=questions, search_term=search_term)
+    if search_term:
+        questions = Question.query.join(Question.topics).filter(
+            or_(
+                Question.question_title.ilike(f'%{search_term}%'),
+                Question.question_body.ilike(f'%{search_term}%'),
+                Topic.topic_name.ilike(f'%{search_term}%')
+            )
+        ).distinct().all()
+    else:
+        questions = []
+    return render_template(
+        'search_results.html',
+        questions=questions,
+        search_term=search_term,
+        user=current_user)
 
 
 ### AUTHETNTICATION ROUTES ###
