@@ -171,6 +171,27 @@ a {
   margin-top: 40px;
 }
 
+.user-block {
+  max-height: 300px;
+}
+
+
+.topic-badge {
+  background: #fba018;
+  color: #fefefe;
+  border-radius: 50px;
+  padding: 5px 8px;
+  font-size: 0.75rem;
+  margin-right: 5px;
+}
+
+.question-topic-title {
+  font-size: 0.9rem;
+}
+
+.question-tags {
+  margin-bottom: 5px;
+}
 /* **QUESTION BLOCK** */
 .home-blocks {
   background: rgba(250, 250, 250, 0.4);
@@ -245,7 +266,6 @@ a {
   align-items: center;
   justify-content: center;
 }
-
 
 .topic-card-title {
   font-size: 1.2rem;

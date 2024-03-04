@@ -24,10 +24,16 @@
             <div class="question-body">
               <p>{{ question.question_body }}</p>
             </div>
-            <div class="question-tags">
-              {% for topic in question.topics %}
-                <span class="topic-badge">{{ topic.topic_name }}</span>
-              {% endfor %}
+            <br>
+            <div class="question-topic-title">
+              <p><strong>Topic Tags</strong></p>
+            </div>
+            <div class="container-fluid">
+              <div class="row justify-content-left question-tags">
+                {% for topic in question.topics %}
+                  <span class="col topic-badge text-center">{{ topic.topic_name }}</span>
+                {% endfor %}
+              </div> 
             </div>
             <div class="question-author">
               <p>Author: <span class=font-weight-bold>{{ question.author.username }}</span> </p>
@@ -50,7 +56,7 @@
 
     </div>
     {% if current_user.is_authenticated %}
-    <div class="col-12 col-md-3 offset-md-1 home-blocks">
+    <div class="col-12 col-md-3 offset-md-1 home-blocks user-block">
       <h4>Hi, {{ current_user.fname }}</h4>
       <p>Take a look at your current profile info</p>
       <div class="user-info">
@@ -74,10 +80,14 @@
             <div class="question-body">
               <p>{{ question.question_body }}</p>
             </div>
-            <div class="question-tags">
-              {% for topic in question.topics %}
-  {{ topic.topic_name }}
-{% endfor %}
+            <br>
+            <div class="container-fluid">
+              <p><strong>Topic Tags</strong></p>
+              <div class="row justify-content-left question-tags">
+                {% for topic in question.topics %}
+                  <span class="col topic-badge text-center">{{ topic.topic_name }}</span>
+                {% endfor %}
+              </div> 
             </div>
             <div class="question-author">
               <p>Author: <span class=font-weight-bold>{{ question.author.username }}</span> </p>
