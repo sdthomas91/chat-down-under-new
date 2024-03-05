@@ -29,11 +29,13 @@ def home():
     (https://stackoverflow.com/questions/4186062/
     sqlalchemy-order-by-descending) 
     """
-    urgent_questions = Question.query.filter_by(
-        is_urgent=True
-        ).order_by(
-        desc(Question.date)
-        ).limit(4).all()
+    urgent_questions = (
+        Question.query
+        .filter_by(is_urgent=True)
+        .order_by(desc(Question.date))
+        .limit(4)
+        .all()
+    )
     """ 
     Used scalar method - found originally in python documentation, to
     better understand best method for returning number of questions
