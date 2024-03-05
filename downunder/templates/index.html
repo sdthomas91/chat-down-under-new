@@ -96,14 +96,14 @@
     {% if current_user.is_authenticated %}
     <div class="col-12 col-md-3 offset-md-1 home-blocks user-block">
       <div class="user-container">
-      <h4>Hi, {{ current_user.fname }}</h4>
-      <p>Take a look at your current profile info</p>
-      <div class="user-info">
-        <p>Username: {{ current_user.username }}</p>
-        <p>Questions: {{ user_question_count }}</p>
-        <p>Member Since: {{ current_user.created_at.strftime('%B %d, %Y') }}</p>
-        <p><a class="btn btn-primary acc-btn" href="{{url_for('my_questions')}}">My Questions</a></p>
-      </div>
+        <h4>Hi, {{ current_user.fname }}</h4>
+        <p>Take a look at your current profile info</p>
+        <div class="user-info">
+          <p>Username: {{ current_user.username }}</p>
+          <p>Questions: {{ user_question_count }}</p>
+          <p>Member Since: {{ current_user.created_at.strftime('%B %d, %Y') }}</p>
+          <p><a class="btn btn-primary acc-btn" href="{{url_for('my_questions')}}">My Questions</a></p>
+        </div>
       </div>
     </div>
     {% endif %}
@@ -143,7 +143,16 @@
             </div>
             <!-- Jinja templating will be used to display a series of buttons depending on user login status and author status -->
             {% if current_user.is_authenticated %}
-            <a class="btn btn-primary">Reply</a>
+            <div id="replyForm" class="d-none reply-form">
+              <form action="{{ url_for('home') }}" method="POST">
+                <div class="form-group">
+                  <label for="replyBody">Your Reply:</label>
+                  <textarea class="form-control" id="replyBody" name="reply_body" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit Reply</button>
+              </form>
+            </div>
+            <a class="btn btn-primary" onclick="showReplyForm()">Reply</a>
             {% if current_user.id == question.author_id %}
             <a href="{{url_for('edit_question', question_id=question.id)}}" class="btn btn-secondary btn-edit">Edit</a>
             <a class="btn btn-danger">Delete</a>

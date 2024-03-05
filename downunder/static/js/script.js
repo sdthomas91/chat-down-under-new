@@ -54,3 +54,9 @@ $(document).ready(function () {
         maximumSelectionLength: 3,
     });
 });
+
+// Toggle the reply box display 
+function showReplyForm() {
+    document.getElementById('replyForm').classList.remove('d-none');
+    document.getElementById('replyForm').classList.add('d-block');
+}

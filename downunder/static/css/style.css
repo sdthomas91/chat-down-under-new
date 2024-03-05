@@ -264,6 +264,7 @@ a {
 .question-tags {
   margin-bottom: 5px;
 }
+
 /* **QUESTION BLOCK** */
 .home-blocks {
   background: rgba(250, 250, 250, 0.4);
@@ -281,6 +282,12 @@ a {
 .question-title {
   font-family: 'Archivo Black', arial, sans-serif;
   text-transform: capitalize;
+}
+
+/* **Reply Form** */
+
+.reply-form {
+  margin-bottom: 10px;
 }
 
 /* ****NEW QUESTION**** */
