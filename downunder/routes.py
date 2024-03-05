@@ -208,6 +208,7 @@ def edit_question(question_id):
         # Update question data
         question.question_title = question_title
         question.question_body = question_body
+        question.is_urgent = 'is_urgent' in request.form
         question.topics = [
             Topic.query.get(int(tid)) for tid in selected_topics_ids
             ]

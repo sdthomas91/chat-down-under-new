@@ -33,6 +33,8 @@ The app will be rigorously User Tested and will be deployed to Heroku for online
 
 1. Dedicated user profile area - perhaps incorporate a user profile page so users can see their questions, see if people have replied and also view their stats (how long they have been a member, how many questions they have asked, how many questions they have contributed to with answers etc.)
 
+1. No Longer Urgent - have a button in view for the author of a question to click that will set is_urgent to false. This will allow for seamless changes if the question is answered or expired. 
+
 
 ## Testing
 
