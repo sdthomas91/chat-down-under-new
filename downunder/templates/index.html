@@ -95,12 +95,15 @@
     </div>
     {% if current_user.is_authenticated %}
     <div class="col-12 col-md-3 offset-md-1 home-blocks user-block">
+      <div class="user-container">
       <h4>Hi, {{ current_user.fname }}</h4>
       <p>Take a look at your current profile info</p>
       <div class="user-info">
         <p>Username: {{ current_user.username }}</p>
         <p>Questions: {{ user_question_count }}</p>
         <p>Member Since: {{ current_user.created_at.strftime('%B %d, %Y') }}</p>
+        <p><a class="btn btn-primary acc-btn" href="{{url_for('my_questions')}}">My Questions</a></p>
+      </div>
       </div>
     </div>
     {% endif %}

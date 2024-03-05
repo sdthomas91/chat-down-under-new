@@ -233,7 +233,12 @@ a {
 }
 
 .user-block {
-  max-height: 300px;
+  max-height: 400px;
+  padding: 20px 30px !important;
+}
+
+.user-container {
+  margin-top: 15px;
 }
 
 .is-urgent {

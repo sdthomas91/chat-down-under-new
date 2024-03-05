@@ -67,6 +67,20 @@ def home():
     current_date=current_date
     )
 
+
+### MY QUESTIONS ###
+@app.route('/my_questions')
+def my_questions():
+    """
+    Renders a page with the current users asked questions on for easy review
+    """
+    questions = list(Question.query.order_by(desc(Question.date)).all())
+    return render_template(
+        "my_questions.html", 
+        page_title="My Questions", 
+        user=current_user, 
+        questions=questions)
+
 ### ABOUT PAGE ###
 @app.route("/about")
 def about():
