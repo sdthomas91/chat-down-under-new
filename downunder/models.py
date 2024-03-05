@@ -15,6 +15,7 @@ class User(db.Model, UserMixin):
     fname = db.Column(db.String(50))
     lname = db.Column(db.String(50))
     is_admin = db.Column(db.Boolean, default=False, nullable=False)
+    created_at = db.Column(db.DateTime(timezone=True), default=func.now())
     
 
 

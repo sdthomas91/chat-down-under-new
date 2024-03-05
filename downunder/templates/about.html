@@ -5,6 +5,47 @@
 <!-- Page Content -->
 {% block content %}
 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 text-center mt-4 text-uppercase">
+            <h1>{{page_title}}</h1>
+        </div>
+    </div>
+</div>
 
+<div class="container-fluid about-container">
+    <div class="row">
+        <div class="col-12 col-md-7">
+            <h3>Why did we make Chat Down Under?</h3>
+            <p>"Chat Down Under" is all about making life easier for folks moving to Australia. Created by migrants for
+                migrants, it's like a breath of fresh air in a world cluttered with too much info. Ever felt lost
+                scrolling through endless social media posts just to find something useful? Well, that's exactly what we
+                wanted to fix. With some clever search features and tags, finding answers, sharing stories, or just
+                chatting about life down under got a whole lot simpler. No more digging through heaps of comments.
+                Welcome to a friendlier way to dive into your Aussie journey!</p>
+        </div>
+        <div class="col-5 d-none d-md-block about-img about-img-div">
+
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid about-container">
+    <div class="row">
+        <div class="col-5 d-none d-md-block about-signup about-img-div">
+
+        </div>
+        <div class="col-12 col-md-7 how-to">
+            <h3>How to use Chat Down Under</h3>
+            <p>On the home page you will have access to the most recent (and the most urgent) questions. We invite you
+                to contribute by simply registering your account via the button below so you can reply, ask your own
+                questions or search for answers. Once you're signed up you will be able to view all your own questions,
+                edit and delete as necessary. If for any reason you have trouble with the signup process simply get in
+                touch <a href="mailto:help@chatdownunder.com">via Email</a> </p>
+            <a href="{{url_for('sign_up')}}" class="btn btn-primary acc-btn"><i class="fa-solid fa-user about-icon" style="color: #fba018;"></i>Sign Up Here!</a>
+        </div>
+        
+    </div>
+</div>
 
 {% endblock %}

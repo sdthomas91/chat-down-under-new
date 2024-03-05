@@ -100,6 +100,7 @@
       <div class="user-info">
         <p>Username: {{ current_user.username }}</p>
         <p>Questions: {{ user_question_count }}</p>
+        <p>Member Since: {{ current_user.created_at.strftime('%B %d, %Y') }}</p>
       </div>
     </div>
     {% endif %}

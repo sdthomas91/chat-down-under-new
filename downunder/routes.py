@@ -11,6 +11,7 @@ from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 #Sort questions by date using SQLAlchemy desc
 from sqlalchemy import desc, or_, func
+from datetime import datetime
 
 
 ### Display urgent and latest questions as well as user info on home page ###
@@ -36,6 +37,8 @@ def home():
         .limit(4)
         .all()
     )
+    # Add a current_date to allow for users member since to display
+    current_date = datetime.now()
     """ 
     Used scalar method - found originally in python documentation, to
     better understand best method for returning number of questions
@@ -60,8 +63,22 @@ def home():
     user=current_user, 
     questions=questions, 
     urgent_questions=urgent_questions,
-    user_question_count=user_question_count
+    user_question_count=user_question_count,
+    current_date=current_date
     )
+
+### ABOUT PAGE ###
+@app.route("/about")
+def about():
+    """
+    Renders about page template 
+    """
+    return render_template(
+        "about.html", 
+        page_title="About Chat Down Under", 
+        user=current_user
+    )
+
 
 
 ### TOPIC SPECIFIC ROUTES ###

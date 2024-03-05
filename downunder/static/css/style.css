@@ -159,6 +159,41 @@ a {
 .search-results {
   margin-top: 35px;
 }
+
+/* ***ABOUT*** */
+
+.about-container { 
+  padding: 30px 40px;
+  margin-top: 25px;
+  background-color: rgba(250, 250, 250, 0.4);
+  border-radius: 25px;
+  width: 70%;
+  box-shadow: 1px 1px 3px rgba(0, 0, 100, 0.3);
+}
+
+.about-signup {
+  background: url('../images/about-signup.jpg') no-repeat center center;
+}
+
+.about-img-div {
+  background-size: cover;
+  border-radius: 15px;
+  box-shadow: 1px 1px 2px rgba(0, 0, 100, 0.4);
+  height: auto;
+  width: 100%;
+}
+
+.about-img {
+  background: url('../images/about-image.jpg') no-repeat center center;
+}
+
+.how-to {
+  padding-left: 20px;
+}
+
+.about-icon {
+  margin-right: 10px;
+}
 /* ****SIGN UP**** */
 
 /* **SignUp Form** */
@@ -379,6 +414,9 @@ a {
 
   .masthead {
     height: 400px;
+  }
+  .about-container { 
+    width: 90%;
   }
 }
 
