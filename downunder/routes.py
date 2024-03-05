@@ -29,14 +29,28 @@ def home():
     (https://stackoverflow.com/questions/4186062/
     sqlalchemy-order-by-descending) 
     """
-    urgent_questions = Question.query.filter_by(is_urgent=True).order_by(desc(Question.date)).limit(4).all()
-    
+    urgent_questions = Question.query.filter_by(
+        is_urgent=True
+        ).order_by(
+        desc(Question.date)
+        ).limit(4).all()
+    """ 
+    Used scalar method - found originally in python documentation, to
+    better understand best method for returning search results but it wasn't
+    as clear I needed it to be - found 
+    (https://www.tutorialspoint.com/sqlalchemy/
+    sqlalchemy_orm_returning_list_and_scalars.htm) instead which helped me
+    decide - found this whilst reading this article 
+    https://stackoverflow.com/questions/55662957/
+    what-is-the-difference-between-one-and-scalar
+    """
     # Add query to get question count to add to user profile 
     if current_user.is_authenticated:
         user_question_count = db.session.query(
             func.count(
             Question.id
             )).filter(Question.author_id == current_user.id).scalar()
+            
     else:
         user_question_count = None
     return render_template("index.html", 
