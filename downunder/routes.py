@@ -36,8 +36,8 @@ def home():
         ).limit(4).all()
     """ 
     Used scalar method - found originally in python documentation, to
-    better understand best method for returning search results but it wasn't
-    as clear I needed it to be - found 
+    better understand best method for returning number of questions
+    but it wasn't as clear I needed it to be - found 
     (https://www.tutorialspoint.com/sqlalchemy/
     sqlalchemy_orm_returning_list_and_scalars.htm) instead which helped me
     decide - found this whilst reading this article 
