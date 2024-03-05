@@ -17,6 +17,24 @@ The purpose of this document is to identify key testing stages and instances whe
   - Revised HTML and realised the name was set to "question_topics[]" which I know was correct for producing an array of items. However, I had forgotten to pass the same value in the route when adding the information. Amended from "selected_topic_ids = request.form.getlist('question_topics')" to "selected_topic_ids = request.form.getlist('question_topics[]')"
   - Topic ID's now being pulled an printed in front end where I had wanted them to. 
 
+
+# USER FEEDBACK 
+
+##### User Feedback Implementations
+
+1. After some user feedback it was decided that a more generalised searchability would better enhance the UX of the site
+
+    - Used advanced routing and the ilike() python method to implement a more robust and flexible search experience for users allowing for the system to compare their search term to title, body and topics instead of just topics.   
+
+1. One piece of user feedback suggested implementing some sort of world clock so people could see the time in different parts of australia compared to UK time
+
+    - Utilised Javascript to display world clocks according to different parts of Australia (major cities)
+
+1. Some users fedback that they didn't fully understand the purpose or layout of the site upon first visit.
+
+    - Added an about us page to avoid confusion and aid user experience. Also added prompts and clear titles so each section was fairly transparent on it's purpose and display
+
+
 # SECTION TESTING
 
 ## Header

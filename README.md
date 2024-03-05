@@ -6,20 +6,37 @@ This is a dicussion forum using a relational database that will allow users to p
 
 Utilising Bootstrap row/column tool the site will present responsively and in a well structured, readable, easy to navigate way so as to allow maximum UX. Using python the site will be structured in such a way that users will be able to log in, submit their question and review answers that others may have given on those questions. User authentication will allow users to view, edit and delete their questions, as well as view, edit and delete their responses to others questions. 
 
+**Key Features**
+
+1. User registration, login and logout functionality
+2. Submit questions for discussion
+3. Tag questions with topics for easy navigation
+4. Search bar that will find results if your search matches title, body or tags of a question
+5. Add topics if you cannot find one relevant to your question
+6. Reply to questions for a full discussion experience
+
 The app will be rigorously User Tested and will be deployed to Heroku for online access. 
 
-<h2 align="center"><img src="assets/images/braintrainer-mockup.jpg"></h2>
+<h2 align="center"><img src="downunder/static/images/CDU-mockup.jpg"></h2>
 
 ## Future Developments
 
-1. Comment replies - I would like to incorporate the logic for a user viewing their own question, to reply to answers given by the community. This will enhance user experience - at present they can add a comment but this may cause comment threads to get longer than they may need and out of control. Whereas if a user can reply directly to an answer it will keep it more strucutured. 
+1. Replying to replies - I would like to incorporate the logic for a user viewing their own question, to reply to answers given by the community. This will enhance user experience - at present they can add a comment but this may cause comment threads to get longer than they may need and out of control. Whereas if a user can reply directly to an answer it will keep it more strucutured. 
 
 1. Add new Topic within Question (user feedback) - I tried several different routes but this was proving a little beyond scope for this project. I would like to incorporate the option so as when a user selects their topic, if a relevant topic is not present they can type their own, submit it and have it either dynamically update the list, so they can select their new topic, or submit the new topic as part of the form and have the backend handle the logic - I did trial this with a new topic as a separate option, but it caused the topic selector to become buggy and not perform as it should. Instead, I tried utilising AJAX to dynamically update the list, but again, this caused issue with Select2 and also continued to refresh the page making for a worse user experience. 
 
+1. Search bar functionality - I would like to make the search more flexible, so if it finds "part" of the search term it will still return results as opposed to finding exact matches only
 
-## Known Bugs
+1. Image upload - allow users to upload images to their discussions - questions, replies etc. 
 
-1.
+1. Profile picture - allow users to personalise their user profile further by adding a profile picture or avatar. 
+
+1. Dedicated user profile area - perhaps incorporate a user profile page so users can see their questions, see if people have replied and also view their stats (how long they have been a member, how many questions they have asked, how many questions they have contributed to with answers etc.)
+
+
+## Testing
+
+All testing documentation including user feedback can be found in TESTING.md
 
 ## User Experience (UX)
 
@@ -45,60 +62,50 @@ The app will be rigorously User Tested and will be deployed to Heroku for online
 
 - #### Colour Scheme
 
-  - The main colours used are #f47d15 (Interaction Feedback), #4b0066 (Main Colour), #f1a906 (Secondary colour - headings etc.) and off-white #f9f9f9 (Light).
-  - All colours tested on WebAIM Contrast Checker - some changes were made, including making #4b0066 the main colour due to it's good contrast with all other colours.
-
-    <img src="assets/images/colour-palette.png">
+  - The main colours used are #fba018 (Primary Orange), #00008b (Primary blue and dark text colour), off-white #fafafa (250,250,250) (Used in a variety of ways adjusting transparency to adapt to different areas).
+  - All colours tested on WebAIM Contrast Checker - all passed, though made adjustments such as not having blue on orange too much. Whilst it passes contrasting checks with flying colours, it isn't that pleasant to look at. 
+  - Other colours were used for interaction feedback, such as Reds for delete buttons, darker oranges for hovers on buttons and lighter blues for the same purpose. 
 
 - #### Typography
 
-  - The Kavoon font is the main font used throughout the whole website with Sans Serif as the fallback font in case for any reason the font isn't being imported into the site correctly. Kavoon provides a fun, game style font whilst maintaining a good level of readability for accessibility purposes.
-  - Additional typography where needed (game instructions etc.) will be a simple Sans Serif font such as Verdana.
+  - The Archivo Black (Google Font) is the main font used throughout fopr headings and emphasis text with Sans Serif as the fallback font in case for any reason the font isn't being imported into the site correctly. Archivo Black is easy to read, displays nicely and adds emphasis where necessary. 
+  - Additional typography will all be sans-serif system fonts to allow for easy readability due to the nature of the site. 
 
 - #### Imagery
 
-  - All images created by myself including logo, card logo, card contents.
+  - **Masthead** - Image by Wirestock on [Freepik](https://www.freepik.com/free-photo/beautiful-shot-sydney-harbor-bridge-with-light-pink-blue-sky_10399362.htm)
+
+  - Logo, mockups - all created by myself using Illustrator
 
 - #### Interaction Feedback
 
   - Accent colours are used upon interaction such as hover and click to provide feedback to the user that they are interacting with an element, and that the element serves a purpose.
-  - Sound effects are used to enhance the game experience on flipping, correct match, incorrect match and game completion.
-  - Animation used for the card flip to give it a realistic feel rather than just flicking from one image to the next. Makes the game feel better quality and more enjoyable/pleasant to play.
+  - Flash messages used to notfiy users of errors or successes depending on outcome. Auto timeout included to avoid having to close every time. 
 
 ## Wireframes
 
-- All basic wireframes can be found here - [View](https://www.figma.com/file/zAQX9o6OAKkXcJyxj9RKId/BrainTrainer-Wireframe?type=design&node-id=0-1&mode=design)
+- All basic wireframes can be found here - [View](https://www.figma.com/file/3FMTjJWZ0N4LwKyeieIZzT/ChatDownUnder?type=design&node-id=0%3A1&mode=design&t=GzNDj8tRtdwLP1Wu-1)
 
 ### Deviations
 
-It should be noted that whilst the wireframes were implemented as part of the skeleton phase of UX planning at the outset, applying that 5 S's throughout led to some important amendments to increase functionality. I also realised that having originally planned for multiple levels, this was going to impact timeframes and mean the quality of the work may suffer. Further levels could be added as a later version, but for the scope and timeframe of this project I decided to stick with one level, with the interaction feedback explaining as much (prompts when clicking on locked levels etc.)
+It should be noted that whilst the wireframes were implemented as part of the skeleton phase of UX planning at the outset, applying that 5 S's throughout led to some important amendments according to project scope and useability.
 
 ## Features
 
 - Responsive on all device sizes
 
-- Advanced Javascript providing a smooth interactive gaming experience
+- PSQL Relational Database used
 
-- Ability to progress and improve by competing against your own time
+- Flask/SQLAlchemy used to implement CRUD functionality for users
 
-- ID's used in order to access DOM and manipulate date
+- User ID's allow for user specific CRUD
 
-- Modals used to instructions to avoid unncessary navigation away from the main page
+- Modals used for defensive programming when it comes to item deletion
 
-- Tiles used to illustrate a clear journey through levels etc.
+- Interaction feedback used throughout.
 
-- Interaction feedback used throughout - this includes all clickable buttons/links, cards, sound effects, animations.
+- Reply functionality enhances discussion experience
 
-- Leaderboard allows players to rank themselves (functionality to be improved in later versions)
-
-### User Feedback Implementations
-
-- A number of users fedback that they would rather the music play across all pages and maintain the functionality to toggle music on and off. Gentle piano music used as it can aid memory function and concentration.
-- Issues with logo sizing impacting game view on smaller devices - used image and text combination with bootstrap responsive options to display each respectively. This allows for a more seamless cross platform experience.
-- Clearer notice that level is locked upon click and also when game was completed - originally had an alert but decided to use a modal and implement some logic to show the modal automatically once each relevant trigger was found.
-- Some users noted that occasionally after resetGame the checkForMatch wouldn't work properly and reset button would be required to ensure smooth gameplay. Combatted largley by rearranging functions and removing some unnecessary code that I was unaware of.
-- Some users fedback that they were unsure which direction the progression would be on the homepage. Whilst it is not completely relevant for the current release I would address these concerns by adding some css to incorporate some sort of dashed line from level to level to show progression direction.
-- Some users have fedback that on some mobile devices they cannot see the bottom elements of the gameboard such as the best time and attmepts whilst playing the game. however, gameboard and timerare visible so not a major issue. Could reduce pdding or margins in future versions to improve this.
 
 ## Technologies Used
 
@@ -107,52 +114,55 @@ It should be noted that whilst the wireframes were implemented as part of the sk
 - [HTML5](https://en.wikipedia.org/wiki/HTML5)
 - [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
 - [Javascript](https://en.wikipedia.org/wiki/JavaScript)
+- [Python](https://docs.python.org/3/)
 
 ### Frameworks, Libraries & Programs Used
 
 1. [Bootstrap 4.4.1:](https://getbootstrap.com/docs/4.4/getting-started/introduction/)
    - Bootstrap was used to assist with the responsiveness and styling of the website.
-2. [Jest](https://jestjs.io/)
-   - Jest was used to continuously test and grow my code and functions
-3. [Hover.css:](https://ianlunn.github.io/Hover/)
-   - Hover.css was used on the Social Media icons in the footer to add the float transition while being hovered over.
+2. [Jest:](https://jestjs.io/)
+   - Jest was used to test the Javascript used
+3. [SQLAlchemy:](https://docs.sqlalchemy.org/en/20/)
+   - SQLAlchemy was used to communicate between the database and the frontend
 4. [Google Fonts:](https://fonts.google.com/)
-   - Google fonts were used to import the 'Kavoon' font into the "Head" section of each html file which is used on all pages throughout the project.
+   - Google fonts were used to import the 'Archivo Black' font into the "Head" section of each html file which is used on all titles and emphasises throughout the project.
 5. [Font Awesome:](https://fontawesome.com/)
    - Font Awesome was used throughout the website to add icons for aesthetic and UX purposes.
 6. [jQuery:](https://jquery.com/)
-   - jQuery came with Bootstrap to make the navbar responsive but was also used for the smooth scroll function in JavaScript.
+   - jQuery came with Bootstrap to make the navbar responsive but was also used for Select2 
+7. [Select2:](https://select2.org/)
+   - Select2 was used for styling the dropdown and allowing for multiple selections without having to hold down CMD/CTRL or Shift
+8. [FLASK:](https://flask.palletsprojects.com/)
+   - Flask Frameworking was used to structure the site including the use of Jinja2 templating. Allowed for the smooth display of data from the backend. 
 7. [Git](https://git-scm.com/)
    - Git was used for version control by utilizing the Gitpod terminal to commit to Git and Push to GitHub.
 8. [GitHub:](https://github.com/)
    - GitHub is used to store the projects code after being pushed from Git.
 9. [Illustrator:](https://www.adobe.com/uk/products/illustrator.html)
-
-- Illustrator was used to create the logo and card fronts.
-
+   - Illustrator was used to create the logo
 10. [Figma:](https://www.figma.com/)
-
-- Figma was used to create the wireframes during the design process.
-
-11. [CSSGradient](https://cssgradient.io/)
-
-- CSSGradient.io was used to generate css gradient backgrounds.
-
-12. [StackOverflow](https://stackoverflow.com/)
-
-- Used for code snippets and code validation, as well as tutorials and some vital help
+      - Figma was used for all wireframing and flow illustration
+11. [Youtube - TechWithTim:](https://www.youtube.com/@TechWithTim)
+      - TechWithTim was a great help in understanding some of the more complex elements of Python programming and also in implementing my Login/Signup process
+12. [StackOverflow:](https://stackoverflow.com/)
+      - Used for code snippets and code validation, as well as tutorials and some vital help
 
 ## Testing
 
-A separate tests document has been added to showcase the Javascript testing - this can be found in the scripts directory. I also duplicated the script document which can be found is game.js - this was to avoid having to remove event listeners and comment out exports etc. for published site to run effectively but also to make testing easier.
+A separate tests document has been added. This includes details on user testing. There is also a test_app.py for testing the python when it came to adding, editing and deleting elements to avoid messing with the live preview. 
 
-I was unable to complete JEST tests for all functions due to time constraints. I got very caught up in the JEST side of things as it was very new to me. A lot of stackOverflow help and youtube videos were needed to understand some of the more complex elements of the tests. There are still some elements that I don't fully grasp but all functions tested now pass. I did manage to test all CORE functions relating to gameplay. The only functions left out were the updating the best time and also toggling the music. Both were suitably tested through user testing though.
+JEST testing was carried out to an extent with the limited Javascript that was used. Issues were encountered with tests timing out for the World clock test. Also did not need to test the Select2 implementation other than for functionality and so this was executed through user testing. 
 
-Remaining functions were still tested through user testing and the game proves to function well.
+Further testing details such as Element and section testing can be found in the TESTING.md. 
 
-- Little to no HTML CSS testing was required due to the simplicity of the web pages - still validated through W3C validator as listed below.
+**PEP8 COMPLIANCE**
+ - Guideline added at 79th column to ensure I did not exceed the recommended line length. Ensured all functions worked as they should even after reformatting where necessary.
+ - Indentation used correctly throughout - consistently used tab method as opposed to space. 
 
-The W3C Markup Validator and W3C CSS Validator Services were used to validate every page of the project to ensure there were no syntax errors in the project.
+**HTML & CSS**
+- Little to no HTML CSS testing was required due to the simplicity of the web pages - listed main pages below:
+
+The W3C Markup Validator and W3C CSS Validator Services were used to validate every page of the project to ensure there were no syntax errors in the project. A few examples included below:
 
 - [W3C Markup Validator](https://validator.w3.org/nu/#textarea) :
 
@@ -165,54 +175,52 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 
 ### Testing User Stories from User Experience (UX) Section
 
-- #### First Time Visitor Goals
+#### First Time Visitor Goals
 
-  1. As a First Time Visitor, I want to easily understand the main purpose of the game and understand how to play.
 
-     1. Upon entering the site, users are automatically greeted with a clean and easily readable navigation bar which clearly showcases a How To Play button and a help button.
-     2. The How to Play button opens a readable modal with clear text in the same window to minimise navigation away from the page
-     3. The instructions are thorought and clear
-     4. The help button gives the opportunity to request further help if still unsure
+  1. As a First Time Visitor, I want to easily understand the main purpose of the web app.
 
-  2. As a First Time Visitor, I want to be able to easily navigate the game and start a game with ease.
+     1. Upon entering the site, users are automatically greeted with a clean and easily readable navigation bar which clearly showcases the main functions of the site including "Ask a Question" and "Topics"
+     2. The addition of an About page enables users to explore a guide on the setup and purpose of the site.
+     3. Clear prompts including prompts to create account or login
 
-     1. The game board is laid out nicely on the home page allowing easy access to all areas of the site
-     2. Leaderboard navigation accessible and consistent header/nav on all pages allow UI friendly navigation process
-     3. Game accessible via tiles and easy navigation to either homepage or leaderboard from there.
+  2. As a First Time Visitor, I want to be able to easily navigate the app and register my account.
 
-  3. As a First Time Visitor, I want to be able to easily understand what will happen when I interact with areas of the site
+     1. If you are not logged in you will immediately be able to see a "Sign Up" button
+     2. Additionally there is a prompt on the initial question block suggesting you register to contribute with a link taking you to sign up page
+     3. Flash messages notfiying of elements off limits unless you are logged in
 
-     1. The user has immediate navigational ability to reach the leaderboard, toggle music and access help/how to
-     2. Constant user feedback either by sound effect or css effecvs allows the user to understand what can be interacted with and how it will behave
+  3. As a First Time Visitor, I want to be able to easily understand how to submit a question or reply to others questions
 
-- #### Returning Visitor Goals
+     1. The about page serves its purpose well here advising on how to engage in discussion
+     2. Buttons and links used to direct users to login to be able to contribute, and once logged in bright colour buttons promting a reply. 
+     3. Navigation to "Ask Question" and buttons for "reply" help users through the discussion flow
 
-  1. As a Returning Visitor, I want to see if there are new levels available.
+#### Returning Visitor Goals
 
-     1. The homepage showcases all levels and clearly notifies when a level is locked or available
-     2. The obvious help option allows users to contact to request new levels or ask if anything new is available
+  1. As a Returning Visitor, I want to see if there are new questions being asked.
 
-  2. As a Returning Visitor, I want to check my previous scores.
+     1. The homepage showcases all recent questions as well as the latest urgent questions to enable users to immediately engage in the latest conversations
 
-     1. The level page will contain the existing high score and allow it to be over written if the new score is better
-     2. The leaderboard houses some stock scores but also logs the users high score for them to see how they are progressing
+  2. As a Returning Visitor, I want to check my questions to see if they have been answered.
 
-- #### Frequent User Goals
+     1. The "View My Questions" button on the homepage under user info allows direct navigation to user specific questions.
 
-  1. As a Frequent User, I want to be able to continuously improve upon my previous score.
+#### Frequent User Goals
 
-     1. The opportunity to log your high score, view it and improve upon it allows users to compete against themselves to continuously improve their speed and memory
+  1. As a Frequent User, I want to be able to engage in discussions around specific topics.
 
-  2. As a Frequent User, I want to be able to progress.
+     1. The ability to search different topics and discussions allows users to specifically target discussions relevant to their current needs or something they may have an answer to
 
-     1. The option to climb the leaderboard rankings provides a way of the user measuring success and progression
-     2. Future developments will see extra level which will allow the user to move through harder challenges and progress both in the game and personally
+  2. As a Frequent User, I want to be able to update my questions and answers or delete if necessary.
+
+     1. User authentication allows users to edit and delete their own questions or replies. 
 
 ### Further Testing
 
-- The Website was tested on Google Chrome, Microsoft Edge and Safari browsers. It was also tested in Internet Explorer Mode on Microsoft Edge. There were some issues regarding autoplay on the audio but nothing that would effect gameplay
-- The website was viewed on a variety of devices such as HP Windows Desktop, Macbook, iMac, iPhone12, iPhone 14 Pro, iPhone 8, iPad Air, iPad Pro 12.9", Pixel 5, Samsung Galaxy S20 Ultra, Surface Pro 7 and Nest Hub. Responsiveness was patchy to begin with but using Bootstrap it now presents nicely across all platforms.
-- A large amount of testing was done to ensure that all user interactions both on home page and during gameplay were smooth and consistent.
+- The Website was tested on Google Chrome, Microsoft Edge and Safari browsers. It was also tested in Internet Explorer Mode on Microsoft Edge.
+- The website was viewed on a variety of devices such as HP Windows Desktop, Macbook, iMac, iPhone12, iPhone 14 Pro, iPhone 8, iPad Air, iPad Pro 12.9", Pixel 5, Samsung Galaxy S20 Ultra, Surface Pro 7 and Nest Hub. Responsiveness was near flawless thanks to implementing the Bootstrap column system.
+- A large amount of testing was done to ensure that all user interactions throughout the site responded as they should
 - Friends and family members were asked to review the site and documentation to point out any bugs and/or user experience issues.
 
 #### Google Lighthouse
