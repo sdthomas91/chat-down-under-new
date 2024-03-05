@@ -10,7 +10,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 #Sort questions by date using SQLAlchemy desc
-from sqlalchemy import desc, or_
+from sqlalchemy import desc, or_, func
 
 
 ### Display urgent and latest questions as well as user info on home page ###
@@ -31,10 +31,20 @@ def home():
     """
     urgent_questions = Question.query.filter_by(is_urgent=True).order_by(desc(Question.date)).limit(4).all()
     
-
+    # Add query to get question count to add to user profile 
+    if current_user.is_authenticated:
+        user_question_count = db.session.query(
+            func.count(
+            Question.id
+            )).filter(Question.author_id == current_user.id).scalar()
+    else:
+        user_question_count = None
     return render_template("index.html", 
     page_title="Welcome to Chat Down Under",
-    user=current_user, questions=questions, urgent_questions=urgent_questions
+    user=current_user, 
+    questions=questions, 
+    urgent_questions=urgent_questions,
+    user_question_count=user_question_count
     )
 
 
