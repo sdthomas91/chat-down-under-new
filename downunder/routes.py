@@ -1,6 +1,6 @@
 from flask import render_template, request, flash, redirect, url_for, jsonify
 from downunder import app, db
-from downunder.models import Topic, Question, User, Question
+from downunder.models import Topic, Question, User, Question, Reply
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, login_required, logout_user 
 from flask_login import current_user, LoginManager
@@ -159,6 +159,7 @@ def delete_topic(topic_id):
 
 
 ### QUESTION SPECIFIC ROUTES ###
+## ADD QUESTION ##
 @app.route('/submit_question', methods=['GET', 'POST'])
 @login_required
 def submit_question():
@@ -200,6 +201,7 @@ def submit_question():
         topics=topics, 
         user=current_user)
 
+## EDIT QUESTION ##
 @app.route('/edit_question/<int:question_id>', methods=['GET', 'POST'])
 @login_required
 def edit_question(question_id):
@@ -240,7 +242,7 @@ def edit_question(question_id):
                         user=current_user
                         )
 
-
+## DELETE QUESTION ##
 @app.route('/delete_question/<int:question_id>')
 @login_required
 def delete_question(question_id):
@@ -258,15 +260,29 @@ def delete_question(question_id):
     flash('Question has successfully been deleted')
     return redirect(url_for('home'))
 
+
 ### REPLY SPECIFIC ROUTES ###
-@app.route('/reply')
+@app.route('/submit_reply/<int:question_id>', methods=['POST'])
 #Only logged in users can reply to questions
 @login_required
-def reply():
+def submit_reply(question_id):
     """
-    Initiates reply textbox allocating author and question
+    Submits reply and associates it with the question for display
     """
-    print(reply)
+    reply_body = request.form.get('reply_body')
+    if reply_body:
+        reply = Reply(
+            reply_body=reply_body, 
+            question_id=question_id, 
+            author_id=current_user.id
+        )
+        db.session.add(reply)
+        db.session.commit()
+        flash('Your reply has been posted.', category='success')
+    else:
+        flash('Reply cannot be empty.', category='error')
+
+    return redirect(url_for('home'))
 
 
 ### SEARCH ROUTES ###
