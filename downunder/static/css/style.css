@@ -228,8 +228,17 @@ a {
   margin-top: 50px;
 }
 
+.question-container {
+  margin: auto;
+}
+
 .all-question-container {
   margin-top: 40px;
+
+}
+
+.home-titles {
+  margin: 10px 20px;
 }
 
 .user-block {
@@ -479,5 +488,22 @@ a {
 @media screen and (max-width: 576px) {
   .masthead {
     height: 450px;
+  }
+
+  .user-block {
+    margin: 0 auto 25px auto;
+  }
+
+  .questions {
+    padding: 0;
+  }
+
+  .home-titles {
+    text-align: center;
+    margin: 10px 0;
+  }
+
+  .all-question-container {
+    margin: 25px auto;
   }
 }

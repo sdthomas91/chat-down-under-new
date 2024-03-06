@@ -7,17 +7,42 @@
 
 <div class="container home-container">
   <div class="row">
+    <!-- MOBILE USER PROFILE - Bootstrap Collapse used https://getbootstrap.com/docs/4.0/components/collapse/ -->
+    {% if current_user.is_authenticated %}
+    <div class="col-11 d-block d-md-none home-blocks user-block">
+      <div class="user-container">
+        <h4>Hi, {{ current_user.fname }}</h4>
+        <p>Take a look at your current profile info</p>
+        <a class="user-collapse-link" data-toggle="collapse" href="#userCollapse" role="button" aria-expanded="false" aria-controls="userCollapse">
+          View More
+        </a>
+        <div class="collapse" id="userCollapse">
+          <div class="user-info">
+            <p>Username: {{ current_user.username }}</p>
+            <p>Questions: {{ user_question_count }}</p>
+            <p>Member Since: {{ current_user.created_at.strftime('%B %d, %Y') }}</p>
+            <p><a class="btn btn-primary acc-btn" href="{{url_for('my_questions')}}">My Questions</a></p>
+          </div>
+        </div>
+        <!-- 
+         -->
+      </div>
+    </div>
+    {% endif %}
+    <!-- /Desktop user profile  -->
     <div
-      class="col-12 {{'col-md-8' if current_user.is_authenticated else 'col-md-12' }} home-blocks question-container">
-      <h2>Urgent Questions</h2>
+      class="col-11 {{'col-md-8' if current_user.is_authenticated else 'col-md-12' }} home-blocks question-container">
+      <div class="home-titles">
+        <h2>Urgent Questions</h2>
       <p>Can you help? To view all recent questions, <a href="#recent">click here</a></p>
       {% if not current_user.is_authenticated %}
       <p><a href="{{url_for('login')}}">Log In</a> or <a href="{{url_for('sign_up')}}">Sign Up</a> to help answer
         questions and get involved in the conversation!</p>
       {% endif %}
+      </div>
       <div class="row question-container">
         {% for question in urgent_questions %}
-        <div class="col12 col-md-6 {{'col-lg-6' if current_user.is_authenticated else 'col-lg-3'}}">
+        <div class="questions col-12 {{'col-md-12 col-lg-6' if current_user.is_authenticated else 'col-md-6 col-lg-3'}}">
           <div class="question-block">
             <div class="question-title">
               <h5>{{ question.question_title }} </h5>
@@ -55,7 +80,7 @@
                   <textarea class="form-control" id="replyBody" name="reply_body" rows="4" required></textarea>
                 </div>
                 <button class="btn btn-secondary" onclick="hideReplyForm('{{ question.id }}')">Cancel</button>
-                <button type="submit" class="btn btn-primary">Submit Reply</button>
+                <button type="submit" class="btn btn-primary acc-btn">Submit Reply</button>
         
               </form>
             </div>
@@ -78,8 +103,9 @@
       </div>
 
     </div>
+    <!-- DESKTOP USER PROFILE -->
     {% if current_user.is_authenticated %}
-    <div class="col-12 col-md-3 offset-md-1 home-blocks user-block">
+    <div class="col-12 d-none d-md-block col-md-3 offset-md-1 home-blocks user-block">
       <div class="user-container">
         <h4>Hi, {{ current_user.fname }}</h4>
         <p>Take a look at your current profile info</p>
@@ -92,9 +118,10 @@
       </div>
     </div>
     {% endif %}
+    <!-- /Desktop user profile  -->
 
-    <div class="col-12 home-blocks all-question-container">
-      <h2 id="recent">All Recent Questions</h2>
+    <div class="col-11 col-md-12 home-blocks all-question-container">
+      <h2 id="recent" class="home-titles">All Recent Questions</h2>
       {% if not current_user.is_authenticated %}
       <p>Can you help? <a href="{{url_for('login')}}">Log In</a> or <a href="{{url_for('sign_up')}}">Sign Up</a> to help
         answer questions and get involved in the conversation!</p>
