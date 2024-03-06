@@ -59,7 +59,7 @@
 
               </form>
             </div>
-            
+
             <div class="card-action">
               <a class="btn btn-primary" onclick="showReplyForm('{{ question.id }}')">Reply</a>
               {% if current_user.id == question.author_id %}
@@ -130,15 +130,7 @@
         {% for question in questions %}
         {% include 'question_snippet.html' %}
         {% endfor %}
-
       </div>
-
-      <div class="row question-container">
-        {% for question in questions %}
-          {% include 'question_snippet.html' %}
-        {% endfor %}
-      </div>
-
     </div>
   </div>
 </div>
