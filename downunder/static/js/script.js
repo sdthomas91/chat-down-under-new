@@ -56,7 +56,23 @@ $(document).ready(function () {
 });
 
 // Toggle the reply box display 
-function showReplyForm() {
-    document.getElementById('replyForm').classList.remove('d-none');
-    document.getElementById('replyForm').classList.add('d-block');
+function showReplyForm(questionId) {
+    let replyForms = document.querySelectorAll('.replyForm');
+    replyForms.forEach(function(form) {
+        if (form.getAttribute('data-question-id') === questionId) {
+            form.classList.remove('d-none');
+            form.classList.add('d-block');
+        }
+    });
+
+}
+
+function hideReplyForm(questionId) {
+    let replyForms = document.querySelectorAll('.replyForm');
+    replyForms.forEach(function(form) {
+        if (form.getAttribute('data-question-id') === questionId) {
+            form.classList.remove('d-block');
+            form.classList.add('d-none');
+        }
+    });
 }

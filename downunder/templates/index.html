@@ -48,8 +48,20 @@
             <!-- Jinja templating will be used to display a series of buttons depending on user login status and author status -->
 
             {% if current_user.is_authenticated %}
+            <div id="replyForm" class="d-none replyForm" data-question-id="{{ question.id }}">
+              <form action="{{ url_for('home') }}" method="POST">
+                <div class="form-group">
+                  <label for="replyBody">Your Reply:</label>
+                  <textarea class="form-control" id="replyBody" name="reply_body" rows="4" required></textarea>
+                </div>
+                <button class="btn btn-secondary" onclick="hideReplyForm('{{ question.id }}')">Cancel</button>
+                <button type="submit" class="btn btn-primary">Submit Reply</button>
+
+              </form>
+            </div>
+            
             <div class="card-action">
-              <a class="btn btn-primary">Reply</a>
+              <a class="btn btn-primary" onclick="showReplyForm('{{ question.id }}')">Reply</a>
               {% if current_user.id == question.author_id %}
               <a href="{{url_for('edit_question', question_id=question.id)}}"
                 class="btn btn-secondary btn-edit">Edit</a>
@@ -143,16 +155,18 @@
             </div>
             <!-- Jinja templating will be used to display a series of buttons depending on user login status and author status -->
             {% if current_user.is_authenticated %}
-            <div id="replyForm" class="d-none reply-form">
+            <div id="replyForm" class="d-none replyForm" data-question-id="{{ question.id }}">
               <form action="{{ url_for('home') }}" method="POST">
                 <div class="form-group">
                   <label for="replyBody">Your Reply:</label>
                   <textarea class="form-control" id="replyBody" name="reply_body" rows="4" required></textarea>
                 </div>
+                <button class="btn btn-secondary" onclick="hideReplyForm('{{ question.id }}')">Cancel</button>
                 <button type="submit" class="btn btn-primary">Submit Reply</button>
+
               </form>
             </div>
-            <a class="btn btn-primary" onclick="showReplyForm()">Reply</a>
+            <a class="btn btn-primary" onclick="showReplyForm('{{ question.id }}')">Reply</a>
             {% if current_user.id == question.author_id %}
             <a href="{{url_for('edit_question', question_id=question.id)}}" class="btn btn-secondary btn-edit">Edit</a>
             <a class="btn btn-danger">Delete</a>
