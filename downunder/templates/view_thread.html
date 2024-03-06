@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+<!-- Page Title -->
+{% block title %}CDU | View Question{% endblock %}
+
+{% block content %}
+<div class="container-fluid full-thread-container">
+    <h2>View Full Thread</h2>
+    <div class="col-12 col-md-10 offset-md-1">
+        <div class="question-block">
+          <div class="question-title">
+            <h5>{{ question.question_title }}</h5>
+            {% if question.is_urgent %} <span class="is-urgent">URGENT!</span> {% endif %}
+          </div>
+          <div class="question-body">
+            <p>{{ question.question_body }}</p>
+          </div>
+          <br>
+          <div class="question-topic-title">
+            <p><strong>Topic Tags</strong></p>
+          </div>
+          <div class="container-fluid">
+            <div class="row justify-content-left question-tags">
+              {% set num_topics = question.topics|length %}
+              {% set col_class = 'col-lg-4' if num_topics < 3 else 'col-lg-2' %}
+              {% for topic in question.topics %}
+              <span class="col-3 {{ col_class }} topic-badge text-center">{{ topic.topic_name }}</span>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="question-author">
+            <p>Author: <span class=font-weight-bold>{{ question.author.username }}</span> </p>
+          </div>
+          <!-- Jinja templating will be used to display a series of buttons depending on user login status and author status -->
+          {% if current_user.is_authenticated %}
+          <div id="replyForm" class="d-none replyForm" data-question-id="{{ question.id }}">
+            <form action="{{ url_for('submit_reply', question_id=question.id) }}" method="POST">
+              <div class="form-group">
+                <label for="replyBody">Your Reply:</label>
+                <textarea class="form-control" id="replyBody" name="reply_body" rows="4" required></textarea>
+              </div>
+              <button class="btn btn-secondary" onclick="hideReplyForm('{{ question.id }}')">Cancel</button>
+              <button type="submit" class="btn btn-primary">Submit Reply</button>
+      
+            </form>
+          </div>
+          <a class="btn btn-primary" onclick="showReplyForm('{{ question.id }}')">Reply</a>
+          {% if current_user.id == question.author_id %}
+          <a href="{{url_for('edit_question', question_id=question.id)}}" class="btn btn-secondary btn-edit">Edit</a>
+          {% include 'delete_question_snippet.html' %}
+          {% endif %}
+          <div class="replies">
+            {% for reply in question.replies %}
+            <div class="reply-header">
+                <!-- Display the reply author's username and the date posted -->
+                <strong>{{ reply.author.username }} replied :</strong>
+            </div>
+            <div class="reply-body">
+                <p class="reply-text">{{ reply.reply_body }}
+                    </p>
+                <p class="reply-date">{{ reply.date_posted.strftime('%d-%m-%Y %H:%M') }}</p>
+            </div>
+            {% endfor %}
+        </div>
+          {% endif %}
+      
+        </div>
+      </div>
+</div>
+{% endblock %}

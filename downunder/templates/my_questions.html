@@ -5,11 +5,6 @@
 <!-- Page Content -->
 {% block content %}
 
-
-
-
-
-
 <div class="container-fluid search-container">
     <h2>View Your Questions</h2>
     {% if not current_user.is_authenticated %}
@@ -29,21 +24,4 @@
 </div>
 
 {% endif %}
-<!-- 
-<div class="container-fluid home-container">
-  <div class="row">
-    <div class="col-12 question-container">
-      <h1>Results for </h1>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <div class="col-4 user-info">
-        <h3></h3>
-      </div>
-    </div>
-  </div>
-
-  
-</div> -->
 {% endblock %}

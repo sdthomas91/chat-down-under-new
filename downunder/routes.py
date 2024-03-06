@@ -262,6 +262,7 @@ def delete_question(question_id):
 
 
 ### REPLY SPECIFIC ROUTES ###
+## Submit Reply ##
 @app.route('/submit_reply/<int:question_id>', methods=['POST'])
 #Only logged in users can reply to questions
 @login_required
@@ -284,10 +285,20 @@ def submit_reply(question_id):
 
     return redirect(url_for('home'))
 
+##VIEW FULL THREAD
+@app.route('/view_thread/<int:question_id>')
+@login_required
+def view_thread(question_id):
+    question = Question.query.get_or_404(question_id)
+    return render_template(
+        'view_thread.html', 
+        question=question,
+        user=current_user
+    )
 
 ### SEARCH ROUTES ###
 
-@app.route("/search_results", methods=['GET', 'POST'])
+@app.route('/search_results', methods=['GET', 'POST'])
 def search_results():
     """
     Loads a search results page using the input from the search bar :

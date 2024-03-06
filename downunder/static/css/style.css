@@ -252,7 +252,7 @@ a {
   background: #fba018;
   color: #fefefe;
   border-radius: 50px;
-  padding: 5px 8px;
+  padding: 5px 10px;
   font-size: 0.75rem;
   margin-right: 5px;
 }
@@ -290,6 +290,44 @@ a {
   margin-bottom: 10px;
 }
 
+/* **Reply Box** */
+
+.reply-body {
+  background-color: white;
+  margin: 5px 0 15px 0;
+  padding: 10px 15px;
+  border-radius: 10px;
+}
+
+.reply-date {
+  font-size: 0.7rem;
+  margin-top: -10px;
+  margin-bottom: 0;
+  font-weight: bold;
+}
+
+.replies {
+  margin-top: 15px;
+}
+
+.reply-header {
+  text-transform: lowercase;
+  font-size: 0.9rem;
+}
+
+/* ****FULL THREAD**** */
+.full-thread-container {
+  max-width: 90%;
+  margin-top: 50px;
+  background-color: rgba(250,250,250, 0.4);
+  padding: 30px 50px;
+  border-radius: 20px;
+}
+
+.full-thread-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
 /* ****NEW QUESTION**** */
 .custom-select[multiple] {
   height: auto;
@@ -429,6 +467,12 @@ a {
   }
   .about-container { 
     width: 90%;
+  }
+
+  .full-thread-container {
+    max-width: 90%;
+    padding: 15px 20px;
+    border-radius: 20px;
   }
 }
 

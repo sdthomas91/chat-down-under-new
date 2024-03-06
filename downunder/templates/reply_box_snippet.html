@@ -2,11 +2,19 @@
 <div class="replies">
     {% for reply in question.replies %}
     {% if loop.index == 1 %}
-    <div class="reply-body">{{ reply.reply_body }}</div>
+    <div class="reply-header">
+        <!-- Display the reply author's username and the date posted -->
+        <strong>{{ reply.author.username }} replied :</strong>
+    </div>
+    <div class="reply-body">
+        <p class="reply-text">{{ reply.reply_body }}
+            </p>
+        <p class="reply-date">{{ reply.date_posted.strftime('%d-%m-%Y') }}</p>
+    </div>
     {% endif %}
     {% endfor %}
-  </div>
-  <!-- If more than one reply, link to view full thread -->
-  {% if question.replies|length > 1 %}
-  <a href="">View Thread</a>
-  {% endif %}
+</div>
+<!-- If more than one reply, link to view full thread -->
+{% if question.replies|length > 1 %}
+<a href="{{url_for('view_thread', question_id=question.id)}}">View Full Thread</a>
+{% endif %}
