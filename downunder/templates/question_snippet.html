@@ -41,16 +41,7 @@
     <a href="{{url_for('edit_question', question_id=question.id)}}" class="btn btn-secondary btn-edit">Edit</a>
     {% include 'delete_question_snippet.html' %}
     {% endif %}
-    <div class="replies">
-      {% for reply in question.replies %}
-      {% if loop.index == 1 %}
-      <div>{{ reply.reply_body }}</div>
-      {% endif %}
-      {% endfor %}
-    </div>
-    {% if question.replies|length > 1 %}
-    <a href="">View Thread</a>
-    {% endif %}
+    {% include 'reply_box_snippet.html' %}
     {% endif %}
 
   </div>

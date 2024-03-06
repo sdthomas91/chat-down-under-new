@@ -1,0 +1,12 @@
+<!-- Display the first reply only to avoid overcrowding -->
+<div class="replies">
+    {% for reply in question.replies %}
+    {% if loop.index == 1 %}
+    <div class="reply-body">{{ reply.reply_body }}</div>
+    {% endif %}
+    {% endfor %}
+  </div>
+  <!-- If more than one reply, link to view full thread -->
+  {% if question.replies|length > 1 %}
+  <a href="">View Thread</a>
+  {% endif %}

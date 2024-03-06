@@ -49,14 +49,14 @@
 
             {% if current_user.is_authenticated %}
             <div id="replyForm" class="d-none replyForm" data-question-id="{{ question.id }}">
-              <form action="{{ url_for('home') }}" method="POST">
+              <form action="{{ url_for('submit_reply', question_id=question.id) }}" method="POST">
                 <div class="form-group">
                   <label for="replyBody">Your Reply:</label>
                   <textarea class="form-control" id="replyBody" name="reply_body" rows="4" required></textarea>
                 </div>
                 <button class="btn btn-secondary" onclick="hideReplyForm('{{ question.id }}')">Cancel</button>
                 <button type="submit" class="btn btn-primary">Submit Reply</button>
-
+        
               </form>
             </div>
 
@@ -65,10 +65,10 @@
               {% if current_user.id == question.author_id %}
               <a href="{{url_for('edit_question', question_id=question.id)}}"
                 class="btn btn-secondary btn-edit">Edit</a>
-              <!-- DELETE QUESTION MODAL TRIGGER -->
-
+              <!-- DELETE QUESTION SNIPPET -->
               {% include 'delete_question_snippet.html' %}
               {% endif %}
+              {% include 'reply_box_snippet.html' %}
             </div>
             {% endif %}
           </div>
