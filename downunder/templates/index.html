@@ -128,55 +128,15 @@
       {% endif %}
       <div class="row question-container">
         {% for question in questions %}
-        <div class="col12 col-md-4">
-          <div class="question-block">
-            <div class="question-title">
-              <h5>{{ question.question_title }}</h5>
-              {% if question.is_urgent %} <span class="is-urgent">URGENT!</span> {% endif %}
-            </div>
-            <div class="question-body">
-              <p>{{ question.question_body }}</p>
-            </div>
-            <br>
-            <div class="question-topic-title">
-              <p><strong>Topic Tags</strong></p>
-            </div>
-            <div class="container-fluid">
-              <div class="row justify-content-left question-tags">
-                {% set num_topics = question.topics|length %}
-                {% set col_class = 'col-4' if num_topics < 3 else 'col-3' %}
-                {% for topic in question.topics %}
-                <span class="{{ col_class }} topic-badge text-center">{{ topic.topic_name }}</span>
-                {% endfor %}
-              </div>
-            </div>
-            <div class="question-author">
-              <p>Author: <span class=font-weight-bold>{{ question.author.username }}</span> </p>
-            </div>
-            <!-- Jinja templating will be used to display a series of buttons depending on user login status and author status -->
-            {% if current_user.is_authenticated %}
-            <div id="replyForm" class="d-none replyForm" data-question-id="{{ question.id }}">
-              <form action="{{ url_for('home') }}" method="POST">
-                <div class="form-group">
-                  <label for="replyBody">Your Reply:</label>
-                  <textarea class="form-control" id="replyBody" name="reply_body" rows="4" required></textarea>
-                </div>
-                <button class="btn btn-secondary" onclick="hideReplyForm('{{ question.id }}')">Cancel</button>
-                <button type="submit" class="btn btn-primary">Submit Reply</button>
-
-              </form>
-            </div>
-            <a class="btn btn-primary" onclick="showReplyForm('{{ question.id }}')">Reply</a>
-            {% if current_user.id == question.author_id %}
-            <a href="{{url_for('edit_question', question_id=question.id)}}" class="btn btn-secondary btn-edit">Edit</a>
-            <a class="btn btn-danger">Delete</a>
-            {% endif %}
-            {% endif %}
-
-          </div>
-        </div>
+        {% include 'question_snippet.html' %}
         {% endfor %}
 
+      </div>
+
+      <div class="row question-container">
+        {% for question in questions %}
+          {% include 'question_snippet.html' %}
+        {% endfor %}
       </div>
 
     </div>
