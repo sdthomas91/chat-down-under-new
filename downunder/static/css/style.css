@@ -266,14 +266,27 @@ a {
   margin-right: 5px;
 }
 
+.topic-tag-container {
+  padding-left: 0;
+  margin-left: 0;
+  margin-bottom: 15px;
+}
+
 .question-topic-title {
   font-size: 0.9rem;
+}
+
+.question-topic-title p{
+margin-bottom: 0.3rem;
 }
 
 .question-tags {
   margin-bottom: 5px;
 }
 
+.badges {
+  margin-left: 15px;
+}
 /* **QUESTION BLOCK** */
 .home-blocks {
   background: rgba(250, 250, 250, 0.4);

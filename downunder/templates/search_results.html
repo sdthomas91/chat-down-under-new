@@ -49,9 +49,10 @@
         <a class="btn btn-primary">Reply</a>
         {% if current_user.id == question.author_id %}
         <a href="{{url_for('edit_question', question_id=question.id)}}" class="btn btn-secondary btn-edit">Edit</a>
-        <a class="btn btn-danger">Delete</a>
-        {% endif %}
-        {% endif %}
+    {% include 'delete_question_snippet.html' %}
+    {% endif %}
+    {% include 'reply_box_snippet.html' %}
+    {% endif %}
 
       </div>
     </div>
@@ -62,23 +63,7 @@
 </div>
     
 {% else %}
-    <p>No questions found for the given topic.</p>
+    <p>No questions found for the given topic. <a href="{{url_for('topics')}}">Add your own topic</a> and start your own discussion</p>
 {% endif %}
-<!-- 
-<div class="container-fluid home-container">
-  <div class="row">
-    <div class="col-12 question-container">
-      <h1>Results for </h1>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <div class="col-4 user-info">
-        <h3></h3>
-      </div>
-    </div>
-  </div>
 
-  
-</div> -->
 {% endblock %}

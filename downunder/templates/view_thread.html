@@ -18,17 +18,19 @@
           <div class="question-topic-title">
             <p><strong>Topic Tags</strong></p>
           </div>
-          <div class="container-fluid">
+          <div class="container-fluid topic-tag-container">
             <div class="row justify-content-left question-tags">
-              {% set num_topics = question.topics|length %}
-              {% set col_class = 'col-lg-4' if num_topics < 3 else 'col-lg-2' %}
+              
               {% for topic in question.topics %}
-              <span class="col-3 {{ col_class }} topic-badge text-center">{{ topic.topic_name }}</span>
+              <div class="badges"><span class="topic-badge text-center">{{ topic.topic_name }}</span></div>
+              
               {% endfor %}
             </div>
           </div>
           <div class="question-author">
-            <p>Author: <span class=font-weight-bold>{{ question.author.username }}</span> </p>
+            <p>
+              Author: <span class=font-weight-bold>{{ question.author.username }}</span>
+            </p>
           </div>
           <!-- Jinja templating will be used to display a series of buttons depending on user login status and author status -->
           {% if current_user.is_authenticated %}
