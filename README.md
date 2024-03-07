@@ -92,7 +92,11 @@ All testing documentation including user feedback can be found in TESTING.md
 
 ## Wireframes
 
-- All basic wireframes can be found here - [View](https://www.figma.com/file/3FMTjJWZ0N4LwKyeieIZzT/ChatDownUnder?type=design&node-id=0%3A1&mode=design&t=GzNDj8tRtdwLP1Wu-1)
+- All basic wireframes can be found here - [View](/downunder/static/readme/wireframe/ChatDownUnder.pdf)
+
+## Database Models 
+
+- PDF example of my database models used can be found [here](/downunder/static/readme/database/CDU-DB-Diagram.pdf)
 
 ### Deviations
 
@@ -154,6 +158,8 @@ It should be noted that whilst the wireframes were implemented as part of the sk
       - TechWithTim was a great help in understanding some of the more complex elements of Python programming and also in implementing my Login/Signup process
 12. [StackOverflow:](https://stackoverflow.com/)
       - Used for code snippets and code validation, as well as tutorials and some vital help
+13. [DBDiagram:](dbdiagram.io)
+      - Used to generate database model diagrams
 
 ## Testing
 
