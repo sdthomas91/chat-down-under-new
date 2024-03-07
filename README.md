@@ -1,6 +1,6 @@
 <h1 align="center">Chat Down Under - A Discussion Forum for all things Australia Migration</h1>
 
-[View the live project here.](!!!INSERT HEROKU LINK HERE""")
+[View the live project here.](https://chat-down-under-6866155ac589.herokuapp.com/)
 
 This is a dicussion forum using a relational database that will allow users to proactively discuss topics regarding migrating to Australia. 
 
