@@ -187,7 +187,7 @@ a {
 }
 
 .about-img-div {
-  background-size: cover;
+  background-size: cover !important;
   border-radius: 15px;
   box-shadow: 1px 1px 2px rgba(0, 0, 100, 0.4);
   height: auto;
@@ -322,6 +322,7 @@ margin-bottom: 0.3rem;
   border-radius: 10px;
   padding: 20px 25px;
   margin-bottom: 20px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .question-title {
@@ -342,6 +343,7 @@ margin-bottom: 0.3rem;
   margin: 5px 0 15px 0;
   padding: 10px 15px;
   border-radius: 10px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .reply-date {
