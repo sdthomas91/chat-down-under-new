@@ -20,8 +20,16 @@
         {% endfor %}
 
     </div>
+    {% else %}
+    <div class="row search-results">
+        <p>Oh! It looks like you haven't asked any questions yet!</p>
+        <a href="{{url_for('submit_question')}}">
+            <p>Start a conversation... <i class="fa-solid fa-comments"></i></p>
+        </a>
 
+    </div>
+    {% endif %}
 </div>
 
-{% endif %}
+
 {% endblock %}
