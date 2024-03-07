@@ -57,7 +57,7 @@ def create_db():
 @click.argument("username")
 @with_appcontext
 def make_admin(username):
-    from yourapp.models import User
+    from downunder.models import User
     user = User.query.filter_by(username=username).first()
     if user:
         user.is_admin = True
