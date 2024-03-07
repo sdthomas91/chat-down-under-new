@@ -342,6 +342,11 @@ def sign_up():
     data collection - peform a POST to submit new
     user details
     """
+    if current_user.is_authenticated:
+        # If the user is already logged in, redirect to the home page
+        flash('You are already logged in.', category='error')
+        return redirect(url_for('home'))
+
     if request.method == 'POST':
         email = request.form.get('email').lower()
         username = request.form.get('username')
