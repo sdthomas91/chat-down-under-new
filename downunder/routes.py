@@ -58,14 +58,15 @@ def home():
 
     else:
         user_question_count = None
-    return render_template("index.html",
-                            page_title="Welcome to Chat Down Under",
-                            user=current_user,
-                            questions=questions,
-                            urgent_questions=urgent_questions,
-                            user_question_count=user_question_count,
-                            current_date=current_date
-                        )
+    return render_template(
+        "index.html",
+        page_title="Welcome to Chat Down Under",
+        user=current_user,
+        questions=questions,
+        urgent_questions=urgent_questions,
+        user_question_count=user_question_count,
+        current_date=current_date
+    )
 
 
 # My Questions
