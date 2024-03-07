@@ -11,7 +11,7 @@ app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 
 if os.environ.get("DEVELOPMENT") == "True":
-    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DB_URL")  # local
+    app.config["SQLALCHEMY_DATABASE_URI"] = "os.environ.get("DB_URL")"  # local
 else:
     uri = os.environ.get("DB_URL")
     if uri.startswith("postgres://"):
@@ -51,17 +51,3 @@ def create_db():
     db.drop_all()
     db.create_all()
     print("Database tables created")
-
-
-@app.cli.command("make-admin")
-@click.argument("username")
-@with_appcontext
-def make_admin(username):
-    from downunder.models import User
-    user = User.query.filter_by(username=username).first()
-    if user:
-        user.is_admin = True
-        db.session.commit()
-        print(f"{username} has been granted admin rights.")
-    else:
-        print("User not found.")
