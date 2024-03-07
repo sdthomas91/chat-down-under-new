@@ -35,6 +35,12 @@ The app will be rigorously User Tested and will be deployed to Heroku for online
 
 1. No Longer Urgent - have a button in view for the author of a question to click that will set is_urgent to false. This will allow for seamless changes if the question is answered or expired. 
 
+1. Clickable topics - make topics on topic page and topic tags on questions clickable - taking users to a "results" page of relevant questions
+
+1. Edit & Delete replies - give users the option to edit or delete their replies to questions
+
+1. Reply counter and up-vote system - implement some sort of "like" or "upvote" system to rank replies and display highest ranking (most helpful) first. Also have a reply counter so users can see the size of a thread. 
+
 
 ## Testing
 
@@ -96,7 +102,7 @@ It should be noted that whilst the wireframes were implemented as part of the sk
 
 - Responsive on all device sizes
 
-- PSQL Relational Database used
+- PSQL Relational Database
 
 - Flask/SQLAlchemy used to implement CRUD functionality for users
 
@@ -216,7 +222,7 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 
   2. As a Frequent User, I want to be able to update my questions and answers or delete if necessary.
 
-     1. User authentication allows users to edit and delete their own questions or replies. 
+     1. User authentication allows users to edit and delete their own questions. 
 
 ### Further Testing
 

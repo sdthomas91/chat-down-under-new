@@ -22,6 +22,12 @@ The purpose of this document is to identify key testing stages and instances whe
     - Tried changing backend logic so it could do a request to see if the is_urgent is on - then pass is_urgent as is_urgent so if it isn't "on" then it is false. This still failed. 
     - Realised I was overcomplicating things - removed the additional request and simply force set the is_urgent to false if it isn't present on the form (deselected). Now working as it should. 
 
+1. Submit reply - form will not submit and returns error **Method not allowed**
+    - Form displays correctly and all values within route are correct. Troubleshooting to identify where issue was occurring : print statement within form submission. No print appears. 
+    - Simplified route to test, still no response from server. 
+    - removed GET from route as it isn't necessary anyway but still no difference
+    - Realised the form redirect was pointing to home, which is fine, but I had also included questions and user details as though I were rendering a template. Removed the additional arguments and it works perfectly now. 
+
 # USER FEEDBACK 
 
 ##### User Feedback Implementations
@@ -38,6 +44,8 @@ The purpose of this document is to identify key testing stages and instances whe
 
     - Added an about us page to avoid confusion and aid user experience. Also added prompts and clear titles so each section was fairly transparent on it's purpose and display
 
+1. Make topic tags clickable
+    - Some users fedback that they would like the topic tags (on questions and on topic page) to be clickable, the click would then take them to posts related to these topics. It is a functionality I would like to implement at a later date, but it is not within the scope or timeframe of this project
 
 # SECTION TESTING
 
@@ -72,10 +80,6 @@ The purpose of this document is to identify key testing stages and instances whe
 1. Image height - implemented different viewport stylings to allow for a larger image on mobile view to encompass the world clocks. Otherwise it overlapped and spilt over into main content. 
 
 
-## Topics
-
-### Add topics
-
 
 ## Questions
 
@@ -103,31 +107,22 @@ For this element I wanted to allow logged in users to view their profile informa
 
 ## Buttons (outside of standard buttons)
 
+- All buttons functioning as expected
+
 ## UX
 
 ### Error Checking
 
 #### HTML Validation
 
-- Included below are screenshots of errors found - all rectified accordingly. This involded changing "id" on modals/forms to avoid duplicates, adding alt attributes (or correcting from alt-text to alt) and other general fixes.
-  | HTML Validation Errors | - | - |
-  | -------------------- | :---------------: | :---------------: |
-  | ![Html Errors 1](/assets/images/error-html-1.png) | ![Html Errors 2](/assets/images/error-html-2.png) |![Html Errors 3](/assets/images/error-html-3.png) |
-  | ![Html Errors 4](/assets/images/error-html-4.png) | ![Html Errors 5](/assets/images/error-html-5.png) ||
-
-- Errors were all addressed and corrected accordingly - html trial code has been moved to this document for reference only
-  | HTML Validation Errors Corrected |
-  | -------------------- |
-  | ![Html Errors Corrected](/assets/images/no-error-html.png) |
-
-  - Validation carried out for contact-success.html and was all clear
+- HTML Validation threw errors due to Jinja templating and template inheritance. However, outside of these issues all HTML passed validation. 
 
 #### CSS Validation
 
 - All CSS clear - validation passed
   | Validated CSS |
   | -------------------- |
-  | ![CSS No Errors](/assets/images/no-error-css.png) |
+  | ![CSS No Errors](/downunder/static/images/css-valid.png) |
 
 ## Unused Code
 
