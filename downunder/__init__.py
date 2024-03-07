@@ -5,40 +5,47 @@ if os.path.exists("env.py"):
     import env
 from flask_login import LoginManager
 
-
-
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DB_URL")
+
+if os.environ.get("DEVELOPMENT") == "True":
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DB_URL")  # local
+else:
+    uri = os.environ.get("DATABASE_URL")
+    if uri.startswith("postgres://"):
+        uri = uri.replace("postgres://", "postgresql://", 1)
+    app.config["SQLALCHEMY_DATABASE_URI"] = uri  # heroku
 
 db = SQLAlchemy(app)
 
-
-
-
-from downunder import routes #noqa
+from downunder import routes  # noqa
 
 
 login_manager = LoginManager()
 login_manager.login_view = 'login'
 login_manager.init_app(app)
 
+
 @login_manager.user_loader
 def load_user(user_id):
-    from downunder.models import User  # Local import to avoid circular dependency
+    from downunder.models import User
     return User.query.get(int(user_id))
 
-#- ython3 command not 
-# working as per my previous project - code found here
-# https://stackoverflow.com/questions/
-# 77477706/how-can-i-create-database-file-with-flask
+    """
+    python3 command not
+    working as per my previous project - code found here
+    https://stackoverflow.com/questions/
+    77477706/how-can-i-create-database-file-with-flask
+    """
+
+
 @app.cli.command("create_db")
 def create_db():
     """
-    Flask CLI workaround for db creation 
+    Flask CLI workaround for db creation
     """
     # (https://docs.sqlalchemy.org/en/20/core/metadata.html)
-    #Use drop_all() during development to ensure tables are purged and updated
+    # Use drop_all() during development to ensure tables are purged and updated
     db.drop_all()
     db.create_all()
     print("Database tables created")

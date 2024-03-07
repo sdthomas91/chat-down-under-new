@@ -145,7 +145,7 @@ def add_topic():
 
 
 # Delete Topics
-@app.route('/delete_topic/<int:topic_id>')
+@app.route("/delete_topic/<int:topic_id>")
 @login_required
 def delete_topic(topic_id):
     """
