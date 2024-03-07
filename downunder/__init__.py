@@ -4,6 +4,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 if os.path.exists("env.py"):
     import env
+import click
+from flask.cli import with_appcontext
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
@@ -49,3 +51,17 @@ def create_db():
     db.drop_all()
     db.create_all()
     print("Database tables created")
+
+
+@app.cli.command("make-admin")
+@click.argument("username")
+@with_appcontext
+def make_admin(username):
+    from yourapp.models import User
+    user = User.query.filter_by(username=username).first()
+    if user:
+        user.is_admin = True
+        db.session.commit()
+        print(f"{username} has been granted admin rights.")
+    else:
+        print("User not found.")
