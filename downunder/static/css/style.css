@@ -312,6 +312,10 @@ a {
   margin-right: 5px;
 }
 
+.topic-badge-container {
+  margin-top: 5px;
+}
+
 .topic-tag-container {
   padding-left: 0;
   margin-left: 0;
