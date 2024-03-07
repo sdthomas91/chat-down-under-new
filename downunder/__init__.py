@@ -31,18 +31,18 @@ def load_user(user_id):
     from downunder.models import User
     return User.query.get(int(user_id))
 
-    """
-    python3 command not
-    working as per my previous project - code found here
-    https://stackoverflow.com/questions/
-    77477706/how-can-i-create-database-file-with-flask
-    """
 
 
 @app.cli.command("create_db")
 def create_db():
     """
     Flask CLI workaround for db creation
+    """
+    """
+    python3 command not
+    working as per my previous project - code found here
+    https://stackoverflow.com/questions/
+    77477706/how-can-i-create-database-file-with-flask
     """
     # (https://docs.sqlalchemy.org/en/20/core/metadata.html)
     # Use drop_all() during development to ensure tables are purged and updated
