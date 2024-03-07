@@ -4,14 +4,12 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 if os.path.exists("env.py"):
     import env
-import click
-from flask.cli import with_appcontext
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 
 if os.environ.get("DEVELOPMENT") == "True":
-    app.config["SQLALCHEMY_DATABASE_URI"] = "os.environ.get("DB_URL")"  # local
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DB_URL")  # local
 else:
     uri = os.environ.get("DB_URL")
     if uri.startswith("postgres://"):
