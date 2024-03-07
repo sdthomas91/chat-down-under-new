@@ -82,6 +82,10 @@ a {
   border: none;
 }
 
+.nav-item {
+  margin: 0 30px !important;
+}
+
 /* **** MASTHEAD **** */
 
 .masthead {
@@ -242,8 +246,8 @@ a {
 }
 
 .user-block {
-  max-height: 400px;
-  padding: 20px 30px !important;
+  max-height: 350px;
+  padding: 18px 30px !important;
 }
 
 .user-container {
@@ -282,11 +286,9 @@ margin-bottom: 0.3rem;
 
 .question-tags {
   margin-bottom: 5px;
+  margin-left: 0;
 }
 
-.badges {
-  margin-left: 15px;
-}
 /* **QUESTION BLOCK** */
 .home-blocks {
   background: rgba(250, 250, 250, 0.4);
@@ -355,6 +357,10 @@ margin-bottom: 0.3rem;
   height: auto;
   max-height: 60px;
   overflow-y: auto;
+}
+
+.custom-select {
+  width: 100%;
 }
 
 .submit-question-form {
@@ -483,6 +489,9 @@ margin-bottom: 0.3rem;
   .sign-up-container {
     width: 80%;
   }
+  .user-block {
+    margin: 0 auto 25px auto;
+  }
 
   .masthead {
     height: 400px;
@@ -496,6 +505,10 @@ margin-bottom: 0.3rem;
     padding: 15px 20px;
     border-radius: 20px;
   }
+
+  .all-question-container {
+    margin: 25px auto;
+  }
 }
 
 @media screen and (max-width: 576px) {
@@ -503,9 +516,7 @@ margin-bottom: 0.3rem;
     height: 450px;
   }
 
-  .user-block {
-    margin: 0 auto 25px auto;
-  }
+  
 
   .questions {
     padding: 0;
@@ -516,7 +527,5 @@ margin-bottom: 0.3rem;
     margin: 10px 0;
   }
 
-  .all-question-container {
-    margin: 25px auto;
-  }
+  
 }

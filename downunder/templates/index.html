@@ -9,7 +9,7 @@
   <div class="row">
     <!-- MOBILE USER PROFILE - Bootstrap Collapse used https://getbootstrap.com/docs/4.0/components/collapse/ -->
     {% if current_user.is_authenticated %}
-    <div class="col-11 d-block d-md-none home-blocks user-block">
+    <div class="col-11 d-block d-lg-none home-blocks user-block">
       <div class="user-container">
         <h4>Hi, {{ current_user.fname }}</h4>
         <p>Take a look at your current profile info</p>
@@ -29,9 +29,9 @@
       </div>
     </div>
     {% endif %}
-    <!-- /Desktop user profile  -->
+    <!-- /Mobile user profile  -->
     <div
-      class="col-11 {{'col-md-8' if current_user.is_authenticated else 'col-md-12' }} home-blocks question-container">
+      class="col-11 {{'col-lg-8' if current_user.is_authenticated else 'col-lg-11' }} home-blocks question-container">
       <div class="home-titles">
         <h2>Urgent Questions</h2>
       <p>Can you help? To view all recent questions, <a href="#recent">click here</a></p>
@@ -59,7 +59,7 @@
               <div class="row justify-content-left question-tags">
                 
                 {% for topic in question.topics %}
-                <div class="badges"><span class="topic-badge text-center">{{ topic.topic_name }}</span></div>
+                <div><span class="topic-badge text-center">{{ topic.topic_name }}</span></div>
                 
                 {% endfor %}
               </div>
@@ -105,7 +105,7 @@
     </div>
     <!-- DESKTOP USER PROFILE -->
     {% if current_user.is_authenticated %}
-    <div class="col-12 d-none d-md-block col-md-3 offset-md-1 home-blocks user-block">
+    <div class="col-12 d-none d-lg-block col-md-3 offset-md-1 home-blocks user-block">
       <div class="user-container">
         <h4>Hi, {{ current_user.fname }}</h4>
         <p>Take a look at your current profile info</p>
@@ -120,7 +120,7 @@
     {% endif %}
     <!-- /Desktop user profile  -->
 
-    <div class="col-11 col-md-12 home-blocks all-question-container">
+    <div class="col-11 col-lg-12 home-blocks all-question-container">
       <h2 id="recent" class="home-titles">All Recent Questions</h2>
       {% if not current_user.is_authenticated %}
       <p>Can you help? <a href="{{url_for('login')}}">Log In</a> or <a href="{{url_for('sign_up')}}">Sign Up</a> to help

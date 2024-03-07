@@ -1,4 +1,4 @@
-<div class="questions col-12 col-md-4">
+<div class="questions col-12 col-lg-6 col-xl-4">
   <div class="question-block">
     <div class="question-title">
       <h5>{{ question.question_title }}</h5>
@@ -15,7 +15,7 @@
       <div class="row justify-content-left question-tags">
         
         {% for topic in question.topics %}
-        <div class="badges"><span class="topic-badge text-center">{{ topic.topic_name }}</span></div>
+        <div><span class="topic-badge text-center">{{ topic.topic_name }}</span></div>
         
         {% endfor %}
       </div>
