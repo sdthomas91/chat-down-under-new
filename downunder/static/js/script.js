@@ -1,14 +1,14 @@
 // Add an auto close for flash messages
-document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => {
-        const flashMessage = document.querySelector('.flash-message');
-        if (flashMessage) {
-            flashMessage.style.transition = 'opacity 0.3s ease-out';
-            flashMessage.style.opacity = '0';
-            setTimeout(() => flashMessage.remove(), 200); // Use a fadeout for a smooth transition
-        }
-    }, 2000); // 2 seconds before fadeout
-});
+// document.addEventListener('DOMContentLoaded', () => {
+//     setTimeout(() => {
+//         const flashMessage = document.querySelector('.flash-message');
+//         if (flashMessage) {
+//             flashMessage.style.transition = 'opacity 0.3s ease-out';
+//             flashMessage.style.opacity = '0';
+//             setTimeout(() => flashMessage.remove(), 200); // Use a fadeout for a smooth transition
+//         }
+//     }, 4000); // 4 seconds before fadeout
+// });
 
 // Add a time function that displays the times for major cities in Australia 
 document.addEventListener('DOMContentLoaded', function () {

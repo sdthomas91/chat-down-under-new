@@ -60,35 +60,29 @@
     </div>
   </nav>
 
-  <!-- Flash Messages -->
+  
+  <!-- Bootstrap Nav -->
+  <!-- **** Start Bootstrap Header **** -->
+  <header class="masthead">
+  
+    <!-- Overlay  -->
+    <div class="overlay"></div>
+      <!-- Flash Messages -->
   {% with messages = get_flashed_messages(with_categories=true) %}
   {% if messages %}
   {% for category, message in messages %}
   {% if category == 'error' %}
-  <div class="alert alert-danger alert-dismissable fade show flash-message" role="alert">
-    {{ message }}
-    <button type="button" class="close" data-dismiss="alert">
-      <span aria-hidden="true">&times;</span>
-    </button>
+  <div class="container flash-message error-flash text-center">
+    {{message}}
   </div>
   {% else %}
-  <div class="alert alert-success alert-dismissable fade show flash-message" role="alert">
-    {{ message }}
-    <button type="button" class="close" data-dismiss="alert">
-      <span aria-hidden="true">&times;</span>
-    </button>
+  <div class="container flash-message success-flash text-center">
+    {{message}}
   </div>
   {% endif %}
   {% endfor %}
   {% endif %}
   {% endwith %}
-
-  
-  <!-- Bootstrap Nav -->
-  <!-- **** Start Bootstrap Header **** -->
-  <header class="masthead">
-    <!-- Overlay  -->
-    <div class="overlay"></div>
     <div class="container position-relative">
       <div class="row justify-content-center">
         <div class="col-xl-10">

@@ -71,7 +71,7 @@ All testing documentation including user feedback can be found in TESTING.md
 - #### Colour Scheme
 
   - The main colours used are #fba018 (Primary Orange), #00008b (Primary blue and dark text colour), off-white #fafafa (250,250,250) (Used in a variety of ways adjusting transparency to adapt to different areas).
-  - All colours tested on WebAIM Contrast Checker - all passed, though made adjustments such as not having blue on orange too much. Whilst it passes contrasting checks with flying colours, it isn't that pleasant to look at. 
+  - All colours tested on [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/) - all passed, though made adjustments such as not having blue on orange too much. Whilst it passes contrasting checks with flying colours, it isn't that pleasant to look at. 
   - Other colours were used for interaction feedback, such as Reds for delete buttons, darker oranges for hovers on buttons and lighter blues for the same purpose. 
 
 - #### Typography
@@ -263,7 +263,7 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 
 The project was deployed to GitHub Pages using the following steps...
 
-1. Log in to GitHub and locate the [GitHub Repository](https://github.com/sdthomas91/ng-spmu-milestone)
+1. Log in to GitHub and locate the [GitHub Repository](https://github.com/sdthomas91/chat-down-under-new)
 2. At the top of the Repository (not top of page), locate the "Settings" Button on the menu.
    - Alternatively Click [Here](https://raw.githubusercontent.com/) for a GIF demonstrating the process starting from Step 2.
 3. Scroll down the Settings page until you locate the "GitHub Pages" Section.
@@ -319,6 +319,10 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 
 - [CodePen](https://codepen.io/samueldthomas91/pen/oNJVxYx) : Codepen was used to explore examples of the game style I wanted to implement. I also used codepen to build my JS logic as it was easier to view and edit. My final codepen before transferring it back to codeanywhere can be found [HERE](https://codepen.io/samueldthomas91/pen/OJrKNgP)
 
+- [TechWithTime](https://www.youtube.com/@TechWithTim) : Tech With Tim on youtube has a lot of valuable Python knowledge that I was able to adapt and utilise across my project
+
+- [Miguel Grinberg](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-viii-followers) : This Flask Mega Tutorial was an incredible help with things such as understanding many to many relationships and fully utilising Flask app capabilities 
+
 ### Content
 
 - Colour and content completely designed by myself
@@ -331,13 +335,6 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 
 - Masthead backgroud image - [Freepik](https://www.freepik.com/free-photo/beautiful-shot-sydney-harbor-bridge-with-light-pink-blue-sky_10399362.htm#query=sydney&position=0&from_view=search&track=sph&uuid=ce4ecea8-9b88-4c4b-8630-f9f657464361)
 
-### Audio
-
-- Error Sound : Sound effect from [PixaBay](https://pixabay.com/sound-effects/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=7184)
-- Correct Sound : Sound effect from [PixaBay](https://pixabay.com/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6033)
-- Winning Sound : [UppBeat](https://uppbeat.io/browse/sfx/celebrate)
-- Background Music : license included in assets/copyright
-
 #### README Mockup
 
 - .ai file used for Mockup at the top of README file : Image by [Freepik](https://www.freepik.com/free-vector/flat-design-responsive-website-design_28747716.htm#query=multi%20device%20mockup&position=2&from_view=keyword&track=ais)
@@ -348,8 +345,8 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 
 - Pasquale Fasulo for continuous helpful input and feedback
 
-- My mentor, Gurjot for continued input and direction
+- Ben Smith for his support, input and feedback
 
-- © 2014 Nate Wiley CodePen for the initial inspiration
+- Miguel Grinberg for the vast knowledge on Flask
 
 - Friends and family for valuable insights and feedback
