@@ -154,11 +154,15 @@ def delete_topic(topic_id):
     flash 'you do not have permission to delete'. However, as the buttons will
     only show to admin users it is not necessary at this time
     """
-    topic = Topic.query.get_or_404(topic_id)
-    db.session.delete(topic)
-    db.session.commit()
-    flash('Topic has successfully been deleted')
-    return redirect(url_for('topics'))
+    if not current_user.is_admin:
+        flash('Only Admins can edit or delete topics', category='error')
+        return redirect(url_for('topics'))
+    else:
+        topic = Topic.query.get_or_404(topic_id)
+        db.session.delete(topic)
+        db.session.commit()
+        flash('Topic has successfully been deleted', category='success')
+        return redirect(url_for('topics'))
 
 
 # Questions Specific Routes

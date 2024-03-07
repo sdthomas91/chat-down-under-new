@@ -12,6 +12,13 @@ body {
   font-family: "Montserrat", sans-serif;
   color: #55433c;
   background-color: #debb98;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1;
 }
 
 h1,
@@ -424,6 +431,7 @@ margin-bottom: 0.3rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 10px;
 }
 
 .topic-card-title {
@@ -437,10 +445,13 @@ margin-bottom: 0.3rem;
   margin-top: 75px;
 }
 
+
 .copyright {
   height: 30px;
   margin: 0;
+  color: #00008B;
 }
+
 
 .logo-text {
   color: #fba018;
