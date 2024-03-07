@@ -34,8 +34,8 @@ a {
 .btn-social {
   border-radius: 100%;
   display: inline-flex;
-  width: 4rem;
-  height: 4rem;
+  width: 3rem;
+  height: 3rem;
   font-size: 1.25rem;
   justify-content: center;
   align-items: center;
@@ -246,10 +246,24 @@ a {
 }
 
 .user-block {
-  max-height: 350px;
-  padding: 18px 30px !important;
+  max-height: 100%;
+  padding: 20px 30px 25px 30px !important;
 }
 
+.fa-comments {
+  display: block;
+    font-size: 3rem;
+    margin-top: 5px;
+}
+
+.user-social {
+  font-size: 1.8rem;
+  margin-right: 12px;
+}
+
+.main-container {
+  padding: 0 0 0 30px;
+}
 .user-container {
   margin-top: 15px;
 }
