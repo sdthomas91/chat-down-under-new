@@ -48,7 +48,7 @@
       class="col-11 {{'col-lg-8' if current_user.is_authenticated else 'col-lg-12' }} home-blocks question-container">
       <div class="home-titles">
         <h2>Urgent Questions</h2>
-        <p>Can you help? To view all recent questions, <a href="#recent">click here</a></p>
+        <p>Can you help? Click here to view all <a href="#recent">recent questions</a></p>
         {% if not current_user.is_authenticated %}
         <p><a href="{{url_for('login')}}">Log In</a> or <a href="{{url_for('sign_up')}}">Sign Up</a> to help answer
           questions and get involved in the conversation!</p>

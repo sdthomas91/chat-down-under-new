@@ -81,7 +81,7 @@ The purpose of this document is to identify key testing stages and instances whe
  <h2 align="center"><img src="downunder/static/testing/images/test-error-resolved.png"></h2>
 
 
-## Colour Contrast A11Y
+# Colour Contrast A11Y
 
 - Used A11Y Colour checker to ensure site contrast was user friendly. Tested index page, but same colour scheme is used throughout.
 - Encountered some errors - one was left unrersolved as it was not accurate - it accounted for the title on the body colour but it sits ontop of a dark blue overlay on the masthead image. 
@@ -89,6 +89,10 @@ The purpose of this document is to identify key testing stages and instances whe
 | Errors | Resolved |
   | ------ | -------- |
   | ![Contrast Errors](/downunder/static/testing/images/contrast-errors.png) | ![Models resolved](/downunder/static/testing/images/contrast-pass.png) |
+
+
+# Wave Webaim Accessibility Checker
+
 
 
 ## Bugs (All bugs now Resolved)
