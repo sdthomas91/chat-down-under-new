@@ -29,12 +29,24 @@ The purpose of this document is to identify key testing stages and instances whe
 
 ## W3C HTML Validator
 
+- Initial test displayed some HTML errors but corrected all and passed
+  | HTML Errors | HTML Passed
+  | -------------------- | -------------- |
+  | ![HTML Errors](/downunder/static/testing/images/HTML%20Errors.png) | ![HTML Pass](/downunder/static/testing/images/HTML%20Pass.png) |
+
 ## W3C CSS Validator
 
 - All CSS clear - validation passed
   | Validated CSS |
   | -------------------- |
-  | ![CSS No Errors](/downunder/static/images/css-valid.png) |
+  | ![CSS No Errors](/downunder/static/testing/images/CSS-passed.png) |
+
+## JSHINT Javascript Code Quality Tool
+
+- Largely a pass on JSHint, only issue being the ES6 compatability but this is a warning and not an error
+  | JSHint Pass |
+  | -------------------- |
+  | ![JSHint Pass](/downunder/static/testing/images/JSHint.png) |
 
 
 

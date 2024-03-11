@@ -32,7 +32,6 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
-
 @app.cli.command("create_db")
 def create_db():
     """
