@@ -1,25 +1,159 @@
-<h1 align="center">Chat Down Under - A Discussion Forum for all things Australia Migration</h1>
+
+# Chat Down Under - A Discussion Forum for all things Australia Migration
+
+## Milestone Project 3 - Backend Development
+
+<h2 align="center"><img src="downunder/static/images/CDU-mockup.jpg"></h2>
+
+
+* Chat Down Under is a forum website which allows users to submit their own questions, as well as view and reply to those submitted by other users going through the experience. There is the option to browse topics to allow users to easily find questions or answers. Utilising Bootstrap the site is responsive and allows for easy navigation maximising UI and UX.
+
+* This is my Milestone Project 3 submission for Code Institute's Diploma in Web Application Development course. My website uses a relational Database powered by Flask, SQLAlchemy and PostgreSQL. The site features full CRUD functionality and is built using additional technologies that I have learnt including HTML, CSS, JavaScript and Python.
+
+## Live Project
 
 [View the live project here.](https://chat-down-under-6866155ac589.herokuapp.com/)
 
-This is a dicussion forum using a relational database that will allow users to proactively discuss topics regarding migrating to Australia. 
+## Repository
 
-Utilising Bootstrap row/column tool the site will present responsively and in a well structured, readable, easy to navigate way so as to allow maximum UX. Using python the site will be structured in such a way that users will be able to log in, submit their question and review answers that others may have given on those questions. User authentication will allow users to view, edit and delete their questions, as well as view, edit and delete their responses to others questions. 
+[Find the project repository here.](https://github.com/sdthomas91/chat-down-under-new)
+
+# Table of Contents
+
+## Contents
+   - [User experience](#user-experience)
+      * [User Stories](#user-stories)
+         + [First-time User](#first-time-user)
+         + [Returning User](#returning-user)
+         + [Site Owner](#site-owner)
+   - [Design](#design)
+      * [Colour Scheme](#colour-scheme)
+      * [Typography](#typography)
+      * [Imagery](#imagery)
+      * [Interaction Feedback](#interaction-feedback)
+      * [Icons](#icons)
+   - [Wireframes](#wireframes)
+      * [Deviations](#deviations)
+   - [Database Models](#database-models)
+   - [Features](#features)
+      * [Technology Features](#technology-features)
+      * [User Features](#user-features)
+      * [Future Features](#future-featuresdevelopments)
+      * [Design Features](#design-features)
+   - [Technologies Used](#technologies-used)
+      * [Languages Used](#languages-used)
+      * [Frameworks, Libraries & Programs Used](#frameworks-libraries--programs-used)
+   - [Testing](#testing)
+   - [Deployment](#deployment)
+      * [Creating a Gitpod Workspace](#creating-a-gitpod-workspace)
+      * [GitHub Pages](#github-pages)
+      * [Forking the GitHub Repository](#forking-the-github-repository)
+      * [Making a Local Clone](#making-a-local-clone)
+      * [Creating an application with Heroku](#creating-an-application-with-heroku)
+   - [Credits](#credits)
+      * [Code](#code)
+      * [Content](#media)
+      * [README](#readme)
+         + [Inspiration](#inspiration)
+         + [Mockup](#mockup)
+      * [Acknowledgements](#acknowledgements)
+
+
+# User Experience (UX)
+
+- ## User stories
+
+- ### First Time User
+
+  1. As a First Time Visitor, I want to easily understand the main purpose of the web app.
+  2. As a First Time Visitor, I want to be able to easily navigate the app and register my account.
+  3. As a First Time Visitor, I want to be able to easily understand how to submit a question or reply to others questions
+
+- ### Returning User
+
+  1. As a Returning Visitor, I want to see if there are new questions being asked.
+  2. As a Returning Visitor, I want to check my questions to see if they have been answered.
+
+- ### Frequent User
+
+  1. As a Frequent User, I want to be able to engage in discussions around specific topics.
+  2. As a Frequent User, I want to be able to update my questions and answers or delete if necessary.
+
+- ### Site Owner
+   1. As site owner I want users to be able to submit, edit. and delete their own questions
+   2. As site owner I want topic deletion to be limited to admins only
+   3. As site owner I want the website to be responsive and display well on all devices for optimal UX. 
+
+
+- # Design
+
+- ## Colour Scheme
+
+  - The main colours used are #fba018 (Primary Orange), #00008b (Primary blue and dark text colour), off-white #fafafa (250,250,250) (Used in a variety of ways adjusting transparency to adapt to different areas).
+  - All colours tested on [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/) - all passed, though made adjustments such as not having blue on orange too much. Whilst it passes contrasting checks with flying colours, it isn't that pleasant to look at. 
+  - Other colours were used for interaction feedback, such as Reds for delete buttons, darker oranges for hovers on buttons and lighter blues for the same purpose. 
+
+- ## Typography
+
+  - The Archivo Black (Google Font) is the main font used throughout fopr headings and emphasis text with Sans Serif as the fallback font in case for any reason the font isn't being imported into the site correctly. Archivo Black is easy to read, displays nicely and adds emphasis where necessary. 
+  - Additional typography will all be sans-serif system fonts to allow for easy readability due to the nature of the site. 
+
+- ## Imagery
+
+  - **Masthead** - Image by Wirestock on [Freepik](https://www.freepik.com/free-photo/beautiful-shot-sydney-harbor-bridge-with-light-pink-blue-sky_10399362.htm)
+
+  - Logo, mockups - all created by myself using Illustrator
+
+- ## Interaction Feedback
+
+  - Accent colours are used upon interaction such as hover and click to provide feedback to the user that they are interacting with an element, and that the element serves a purpose.
+  - Flash messages used to notfiy users of errors or successes depending on outcome. Auto timeout included to avoid having to close every time. 
+
+- ## Icons
+   - Fontawesome Icons were used throughout the site including social links but also as interaction aids such as login and sign up buttons
+
+
+# Wireframes
+
+- All basic wireframes can be found here - [View](/downunder/static/readme/wireframe/ChatDownUnder.pdf)
+   - ## Deviations
+      - It should be noted that whilst the wireframes were implemented as part of the skeleton phase of UX planning at the outset, applying that 5 S's throughout led to some important amendments according to project scope and useability.
+
+# Database Models 
+
+- PDF example of my database models used can be found [here](/downunder/static/readme/database/CDU-DB-Diagram.pdf)
+
+
+# Features
+
+## Technology Features
+
+- Responsive on all device sizes
+
+- PSQL Relational Database
+
+- Flask/SQLAlchemy used to implement CRUD functionality for users
+
+- User ID's allow for user specific CRUD
+
+- Modals used for defensive programming when it comes to item deletion
+
+- Interaction feedback used throughout.
+
+- Reply functionality enhances discussion experience
+
+## User Features
 
 **Key Features**
 
 1. User registration, login and logout functionality
-2. Submit questions for discussion
-3. Tag questions with topics for easy navigation
-4. Search bar that will find results if your search matches title, body or tags of a question
-5. Add topics if you cannot find one relevant to your question
-6. Reply to questions for a full discussion experience
+1. Submit questions for discussion
+1. Tag questions with topics for easy navigation
+1. Search bar that will find results if your search matches title, body or tags of a question
+1. Add topics if you cannot find one relevant to your question
+1. Reply to questions for a full discussion experience
 
-The app will be rigorously User Tested and will be deployed to Heroku for online access. 
-
-<h2 align="center"><img src="downunder/static/images/CDU-mockup.jpg"></h2>
-
-## Future Developments
+## Future Features/Developments
 
 1. Replying to replies - I would like to incorporate the logic for a user viewing their own question, to reply to answers given by the community. This will enhance user experience - at present they can add a comment but this may cause comment threads to get longer than they may need and out of control. Whereas if a user can reply directly to an answer it will keep it more strucutured. 
 
@@ -41,94 +175,20 @@ The app will be rigorously User Tested and will be deployed to Heroku for online
 
 1. Reply counter and up-vote system - implement some sort of "like" or "upvote" system to rank replies and display highest ranking (most helpful) first. Also have a reply counter so users can see the size of a thread. 
 
-
-## Testing
-
-All testing documentation including user feedback can be found in TESTING.md
-
-## User Experience (UX)
-
-- ### User stories
-
-- #### First Time Visitor Goals
-
-  1. As a First Time Visitor, I want to easily understand the main purpose of the web app.
-  2. As a First Time Visitor, I want to be able to easily navigate the app and register my account.
-  3. As a First Time Visitor, I want to be able to easily understand how to submit a question or reply to others questions
-
-- #### Returning Visitor Goals
-
-  1. As a Returning Visitor, I want to see if there are new questions being asked.
-  2. As a Returning Visitor, I want to check my questions to see if they have been answered.
-
-- #### Frequent User Goals
-
-  1. As a Frequent User, I want to be able to engage in discussions around specific topics.
-  2. As a Frequent User, I want to be able to update my questions and answers or delete if necessary.
-
-- ### Design
-
-- #### Colour Scheme
-
-  - The main colours used are #fba018 (Primary Orange), #00008b (Primary blue and dark text colour), off-white #fafafa (250,250,250) (Used in a variety of ways adjusting transparency to adapt to different areas).
-  - All colours tested on [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/) - all passed, though made adjustments such as not having blue on orange too much. Whilst it passes contrasting checks with flying colours, it isn't that pleasant to look at. 
-  - Other colours were used for interaction feedback, such as Reds for delete buttons, darker oranges for hovers on buttons and lighter blues for the same purpose. 
-
-- #### Typography
-
-  - The Archivo Black (Google Font) is the main font used throughout fopr headings and emphasis text with Sans Serif as the fallback font in case for any reason the font isn't being imported into the site correctly. Archivo Black is easy to read, displays nicely and adds emphasis where necessary. 
-  - Additional typography will all be sans-serif system fonts to allow for easy readability due to the nature of the site. 
-
-- #### Imagery
-
-  - **Masthead** - Image by Wirestock on [Freepik](https://www.freepik.com/free-photo/beautiful-shot-sydney-harbor-bridge-with-light-pink-blue-sky_10399362.htm)
-
-  - Logo, mockups - all created by myself using Illustrator
-
-- #### Interaction Feedback
-
-  - Accent colours are used upon interaction such as hover and click to provide feedback to the user that they are interacting with an element, and that the element serves a purpose.
-  - Flash messages used to notfiy users of errors or successes depending on outcome. Auto timeout included to avoid having to close every time. 
-
-## Wireframes
-
-- All basic wireframes can be found here - [View](/downunder/static/readme/wireframe/ChatDownUnder.pdf)
-
-## Database Models 
-
-- PDF example of my database models used can be found [here](/downunder/static/readme/database/CDU-DB-Diagram.pdf)
-
-### Deviations
-
-It should be noted that whilst the wireframes were implemented as part of the skeleton phase of UX planning at the outset, applying that 5 S's throughout led to some important amendments according to project scope and useability.
-
-## Features
-
-- Responsive on all device sizes
-
-- PSQL Relational Database
-
-- Flask/SQLAlchemy used to implement CRUD functionality for users
-
-- User ID's allow for user specific CRUD
-
-- Modals used for defensive programming when it comes to item deletion
-
-- Interaction feedback used throughout.
-
-- Reply functionality enhances discussion experience
+## Design Features
 
 
-## Technologies Used
 
-### Languages Used
+# Technologies Used
+
+## Languages Used
 
 - [HTML5](https://en.wikipedia.org/wiki/HTML5)
 - [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
 - [Javascript](https://en.wikipedia.org/wiki/JavaScript)
 - [Python](https://docs.python.org/3/)
 
-### Frameworks, Libraries & Programs Used
+## Frameworks, Libraries & Programs Used
 
 1. [Bootstrap 4.4.1:](https://getbootstrap.com/docs/4.4/getting-started/introduction/)
    - Bootstrap was used to assist with the responsiveness and styling of the website.
@@ -161,153 +221,89 @@ It should be noted that whilst the wireframes were implemented as part of the sk
 13. [DBDiagram:](dbdiagram.io)
       - Used to generate database model diagrams
 
-## Testing
+# Testing
 
-A separate tests document has been added. This includes details on user testing. There is also a test_app.py for testing the python when it came to adding, editing and deleting elements to avoid messing with the live preview. 
-
-JEST testing was carried out to an extent with the limited Javascript that was used. Issues were encountered with tests timing out for the World clock test. Also did not need to test the Select2 implementation other than for functionality and so this was executed through user testing. 
-
-Further testing details such as Element and section testing can be found in the TESTING.md. 
-
-**PEP8 COMPLIANCE**
- - Guideline added at 79th column to ensure I did not exceed the recommended line length. Ensured all functions worked as they should even after reformatting where necessary.
- - Indentation used correctly throughout - consistently used tab method as opposed to space. 
-
-**HTML & CSS**
-- Little to no HTML CSS testing was required due to the simplicity of the web pages - listed main pages below:
-
-The W3C Markup Validator and W3C CSS Validator Services were used to validate every page of the project to ensure there were no syntax errors in the project. A few examples included below:
-
-- [W3C Markup Validator](https://validator.w3.org/nu/#textarea) :
-
-| index.html                                      | level-1.html                                        | leaderboard.html                                            |
-| ----------------------------------------------- | --------------------------------------------------- | ----------------------------------------------------------- |
-| ![index.html](assets/images/index-html-val.png) | ![level-1.html](assets/images/level-1-html-val.png) | ![leaderboard.html](assets/images/leaderboard-html-val.png) |
-
-- [W3C CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) - - all clear
-- ![style.css](assets/images/CSS-val.png)
-
-### Testing User Stories from User Experience (UX) Section
-
-#### First Time Visitor Goals
+A separate tests document has been added and can be found [here](TESTING.md). This includes details on user testing. There is also a test_app.py for testing the python when it came to adding, editing and deleting elements to avoid messing with the live preview. 
 
 
-  1. As a First Time Visitor, I want to easily understand the main purpose of the web app.
+# Deployment
 
-     1. Upon entering the site, users are automatically greeted with a clean and easily readable navigation bar which clearly showcases the main functions of the site including "Ask a Question" and "Topics"
-     2. The addition of an About page enables users to explore a guide on the setup and purpose of the site.
-     3. Clear prompts including prompts to create account or login
+## Creating a Gitpod Workspace
 
-  2. As a First Time Visitor, I want to be able to easily navigate the app and register my account.
+The project was created in Gitpod using the Code Institute Gitpod Full Template using these steps:
 
-     1. If you are not logged in you will immediately be able to see a "Sign Up" button
-     2. Additionally there is a prompt on the initial question block suggesting you register to contribute with a link taking you to sign up page
-     3. Flash messages notfiying of elements off limits unless you are logged in
+1. Log in to GitHub and go to the [Code Institute student template for Gitpod](https://github.com/Code-Institute-Org/gitpod-full-template)
+2. Click 'Use this Template' next to the Green Gitpod button.
+3. Add a repository name and click 'Create reposiory from template'.
+4. This will create a copy of the template in your own repository. Now you can click the green 'Gitpod' button to open a workspace in Gitpod.
 
-  3. As a First Time Visitor, I want to be able to easily understand how to submit a question or reply to others questions
+## Forking the GitHub Repository
 
-     1. The about page serves its purpose well here advising on how to engage in discussion
-     2. Buttons and links used to direct users to login to be able to contribute, and once logged in bright colour buttons promting a reply. 
-     3. Navigation to "Ask Question" and buttons for "reply" help users through the discussion flow
+Forks are used to propose changes to someone else's project or to use someone else's project as a starting point for your own idea. By forking the GitHub Repository you make a copy of the original repository on our GitHub account to view and/or make changes without affecting the original repository.
 
-#### Returning Visitor Goals
+To Fork a Github Repository:
 
-  1. As a Returning Visitor, I want to see if there are new questions being asked.
-
-     1. The homepage showcases all recent questions as well as the latest urgent questions to enable users to immediately engage in the latest conversations
-
-  2. As a Returning Visitor, I want to check my questions to see if they have been answered.
-
-     1. The "View My Questions" button on the homepage under user info allows direct navigation to user specific questions.
-
-#### Frequent User Goals
-
-  1. As a Frequent User, I want to be able to engage in discussions around specific topics.
-
-     1. The ability to search different topics and discussions allows users to specifically target discussions relevant to their current needs or something they may have an answer to
-
-  2. As a Frequent User, I want to be able to update my questions and answers or delete if necessary.
-
-     1. User authentication allows users to edit and delete their own questions. 
-
-### Further Testing
-
-- The Website was tested on Google Chrome, Microsoft Edge and Safari browsers. It was also tested in Internet Explorer Mode on Microsoft Edge.
-- The website was viewed on a variety of devices such as HP Windows Desktop, Macbook, iMac, iPhone12, iPhone 14 Pro, iPhone 8, iPad Air, iPad Pro 12.9", Pixel 5, Samsung Galaxy S20 Ultra, Surface Pro 7 and Nest Hub. Responsiveness was near flawless thanks to implementing the Bootstrap column system.
-- A large amount of testing was done to ensure that all user interactions throughout the site responded as they should
-- Friends and family members were asked to review the site and documentation to point out any bugs and/or user experience issues.
-
-#### Google Lighthouse
-
-- Google Lighthouse was used to ensure compatability, best practice and accessibility as well as load times.
-
-| index.html                                        | level-1.html                                          | leaderboard.html                                              |
-| ------------------------------------------------- | ----------------------------------------------------- | ------------------------------------------------------------- |
-| ![index.html](assets/images/index-lighthouse.png) | ![level-1.html](assets/images/level-1-lighthouse.png) | ![leaderboard.html](assets/images/leaderboard-lighthouse.png) |
-
-##### Load Speed
-
-- Results were fairly good for all pages with 73% + all round. Slowest was level 1 for the obvious reason that it has the highest JS content.
-
-##### Accessibility
-
-- Accessibility sits at 100 for all pages bar the leaderboard - not a big issue but complaints of headings not being sequencial but it is not relevant for this page.
-
-##### Best Practices
-
-- Best Practices sits at 92 out of 100 - there was one error, JS error logged to console. I cannot seem to get rid of these errors.
-
-## Deployment
-
-### GitHub Pages
-
-The project was deployed to GitHub Pages using the following steps...
-
-1. Log in to GitHub and locate the [GitHub Repository](https://github.com/sdthomas91/chat-down-under-new)
-2. At the top of the Repository (not top of page), locate the "Settings" Button on the menu.
-   - Alternatively Click [Here](https://raw.githubusercontent.com/) for a GIF demonstrating the process starting from Step 2.
-3. Scroll down the Settings page until you locate the "GitHub Pages" Section.
-4. Under "Source", click the dropdown called "None" and select "Master Branch".
-5. The page will automatically refresh.
-6. Scroll back down through the page to locate the now published site [link](https://github.com/sdthomas91/ng-spmu-milestone) in the "GitHub Pages" section.
-
-### Forking the GitHub Repository
-
-By forking the GitHub Repository we make a copy of the original repository on our GitHub account to view and/or make changes without affecting the original repository by using the following steps...
-
-1. Log in to GitHub and locate the [GitHub Repository](https://github.com/sdthomas91/ng-spmu-milestone)
-2. At the top of the Repository (not top of page) just above the "Settings" Button on the menu, locate the "Fork" Button.
+1. Log in to GitHub and go to the [GitHub Repository](https://github.com/Isabella-Mitchell/gather-recipe-website)
+2. Locate the Fork button in the top-right corner of the page, click Fork.
 3. You should now have a copy of the original repository in your GitHub account.
 
-### Making a Local Clone
+## Making a Local Clone
 
-1. Log in to GitHub and locate the [GitHub Repository](https://github.com/sdthomas91/ng-spmu-milestone)
-2. Under the repository name, click "Clone or download".
-3. To clone the repository using HTTPS, under "Clone with HTTPS", copy the link.
-4. Open Git Bash
-5. Change the current working directory to the location where you want the cloned directory to be made.
-6. Type `git clone`, and then paste the URL you copied in Step 3.
+You will now have a fork of the repository, but you don't have the files in that repository locally on your computer.
+
+To make a local clone:
+
+1. Log in to GitHub and go to the [GitHub Repository](https://github.com/Isabella-Mitchell/gather-recipe-website)
+2. Above the list of files, click  Code.
+3. To clone the repository using HTTPS, under "Clone with HTTPS", click the 'Copy' icon. To clone the repository using an SSH key, including a certificate issued by your organization's SSH certificate authority, click Use SSH, then click the 'Copy' icon. To clone a repository using GitHub CLI, click Use GitHub CLI, then click the 'Copy' icon.
+4. Open Git Bash.
+5. Change the current working directory to the location where you want the cloned directory.
+6. Type git clone, and then paste the URL you copied earlier. It will look like this, with your GitHub AE username instead of YOUR-USERNAME:
 
 ```
-git clone https://github.com/sdthomas91/ng-spmu-milestone
+$ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
 ```
 
 7. Press Enter. Your local clone will be created.
 
 ```
-$ git clone https://github.com/sdthomas91/ng-spmu-milestone
-> Cloning into `CI-Clone`...
+$ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
+> Cloning into `gather-recipe-website`...
 > remote: Counting objects: 10, done.
 > remote: Compressing objects: 100% (8/8), done.
 > remove: Total 10 (delta 1), reused 10 (delta 1)
 > Unpacking objects: 100% (10/10), done.
 ```
 
-Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository#cloning-a-repository-to-github-desktop) to retrieve pictures for some of the buttons and more detailed explanations of the above process.
+Click [Here](https://docs.github.com/en/github-ae@latest/get-started/quickstart/fork-a-repo) for the GitHub quick start guide with images and more detailed explanations of the above process.
 
-## Credits
+## Creating an application with Heroku
 
-### Code
+You will need to deploy the application using Heroku.
+
+1. Create a requirements.txt file by typing ``` pip3 freeze --local > requirements.txt ``` into the Gitpod CLI. Ensure this is added to your .gitignore file.
+2. Create a Procfile by typing ```echo web: python app.py > Procfile```. Open it and ensure it doesn't have a new line, as this can create errors. Ensure it starts with a capital P.
+3. Add and commit these files to Github.
+4. Go to [Heroku](https://dashboard.heroku.com/apps). Log in or create an account
+5. Click the 'New' button and click 'Create new app'.
+6. Enter a unique name for your project with no capital letters or spaces and select your region. Click 'Create App'.
+7. Inside your project, go to the Resources tab and create a Heroku Postgres Database
+8. Inside your project, go to the 'Settings' tab. Scroll down and click 'Reveal Config Vars'.
+9. Add in the following variables
+  - IP : 0.0.0.0
+  - PORT : 5000
+  - MONGO_DBNAME : Your MongoDB database name
+  - MONGO_URI : This can be found on MongoDB by going to Clusters, Connect, Connect to your application
+  - SECRET_KEY : Your secret key
+10. Deploy your project by going to the Deploy tab and choose 'Connect to Github'
+11. Find your repository name and select Connect.
+12. To connect your Heroku database, go to 'More' in the top right and select run console. Enter ```python3``` to access the python intepreter.
+13. Then type ```From gather import db```. Then type ```db.create_all()```. You can then exit the console.
+
+
+# Credits
+
+## Code
 
 - [Bootstrap4](https://getbootstrap.com/docs/4.4/getting-started/introduction/): Bootstrap Library used throughout the project mainly to make site responsive using the Bootstrap Grid System.
 
@@ -323,7 +319,7 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 
 - [Miguel Grinberg](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-viii-followers) : This Flask Mega Tutorial was an incredible help with things such as understanding many to many relationships and fully utilising Flask app capabilities 
 
-### Content
+## Content
 
 - Colour and content completely designed by myself
 
@@ -331,15 +327,20 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 
 - Colour combinations, hex code -> rgb conversion and palettes were found [here] (<https://www.colorhexa.com/>)
 
-### Media
+## Media
 
 - Masthead backgroud image - [Freepik](https://www.freepik.com/free-photo/beautiful-shot-sydney-harbor-bridge-with-light-pink-blue-sky_10399362.htm#query=sydney&position=0&from_view=search&track=sph&uuid=ce4ecea8-9b88-4c4b-8630-f9f657464361)
 
-#### README Mockup
+## README
 
+### Inspiration
+
+- Inspiration was taken from Isabella Mitchell specifically her README for [Gather](https://github.com/Isabella-Mitchell/gather-recipe-website/blob/main/README.md?plain=1#user-experience)
+
+### Mockup
 - .ai file used for Mockup at the top of README file : Image by [Freepik](https://www.freepik.com/free-vector/flat-design-responsive-website-design_28747716.htm#query=multi%20device%20mockup&position=2&from_view=keyword&track=ais)
 
-### Acknowledgements
+## Acknowledgements
 
 - Tutor support at Code Institute for their support.
 
@@ -350,3 +351,5 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 - Miguel Grinberg for the vast knowledge on Flask
 
 - Friends and family for valuable insights and feedback
+
+- Isabella Mitchell for a well refined inspiration for my README and TESTING docs.
