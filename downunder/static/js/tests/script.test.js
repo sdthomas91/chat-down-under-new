@@ -50,7 +50,7 @@ describe('Reply Form Show/Hide Functionality', () => {
     test('Flash message fades out after 4 seconds and is removed after 200ms', () => {
       document.dispatchEvent(new Event('DOMContentLoaded'));
   
-      // execute all timers 
+      // changed from execute all timers as this caused it to run the removal timer as well
       jest.advanceTimersByTime(4000);
   
       const flashMessage = document.querySelector('.flash-message');
@@ -60,17 +60,43 @@ describe('Reply Form Show/Hide Functionality', () => {
       expect(flashMessage.style.opacity).toBe('0');
       expect(flashMessage.style.transition).toBe('opacity 0.3s ease-out');
   
-      // Now, simulate the 200ms delay for removal
+      // 200ms for removal
       jest.advanceTimersByTime(200);
   
       // Check if the flash message has been removed from the DOM
       expect(document.querySelector('.flash-message')).toBeNull();
     });
   
-    // Clean up
+    // Clean up script
     afterEach(() => {
       jest.useRealTimers();
     });
   });
   
- 
+  describe('City Time Display Functionality', () => {
+    beforeEach(() => {
+        jest.useFakeTimers();
+      // Mock the DOM structure
+      document.body.innerHTML = `
+        <div id="timePerth"></div>
+        <div id="timeMelbourne"></div>
+        <div id="timeSydney"></div>
+        <div id="timeBrisbane"></div>
+      `;
+    });
+  
+    test('Displays the current times for major Australian cities', () => {
+    
+      document.dispatchEvent(new Event('DOMContentLoaded'));
+
+      // Check each city's time display element for non-empty content
+      const cities = ['Perth', 'Melbourne', 'Sydney', 'Brisbane'];
+      cities.forEach(city => {
+        const timeElement = document.getElementById(`time${city}`);
+        expect(timeElement.textContent).not.toBe('');
+  
+      });
+    });
+
+  });
+  
