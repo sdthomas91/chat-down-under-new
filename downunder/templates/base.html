@@ -18,118 +18,120 @@
 
 <body>
   <div class="main">
-  <!-- Bootstrap Nav -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
-      aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand" href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='images/Logo.png')}}"
-        width="150" height="75" alt="logo"></a>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ml-auto main-nav-links">
-        <li class="nav-item active">
-          <a class="nav-link" href="{{ url_for('home') }}">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('submit_question') }}">Ask a Question</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('topics') }}">Topics</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('about') }}">About</a>
-        </li>
-      </ul>
+    <!-- Bootstrap Nav -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+        aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='images/Logo.png')}}"
+          width="150" height="75" alt="logo"></a>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ml-auto main-nav-links">
+          <li class="nav-item active">
+            <a class="nav-link" href="{{ url_for('home') }}">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('submit_question') }}">Ask a Question</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('topics') }}">Topics</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('about') }}">About</a>
+          </li>
+        </ul>
 
-      <ul class="nav navbar-nav customer-links">
-        <!-- **** Used stack overflow for signup login layout https://stackoverflow.com/questions/53339351/how-to-create-navigation-bar-with-login-sign-up-button-in-bootstrap-4 **** -->
-        {% if user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('logout') }}"><span class="fas fa-sign-out-alt"></span> Log Out</a>
-        </li>
-        {% else %}
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('sign_up') }}"><span class="fas fa-user"></span> Sign Up</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('login') }}"><span class="fas fa-sign-in-alt"></span> Log In</a>
-        </li>
-        {% endif %}
-      </ul>
-    </div>
-  </nav>
+        <ul class="nav navbar-nav customer-links">
+          <!-- **** Used stack overflow for signup login layout https://stackoverflow.com/questions/53339351/how-to-create-navigation-bar-with-login-sign-up-button-in-bootstrap-4 **** -->
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('logout') }}"><span class="fas fa-sign-out-alt"></span> Log Out</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('sign_up') }}"><span class="fas fa-user"></span> Sign Up</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('login') }}"><span class="fas fa-sign-in-alt"></span> Log In</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
 
-  
-  <!-- Bootstrap Nav -->
-  <!-- **** Start Bootstrap Header **** -->
-  <header class="masthead">
-  
-    <!-- Overlay  -->
-    <div class="overlay"></div>
+
+    <!-- Bootstrap Nav -->
+    <!-- **** Start Bootstrap Header **** -->
+    <header class="masthead">
+
+      <!-- Overlay  -->
+      <div class="overlay"></div>
       <!-- Flash Messages -->
-  {% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-  {% for category, message in messages %}
-  {% if category == 'error' %}
-  <div class="container flash-message error-flash text-center">
-    {{message}}
-  </div>
-  {% else %}
-  <div class="container flash-message success-flash text-center">
-    {{message}}
-  </div>
-  {% endif %}
-  {% endfor %}
-  {% endif %}
-  {% endwith %}
-    <div class="container position-relative">
-      <div class="row justify-content-center">
-        <div class="col-xl-10">
-          <div class="text-center text-white text-uppercase masthead-content">
-            <!-- Page heading-->
-            <h1 class="mb-5">Learn About Life Down Under</h1>
-            <!-- **** Search Bar - inspired by  https://codepen.io/gungorbudak/pen/ooKNpz **** -->
-            <form action="{{ url_for('search_results') }}" method="GET" class="input-group search-bar" label="search-bar">
-              <input type="text" name="search_term" class="form-control" placeholder="Find a conversation...">
-              <div class="input-group-append">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      {% for category, message in messages %}
+      {% if category == 'error' %}
+      <div class="container flash-message error-flash text-center">
+        {{message}}
+      </div>
+      {% else %}
+      <div class="container flash-message success-flash text-center">
+        {{message}}
+      </div>
+      {% endif %}
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+      <div class="container position-relative">
+        <div class="row justify-content-center">
+          <div class="col-xl-10">
+            <div class="text-center text-white text-uppercase masthead-content">
+              <!-- Page heading-->
+              <h1 class="mb-5">Learn About Life Down Under</h1>
+              <!-- **** Search Bar - inspired by  https://codepen.io/gungorbudak/pen/ooKNpz **** -->
+              <form action="{{ url_for('search_results') }}" method="GET" class="input-group search-bar"
+               >
+               <label for="search_term" class="visually-hidden">Search</label>
+                <input type="text" name="search_term" class="form-control input-search" placeholder="Find a conversation...">
+                <div class="input-group-append">
                   <button class="btn btn-secondary search-button" type="submit">
-                      <i class="fa fa-search"></i>
+                    <i class="fa fa-search"></i>
                   </button>
-              </div>
-          </form>
-            <!-- **** /search bar **** -->
-            <div class="city-times-container container-fluid text-center mt-5">
-              <div class="row">
-                <div class="col-6 col-md-3 city-times">
-                  <h5>Perth</h5>
-                  <p id="timePerth"></p>
                 </div>
-                <div class="col-6 col-md-3 city-times">
-                  <h5>Melbourne</h5>
-                  <p id="timeMelbourne"></p>
-                </div>
-                <div class="col-6 col-md-3 city-times">
-                  <h5>Sydney</h5>
-                  <p id="timeSydney"></p>
-                </div>
-                <div class="col-6 col-md-3 city-times">
-                  <h5>Brisbane</h5>
-                  <p id="timeBrisbane"></p>
+              </form>
+              <!-- **** /search bar **** -->
+              <div class="city-times-container container-fluid text-center mt-5">
+                <div class="row">
+                  <div class="col-6 col-md-3 city-times">
+                    <h5>Perth</h5>
+                    <p id="timePerth"></p>
+                  </div>
+                  <div class="col-6 col-md-3 city-times">
+                    <h5>Melbourne</h5>
+                    <p id="timeMelbourne"></p>
+                  </div>
+                  <div class="col-6 col-md-3 city-times">
+                    <h5>Sydney</h5>
+                    <p id="timeSydney"></p>
+                  </div>
+                  <div class="col-6 col-md-3 city-times">
+                    <h5>Brisbane</h5>
+                    <p id="timeBrisbane"></p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </header>
-  <!-- **** /startBootStrap Header **** -->
-  <!-- BLOCK CONTENT -->
-  {% block content %} {% endblock %}
-  <!-- BLOCK CONTENT END -->
-  <!-- FOOTER (startbootstrap templating used ( https://startbootstrap.com/theme/freelancer))-->
-</div>
+    </header>
+    <!-- **** /startBootStrap Header **** -->
+    <!-- BLOCK CONTENT -->
+    {% block content %} {% endblock %}
+    <!-- BLOCK CONTENT END -->
+    <!-- FOOTER (startbootstrap templating used ( https://startbootstrap.com/theme/freelancer))-->
+  </div>
   <footer class="footer text-center">
     <div class="container">
       <div class="row">
@@ -142,14 +144,14 @@
         <!-- Footer Social Icons-->
         <div class="col-lg-4 mb-5 mb-lg-0">
           <h4 class="text-uppercase mb-4">Get Social</h4>
-          <a class="btn btn-outline-light btn-social mx-1" target="_blank" href="http://instagram.com"><i class="fa-brands fa-instagram"
-              style="color: #fba018;"></i></a>
-          <a class="btn btn-outline-light btn-social mx-1" target="_blank" href="https://facebook.com"><i class="fa-brands fa-facebook"
-              style="color: #fba018;"></i></a>
-          <a class="btn btn-outline-light btn-social mx-1" target="_blank" href="https://twitter.com"><i class="fa-brands fa-x-twitter"
-              style="color: #fba018;"></i></a>
-          <a class="btn btn-outline-light btn-social mx-1" target="_blank" href="https://reddit.com"><i class="fa-brands fa-reddit"
-              style="color: #fba018;"></i></a>
+          <a class="btn btn-outline-light btn-social mx-1" target="_blank" href="http://instagram.com"><i
+              class="fa-brands fa-instagram" style="color: #fba018;"></i></a>
+          <a class="btn btn-outline-light btn-social mx-1" target="_blank" href="https://facebook.com"><i
+              class="fa-brands fa-facebook" style="color: #fba018;"></i></a>
+          <a class="btn btn-outline-light btn-social mx-1" target="_blank" href="https://twitter.com"><i
+              class="fa-brands fa-x-twitter" style="color: #fba018;"></i></a>
+          <a class="btn btn-outline-light btn-social mx-1" target="_blank" href="https://reddit.com"><i
+              class="fa-brands fa-reddit" style="color: #fba018;"></i></a>
         </div>
         <!-- Footer About Text-->
         <div class="col-lg-4">
@@ -162,21 +164,21 @@
       <div class="row mt-2">
         <div class="col-12 mt-2">
           <!-- Copyright footer  -->
-  <div class="copyright text-center">
-    <div class="container"><small>Copyright © ChatDownUnder 2024</small></div>
-  </div>
+          <div class="copyright text-center">
+            <div class="container"><small>Copyright © ChatDownUnder 2024</small></div>
+          </div>
         </div>
       </div>
     </div>
   </footer>
-  
+
 
   <!-- Footer End -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-  
+
 </body>
 
 </html>
