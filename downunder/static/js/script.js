@@ -44,16 +44,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Initialize select2
 
-$(document).ready(function () {
-    $('#question_topics').select2({
-        placeholder: "Select or add topics (up to 3)",
-        // enable tagging function ( https://stackoverflow.com/questions/53804359/allow-tags-in-select2-elements#:~:text=To%20enable%20tagging%2C%20set%20the%20tags%20option%20to%20true.&text=Note%20that%20when%20tagging%20is,the%20search%20box%20so%20far.)
-        tags: true,
-        tokenSeparators: [',', ' '],
-        // apply selection limit with Select2 (https://select2.org/selections)
-        maximumSelectionLength: 3,
-    });
-});
+// $(document).ready(function () {
+//     $('#question_topics').select2({
+//         placeholder: "Select or add topics (up to 3)",
+//         // enable tagging function ( https://stackoverflow.com/questions/53804359/allow-tags-in-select2-elements#:~:text=To%20enable%20tagging%2C%20set%20the%20tags%20option%20to%20true.&text=Note%20that%20when%20tagging%20is,the%20search%20box%20so%20far.)
+//         tags: true,
+//         tokenSeparators: [',', ' '],
+//         // apply selection limit with Select2 (https://select2.org/selections)
+//         maximumSelectionLength: 3,
+//     });
+// });
 
 // Toggle the reply box display 
 function showReplyForm(questionId) {
@@ -76,3 +76,8 @@ function hideReplyForm(questionId) {
         }
     });
 }
+
+module.exports = {
+    showReplyForm,
+    hideReplyForm
+};

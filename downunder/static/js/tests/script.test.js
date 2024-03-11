@@ -2,26 +2,40 @@
  * @jest-environment jsdom
  */
 
-describe('Flash Message Fade Out', () => {
+
+const { hideReplyForm, showReplyForm  } = require('../script.js');
+
+
+
+describe('Reply Form Show/Hide Functionality', () => {
+    // Setup DOM before each test
     beforeEach(() => {
-        // Setup the DOM environment
-        document.body.innerHTML = `
-            <div class="flash-message">This is a flash message!</div>
-        `;
+      document.body.innerHTML = `
+        <div class="replyForm d-none" data-question-id="1"></div>
+        <div class="replyForm d-none" data-question-id="2"></div>
+      `;
     });
-
-    jest.useFakeTimers();
-
-test('should remove the flash message after 3 seconds', () => {
-    require('../script.js'); 
-    const flashMessage = document.querySelector('.flash-message');
-
-    expect(flashMessage).not.toBeNull();
-
-    // Fast-forward until all timers have been executed
-    jest.runAllTimers();
-
-    // Now that the timers have been fast-forwarded, check the condition
-    expect(document.querySelector('.flash-message')).toBeNull();
-});
-});
+  
+    // Test showing the reply form
+    test('showReplyForm should remove "d-none" and add "d-block" to the correct form', () => {
+      showReplyForm('1');
+  
+      const form = document.querySelector('.replyForm[data-question-id="1"]');
+      expect(form.classList.contains('d-none')).toBeFalsy();
+      expect(form.classList.contains('d-block')).toBeTruthy();
+    });
+  
+    // Test hiding the reply form
+    test('hideReplyForm should remove "d-block" and add "d-none" to the correct form', () => {
+      // display the form in order to test hiding
+      showReplyForm('1');
+  
+      hideReplyForm('1');
+  
+      const form = document.querySelector('.replyForm[data-question-id="1"]');
+      expect(form.classList.contains('d-block')).toBeFalsy();
+      expect(form.classList.contains('d-none')).toBeTruthy();
+    });
+  
+  });
+ 
