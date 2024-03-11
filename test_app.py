@@ -1,20 +1,25 @@
-import unittest # using pythons unittest documentation (https://docs.python.org/3/library/unittest.html)
+import unittest
+# using pythons unittest documentation
+# (https://docs.python.org/3/library/unittest.html)
 from downunder import app, db
 from downunder.models import User
-#add forgotten password_hash necessities 
+# add forgotten password_hash necessities
 from werkzeug.security import generate_password_hash, check_password_hash
+
 
 class UserTestCase(unittest.TestCase):
     def setUp(self):
         """
         Test application configuration
         """
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db' #using sqlite for ease of use
+        # using sqlite for ease of use
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
         app.config['TESTING'] = True
-        app.config['WTF_CSRF_ENABLED'] = False  #disable CSRF tokens for testing
+        # disable CSRF tokens for testing
+        app.config['WTF_CSRF_ENABLED'] = False
         self.client = app.test_client()
 
-        # Test database creation 
+        # Test database creation
         with app.app_context():
             db.create_all()
 
@@ -28,7 +33,7 @@ class UserTestCase(unittest.TestCase):
 
     def test_sign_up(self):
         """
-        POST request data sample 
+        POST request data sample
         """
         data = {
             'email': 'test@example.com',
@@ -39,16 +44,25 @@ class UserTestCase(unittest.TestCase):
             'password2': 'securepassword'
         }
 
-        response = self.client.post('/sign_up', data=data, follow_redirects=True)
-        
-        # Successful sign up with flash message check 
-        self.assertIn(b'Account Created! Please proceed to login', response.data)
+        response = self.client.post(
+            '/sign_up',
+            data=data,
+            follow_redirects=True
+        )
+
+        # Successful sign up with flash message check
+        self.assertIn(
+            b'Account Created! Please proceed to login',
+            response.data
+        )
 
         # Verify that the user was added to the database
         with app.app_context():
             user = User.query.filter_by(email='test@example.com').first()
             self.assertIsNotNone(user)
-            self.assertTrue(check_password_hash(user.password, 'securepassword'))
+            self.assertTrue(
+                check_password_hash(user.password, 'securepassword')
+            )
 
     def test_submit_question(self):
         """
@@ -85,13 +99,14 @@ class UserTestCase(unittest.TestCase):
 
         # Verify that the question was added to the database
         with app.app_context():
-            question = Question.query.filter_by(question_title="Test Question").first()
+            question = Question.query.filter_by(
+                question_title="Test Question"
+            ).first()
             self.assertIsNotNone(question)
-            self.assertEqual(question.question_body, "This is a test question.")
+            self.assertEqual(question.question_body, "A test question.")
             self.assertEqual(question.topics[0].topic_name, "Test Topic")
             self.assertEqual(question.author.username, 'user')
 
 
-        
 if __name__ == '__main__':
     unittest.main()

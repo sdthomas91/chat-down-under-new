@@ -48,6 +48,32 @@ The purpose of this document is to identify key testing stages and instances whe
   | -------------------- |
   | ![JSHint Pass](/downunder/static/testing/images/JSHint.png) |
 
+##  Python Validation with pycodestyle
+
+- Used python command pycodestyle to validate all code within Gitpod
+<h2 align="center"><img src="downunder/static/testing/images/all-passed.png"></h2>
+
+### models.py
+
+  | Errors | Resolved |
+  | ------ | -------- |
+  | ![Models Errors](/downunder/static/testing/images/models-errors.png) | ![Models resolved](/downunder/static/testing/images/models-all-clear.png) |
+
+### routes.py
+
+  <h2 align="center"><img src="downunder/static/testing/images/routes-all-clear.png"></h2>
+
+### __init__.py
+
+  <h2 align="center"><img src="downunder/static/testing/images/init-error.png"></h2>
+
+### run.py
+
+ <h2 align="center"><img src="downunder/static/testing/images/all-passed.png"></h2>
+
+### test_app.py
+
+ <h2 align="center"><img src="downunder/static/testing/images/test-error-resolved.png"></h2>
 
 
 
