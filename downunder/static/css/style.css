@@ -29,7 +29,7 @@ h4 {
 }
 
 a {
-  color: #00008B;
+  color: #1f31ff;
 }
 
 .visually-hidden {
@@ -97,6 +97,11 @@ a {
 .btn-adit:active:focus {
   background-color: #e19015;
   border-color: #e19015;
+}
+
+.btn-primary {
+  background-color: #00008B;
+  border:#00008B;
 }
 /* **** NAVBAR **** */
 .navbar,
