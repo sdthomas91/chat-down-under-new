@@ -51,7 +51,7 @@ describe('Reply Form Show/Hide Functionality', () => {
       document.dispatchEvent(new Event('DOMContentLoaded'));
   
       // execute all timers 
-      jest.runAllTimers();
+      jest.advanceTimersByTime(4000);
   
       const flashMessage = document.querySelector('.flash-message');
   
