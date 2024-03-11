@@ -9,6 +9,11 @@ The purpose of this document is to identify key testing stages and instances whe
     - [W3C CSS Validator](#w3c-css-validator)
     - [JSHINT Javascript Code Quality Tool](#jshint-javascript-code-quality-tool)
     - [Python Validation using Gitpod](python-validation-using-gitpod)
+      * [models.py](#modelspy)
+      * [routes.py](#routespy)
+      * [__init__.py](#initpy)
+      * [run.py](#runpy)
+      * [test_app.py](#test_apppy)
 - [A11y Color Contrast Accessibility Checker](#a11y-color-contrast-accessibility-checker)
 - [Wave Webaim Accessibility Checker](#wave-webaim-accessibility-checker)
 - [Lighthouse](#lighthouse)
@@ -75,6 +80,15 @@ The purpose of this document is to identify key testing stages and instances whe
 
  <h2 align="center"><img src="downunder/static/testing/images/test-error-resolved.png"></h2>
 
+
+## Colour Contrast A11Y
+
+- Used A11Y Colour checker to ensure site contrast was user friendly. Tested index page, but same colour scheme is used throughout.
+- Encountered some errors - one was left unrersolved as it was not accurate - it accounted for the title on the body colour but it sits ontop of a dark blue overlay on the masthead image. 
+
+| Errors | Resolved |
+  | ------ | -------- |
+  | ![Contrast Errors](/downunder/static/testing/images/contrast-errors.png) | ![Models resolved](/downunder/static/testing/images/contrast-pass.png) |
 
 
 ## Bugs (All bugs now Resolved)
