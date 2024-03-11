@@ -93,6 +93,9 @@ The purpose of this document is to identify key testing stages and instances whe
 
 # Wave Webaim Accessibility Checker
 
+- Used Wave Accessibility Checker to check the index page. Errors were found, but were irrelevant. They pertain to a hidden label on the search bar, empty button as an icon was used for search bar and empty links as I used icons for social links. 
+
+ <h2 align="center"><img src="downunder/static/testing/images/webaim.png"></h2>
 
 
 ## Bugs (All bugs now Resolved)
