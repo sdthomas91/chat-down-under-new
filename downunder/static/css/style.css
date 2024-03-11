@@ -29,7 +29,8 @@ h4 {
 }
 
 a {
-  color: #1f31ff;
+  color: #00008B;
+  font-weight: bold;
 }
 
 .visually-hidden {
@@ -89,6 +90,7 @@ a {
 .btn-edit { 
   background-color: #fba018;
   border-color: #fba018;
+  color: #00008B;
 }
 
 .btn-edit:active,
