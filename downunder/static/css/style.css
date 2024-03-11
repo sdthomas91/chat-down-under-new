@@ -299,13 +299,13 @@ a {
 .is-urgent {
   font-family: 'Archivo Black', arial, sans-serif;
   font-size: 0.9rem;
-  color: red;
+  color: #D10000;
 }
 
 
 .topic-badge {
   background: #fba018;
-  color: #fefefe;
+  color: #00008B;
   border-radius: 50px;
   padding: 5px 10px;
   font-size: 0.75rem;
