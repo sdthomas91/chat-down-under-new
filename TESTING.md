@@ -4,6 +4,41 @@
 
 The purpose of this document is to identify key testing stages and instances where decisions were made to change or keep certain features.
 
+- [Code Validation](#code-validation)
+    - [W3C HTML Validator](#w3c-html-validator) 
+    - [W3C CSS Validator](#w3c-css-validator)
+    - [JSHINT Javascript Code Quality Tool](#jshint-javascript-code-quality-tool)
+    - [Python Validation using Gitpod](python-validation-using-gitpod)
+- [A11y Color Contrast Accessibility Checker](#a11y-color-contrast-accessibility-checker)
+- [Wave Webaim Accessibility Checker](#wave-webaim-accessibility-checker)
+- [Lighthouse](#lighthouse)
+- [Responsiveness](#responsiveness)
+- [Browser Compatibility](#browser-compatibility)
+- [Testing User Stories](#testing-user-stories)
+    - [First Time User](#first-time-user)
+    - [Returning User](#returning-user)
+    - [Business Owner](#business-owner)
+- [Manual Testing](#manual-testing)
+- [Automated Testing](#automated-testing)
+- [Peer Review](#peer-review)
+- [Bugs](#bugs)
+    - [Resolved](#resolved)
+    - [Unresolved](#unresolved)
+
+# Code Validation
+
+## W3C HTML Validator
+
+## W3C CSS Validator
+
+- All CSS clear - validation passed
+  | Validated CSS |
+  | -------------------- |
+  | ![CSS No Errors](/downunder/static/images/css-valid.png) |
+
+
+
+
 ## Bugs (All bugs now Resolved)
 
 - Wanted to include a record of found and resolved bugs
@@ -79,8 +114,6 @@ The purpose of this document is to identify key testing stages and instances whe
 
 1. Image height - implemented different viewport stylings to allow for a larger image on mobile view to encompass the world clocks. Otherwise it overlapped and spilt over into main content. 
 
-
-
 ## Questions
 
 ### Add new question
@@ -90,6 +123,14 @@ The purpose of this document is to identify key testing stages and instances whe
 - Finally resolved the issues with the many-to-many relationship. Main issue encountered was trying to maintain a standard one-to-many relationship without realising. I left the topic_id in as an individual requirement whilst also trying to use the association table to connect the multiple topics to the question. 
 
 - I decided to display the question in such a way that it shows title, body, tags and author. This allows for good community interaction. 
+
+### Delete Question
+
+- Delete question functionality not working - repsonding with error:
+
+<h2 align="center"><img src="downunder/static/testing/images/delete-question-issue.png"></h2>
+
+- Resolved - had copied across from topic delete, but this does not use a cascade on delete. So when the question was being deleted it did not account for replies on that question. Changed to allow for cascade delete so all replies get deleted with the question.
 
 ### View on homepage
 
