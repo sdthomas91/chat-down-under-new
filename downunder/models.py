@@ -102,7 +102,7 @@ class Reply(db.Model):
 
     # Relationships
     author = db.relationship('User', backref='replies')
-    question = db.relationship('Question', backref='replies')
+    question = db.relationship('Question', backref=db.backref('replies', lazy=True, cascade="all, delete-orphan"))
 
     def __repr__(self):
         return (
