@@ -5,24 +5,26 @@
 The purpose of this document is to identify key testing stages and instances where decisions were made to change or keep certain features.
 
 - [Code Validation](#code-validation)
-    - [W3C HTML Validator](#w3c-html-validator) 
-    - [W3C CSS Validator](#w3c-css-validator)
-    - [JSHINT Javascript Code Quality Tool](#jshint-javascript-code-quality-tool)
-    - [Python Validation using Gitpod](python-validation-using-gitpod)
-      * [models.py](#modelspy)
-      * [routes.py](#routespy)
-      * [__init__.py](#initpy)
-      * [run.py](#runpy)
-      * [test_app.py](#test_apppy)
+    * [W3C HTML Validator](#w3c-html-validator) 
+    * [W3C CSS Validator](#w3c-css-validator)
+    * [JSHINT Javascript Code Quality Tool](#jshint-javascript-code-quality-tool)
+    * [Python Validation using Gitpod](python-validation-using-gitpod)
+      + [models.py](#modelspy)
+      + [routes.py](#routespy)
+      + [__init__.py](#initpy)
+      + [run.py](#runpy)
+      + [test_app.py](#test_apppy)
 - [A11y Color Contrast Accessibility Checker](#a11y-color-contrast-accessibility-checker)
 - [Wave Webaim Accessibility Checker](#wave-webaim-accessibility-checker)
 - [Lighthouse](#lighthouse)
 - [Responsiveness](#responsiveness)
 - [Browser Compatibility](#browser-compatibility)
-- [Testing User Stories](#testing-user-stories)
-    - [First Time User](#first-time-user)
-    - [Returning User](#returning-user)
-    - [Business Owner](#business-owner)
+- [User Experience](#user-experience-ux)
+  * [Testing User Stories](#testing-user-stories)
+      + [First Time User](#first-time-user)
+      + [Returning User](#returning-user)
+      + [Frequent User](#frequent-user)
+      + [Site Owner](#site-owner)
 - [Manual Testing](#manual-testing)
 - [Automated Testing](#automated-testing)
 - [Peer Review](#peer-review)
@@ -127,7 +129,7 @@ During browser testing it was found that flash messages were falling behind text
 
 | Errors | Resolved |
 | ------ | -------- |
-| ![Lighthouse Errors](/downunder/static/testing/images/mobile-flash-error.png) | ![Lighthouse resolved](/downunder/static/testing/images/mobile-flash-resolved.png) |
+| ![Flash Errors](/downunder/static/testing/images/mobile-flash-error.png) | ![Flash resolved](/downunder/static/testing/images/mobile-flash-resolved.png) |
 
 There was also the issue that the desktop user profile was still displaying and causing UX issues : 
 
@@ -156,34 +158,9 @@ Responsivity tests were carried out using Google Chrome DevTools. Device screen 
 I also personally tested the website on iPhone 14 Pro, iPad Pro 2nd Generation, Macbook Pro and HP Pavilion Desktop.
 
 
-## Bugs (All bugs now Resolved)
-
-- Wanted to include a record of found and resolved bugs
-
-1. One-to-many or many-to-many : Issues arose with my existing question model obtaining a topic_id. I had it set to a one-to-many relationship. Within user testing and error resolution I resolved that a many-to-many relationship makes more sense. This was users can select up to 3 topics relevant to their question, enhancing the filtering capabilities and reducing user difficulty in defining a single topic. Found [this](https://support.microsoft.com/en-gb/office/video-create-many-to-many-relationships-e65bcc53-8e1c-444a-b4fb-1c0b8c1f5653#:~:text=A%20many%2Dto%2Dmany%20relationship%20exists%20when%20one%20or%20more,more%20items%20in%20another%20table.) very useful for learning how to create a many-to-many relationship. 
-
-1. Topic Association - I decided to opt for a many-to-many relationship, which meant going with an association table in order to allow questions to be "Tagged" with different topics. However, whenever I try to pull the selected topics into a list it does not properly pull the information.
-    - Tried disabling Select2 as assumed the Javascript may be intefering with the way the form was submitting this data as it was only the topics that were not translating - still bugging.
-    - Realised I had left some historical code in from when I was attempting an "add new topic" functionality within the question form. Removed all "new_topic" code. Still bugging. 
-    - Ran some debug code printing out selected topic id's, nothing. PRinted out the entire request.form and could see the information was there. However, the value of the topic id was being printed outside of the "selected_topic_id" list so it was never providing a value. 
-    - Revised HTML and realised the name was set to "question_topics[]" which I know was correct for producing an array of items. However, I had forgotten to pass the same value in the route when adding the information. Amended from "selected_topic_ids = request.form.getlist('question_topics')" to "selected_topic_ids = request.form.getlist('question_topics[]')"
-    - Topic ID's now being pulled an printed in front end where I had wanted them to. 
-
-1. Edit question is_urgent - The logic implemented is not removing the is_urgent status of the question even if the box is unticked. 
-    - I tried changing the form so it wasn't auto-selected from loading the edit_question section. However, the bug still persisted and it actually demeans the UX of the edit question flow. 
-    - Tried changing backend logic so it could do a request to see if the is_urgent is on - then pass is_urgent as is_urgent so if it isn't "on" then it is false. This still failed. 
-    - Realised I was overcomplicating things - removed the additional request and simply force set the is_urgent to false if it isn't present on the form (deselected). Now working as it should. 
-
-1. Submit reply - form will not submit and returns error **Method not allowed**
-    - Form displays correctly and all values within route are correct. Troubleshooting to identify where issue was occurring : print statement within form submission. No print appears. 
-    - Simplified route to test, still no response from server. 
-    - removed GET from route as it isn't necessary anyway but still no difference
-    - Realised the form redirect was pointing to home, which is fine, but I had also included questions and user details as though I were rendering a template. Removed the additional arguments and it works perfectly now. 
-
-
 # User Experience (UX)
 
-- ## Testing User stories
+## Testing User stories
 
 ### First Time User
 
@@ -235,6 +212,142 @@ I also personally tested the website on iPhone 14 Pro, iPad Pro 2nd Generation, 
     1. The website has been designed and developed to look good on all devices and screen sizes whilst maintaining maximum UX, UI and functionality. 
   4. As site owner I want certain aspects to only be achievable by users that have an account and are logged in
     1. Permissions are in place that prevent non authenticated users from creating, editing, replying to or deleting questions. 
+
+
+# Manual Testing
+
+## Nav Bar
+
+| Logged In | Logged Out |
+| ------ | -------- |
+| ![Logged In Navbar](/downunder/static/testing/images/logged-in-navbar.png) | ![Logged Out Navbar](/downunder/static/testing/images/logged-out-navbar.png) |
+
+* The main navigation buttons have been tested and proven to work
+* User permissions have been tested and proven to display differently for logged in and logged out users
+
+## Footer
+
+<h2 align="center"><img src="downunder/static/testing/images/footer-links.png"></h2>
+
+* Logo link tested and proven to work
+* Social links tested and proven to work
+
+## Flash Messaging
+
+| Error | Success |
+| ------ | -------- |
+| ![Flash Errors](/downunder/static/testing/images/flash-error.png) | ![Flash Success](/downunder/static/testing/images/flash-success.png) |
+
+* Flash messages have been tested and proven to work including fade in and auto fade out
+* Error and success flash messages display differently for user feedback
+
+## User Permissions
+
+* User permissions tested and proven to work including authenticated vs non-authenticated and author vs non-author
+
+## Home Page Display
+
+* Buttons have been tested and proven to work
+* Links have been tested and proven to work
+* User permissions have been tested and proven to work; certain buttons will only display for logged in users and different buttons will display if you are the author of the question 
+
+| Logged In | Logged Out | Logged In Author |
+| ------ | -------- | -------- |
+| ![Logged In](/downunder/static/testing/images/logged-in-home.png) | ![Logged Out](/downunder/static/testing/images/logged-out-home.png) | ![Author](/downunder/static/testing/images/author-home.png) |
+
+## Sign up and Login
+
+| Sign Up | Login |
+| ------ | -------- |
+| ![Sign Up](/downunder/static/testing/images/sign-up-page.png) | ![Login](/downunder/static/testing/images/login-page.png) |
+
+* All buttons, forms and requirements tested and proven to work 
+* Attempting to login with false details does not work
+* Attempting to register with non-matching passwords does not work 
+* attempting to signup with non-unique username or email does not work
+
+## Ask Question
+
+<h2 align="center"><img src="downunder/static/testing/images/ask-question.png"></h2>
+
+* All forms and buttons tested and proven to work
+* Select2 dropdown multiple selection tested and proven to work
+* 3 topic limit and min 1 topic selected tested and works
+* Tried to submit without accepting terms and received form error 
+
+## Edit Question
+
+<h2 align="center"><img src="downunder/static/testing/images/edit-question.png"></h2>
+
+* Tried accessing as separate user but permissions would not allow - flash message appears and redirects back to question page
+* edit form tested and proven to work including removing "is_urgent"
+
+## Delete Question
+
+<h2 align="center"><img src="downunder/static/testing/images/delete-question-modal.png"></h2>
+
+* Defensive programming used via modal to allow custom to confrim deletion before proceeding 
+
+## My Questions
+
+<h2 align="center"><img src="downunder/static/testing/images/my-questions.png"></h2>
+
+* question interaction tested and proven to work
+* buttons tested and proven to work
+* only displays questions from the logged in author
+
+## Search Results
+
+<h2 align="center"><img src="downunder/static/testing/images/search-results.png"></h2>
+
+* search function tested and proven to work 
+* questions including the search term in title, body or topics proven to show on search
+* fallback for no matching questions proven to work
+
+## Add Topic
+
+<h2 align="center"><img src="downunder/static/testing/images/add-topic-form.png"></h2>
+
+* add topic form proven to work 
+
+## View Topics
+
+<h2 align="center"><img src="downunder/static/testing/images/add-topic.png"></h2>
+
+* Only admins can delete topics, proven to work
+
+## About Page
+
+<h2 align="center"><img src="downunder/static/testing/images/about-page.png"></h2>
+
+* all buttons tested and proven to work 
+* responsiveness tested and proven to work
+
+
+## Bugs (All bugs now Resolved)
+
+- Wanted to include a record of found and resolved bugs
+
+1. One-to-many or many-to-many : Issues arose with my existing question model obtaining a topic_id. I had it set to a one-to-many relationship. Within user testing and error resolution I resolved that a many-to-many relationship makes more sense. This was users can select up to 3 topics relevant to their question, enhancing the filtering capabilities and reducing user difficulty in defining a single topic. Found [this](https://support.microsoft.com/en-gb/office/video-create-many-to-many-relationships-e65bcc53-8e1c-444a-b4fb-1c0b8c1f5653#:~:text=A%20many%2Dto%2Dmany%20relationship%20exists%20when%20one%20or%20more,more%20items%20in%20another%20table.) very useful for learning how to create a many-to-many relationship. 
+
+1. Topic Association - I decided to opt for a many-to-many relationship, which meant going with an association table in order to allow questions to be "Tagged" with different topics. However, whenever I try to pull the selected topics into a list it does not properly pull the information.
+    - Tried disabling Select2 as assumed the Javascript may be intefering with the way the form was submitting this data as it was only the topics that were not translating - still bugging.
+    - Realised I had left some historical code in from when I was attempting an "add new topic" functionality within the question form. Removed all "new_topic" code. Still bugging. 
+    - Ran some debug code printing out selected topic id's, nothing. PRinted out the entire request.form and could see the information was there. However, the value of the topic id was being printed outside of the "selected_topic_id" list so it was never providing a value. 
+    - Revised HTML and realised the name was set to "question_topics[]" which I know was correct for producing an array of items. However, I had forgotten to pass the same value in the route when adding the information. Amended from "selected_topic_ids = request.form.getlist('question_topics')" to "selected_topic_ids = request.form.getlist('question_topics[]')"
+    - Topic ID's now being pulled an printed in front end where I had wanted them to. 
+
+1. Edit question is_urgent - The logic implemented is not removing the is_urgent status of the question even if the box is unticked. 
+    - I tried changing the form so it wasn't auto-selected from loading the edit_question section. However, the bug still persisted and it actually demeans the UX of the edit question flow. 
+    - Tried changing backend logic so it could do a request to see if the is_urgent is on - then pass is_urgent as is_urgent so if it isn't "on" then it is false. This still failed. 
+    - Realised I was overcomplicating things - removed the additional request and simply force set the is_urgent to false if it isn't present on the form (deselected). Now working as it should. 
+
+1. Submit reply - form will not submit and returns error **Method not allowed**
+    - Form displays correctly and all values within route are correct. Troubleshooting to identify where issue was occurring : print statement within form submission. No print appears. 
+    - Simplified route to test, still no response from server. 
+    - removed GET from route as it isn't necessary anyway but still no difference
+    - Realised the form redirect was pointing to home, which is fine, but I had also included questions and user details as though I were rendering a template. Removed the additional arguments and it works perfectly now. 
+
 
 # USER FEEDBACK 
 
