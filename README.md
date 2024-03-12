@@ -82,7 +82,8 @@
 - ### Site Owner
    1. As site owner I want users to be able to submit, edit. and delete their own questions
    2. As site owner I want topic deletion to be limited to admins only
-   3. As site owner I want the website to be responsive and display well on all devices for optimal UX. 
+   3. As site owner I want the website to be responsive and display well on all devices for optimal UX.
+   4. As site owner I want certain aspects to only be achievable by users that have an account and are logged in
 
 
 - # Design
@@ -143,8 +144,6 @@
 - Reply functionality enhances discussion experience
 
 ## User Features
-
-**Key Features**
 
 1. User registration, login and logout functionality
 1. Submit questions for discussion

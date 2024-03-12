@@ -155,6 +155,7 @@ Responsivity tests were carried out using Google Chrome DevTools. Device screen 
 
 I also personally tested the website on iPhone 14 Pro, iPad Pro 2nd Generation, Macbook Pro and HP Pavilion Desktop.
 
+
 ## Bugs (All bugs now Resolved)
 
 - Wanted to include a record of found and resolved bugs
@@ -179,9 +180,65 @@ I also personally tested the website on iPhone 14 Pro, iPad Pro 2nd Generation, 
     - removed GET from route as it isn't necessary anyway but still no difference
     - Realised the form redirect was pointing to home, which is fine, but I had also included questions and user details as though I were rendering a template. Removed the additional arguments and it works perfectly now. 
 
+
+# User Experience (UX)
+
+- ## Testing User stories
+
+### First Time User
+
+  1. As a First Time Visitor, I want to easily understand the main purpose of the web app.
+
+     1. Upon entering the site, users are automatically greeted with a clean and easily readable navigation bar which clearly showcases the main functions of the site including "Ask a Question" and "Topics"
+     2. The addition of an About page enables users to explore a guide on the setup and purpose of the site.
+     3. Clear prompts including prompts to create account or login
+
+  2. As a First Time Visitor, I want to be able to easily navigate the app and register my account.
+
+     1. If you are not logged in you will immediately be able to see a "Sign Up" button
+     2. Additionally there is a prompt on the initial question block suggesting you register to contribute with a link taking you to sign up page
+     3. Flash messages notfiying of elements off limits unless you are logged in
+
+  3. As a First Time Visitor, I want to be able to easily understand how to submit a question or reply to others questions
+
+     1. The about page serves its purpose well here advising on how to engage in discussion
+     2. Buttons and links used to direct users to login to be able to contribute, and once logged in bright colour buttons promting a reply. 
+     3. Navigation to "Ask Question" and buttons for "reply" help users through the discussion flow
+
+### Returning User
+
+  1. As a Returning Visitor, I want to see if there are new questions being asked.
+
+     1. The homepage showcases all recent questions as well as the latest urgent questions to enable users to immediately engage in the latest conversations
+
+  2. As a Returning Visitor, I want to check my questions to see if they have been answered.
+
+     1. The "View My Questions" button on the homepage under user info allows direct navigation to user specific questions.
+
+### Frequent User
+
+  1. As a Frequent User, I want to be able to engage in discussions around specific topics.
+
+     1. The ability to search different topics and discussions allows users to specifically target discussions relevant to their current needs or something they may have an answer to
+
+  2. As a Frequent User, I want to be able to update my questions and answers or delete if necessary.
+
+     1. User authentication allows users to edit and delete their own questions. 
+
+### Site Owner
+
+  1. As site owner I want users to be able to submit, edit. and delete their own questions
+    1. Permissions have been installed that prevent users from updating or deleting anyones questions but their own
+  2. As site owner I want topic deletion to be limited to admins only
+    1. Permissions are in place that allow only those tagged with is_admin to delete topics within the view topics page
+  3. As site owner I want the website to be responsive and display well on all devices for optimal UX. 
+    1. The website has been designed and developed to look good on all devices and screen sizes whilst maintaining maximum UX, UI and functionality. 
+  4. As site owner I want certain aspects to only be achievable by users that have an account and are logged in
+    1. Permissions are in place that prevent non authenticated users from creating, editing, replying to or deleting questions. 
+
 # USER FEEDBACK 
 
-##### User Feedback Implementations
+## User Feedback Implementations
 
 1. After some user feedback it was decided that a more generalised searchability would better enhance the UX of the site
 
@@ -197,6 +254,9 @@ I also personally tested the website on iPhone 14 Pro, iPad Pro 2nd Generation, 
 
 1. Make topic tags clickable
     - Some users fedback that they would like the topic tags (on questions and on topic page) to be clickable, the click would then take them to posts related to these topics. It is a functionality I would like to implement at a later date, but it is not within the scope or timeframe of this project
+
+1. Question display on home page
+    - a peer advised that the bootstrap column method sets the page up nicely but when questions are of varying length it can cause an odd pattern of stacking and makes the homepage look messy. Upon review I agree and decided to make questions full width instead of multiple in one row. 
 
 # SECTION TESTING
 
@@ -266,20 +326,7 @@ For this element I wanted to allow logged in users to view their profile informa
 
 - All buttons functioning as expected
 
-## UX
 
-### Error Checking
-
-#### HTML Validation
-
-- HTML Validation threw errors due to Jinja templating and template inheritance. However, outside of these issues all HTML passed validation. 
-
-#### CSS Validation
-
-- All CSS clear - validation passed
-  | Validated CSS |
-  | -------------------- |
-  | ![CSS No Errors](/downunder/static/images/css-valid.png) |
 
 ## Unused Code
 
@@ -346,87 +393,3 @@ JEST testing was carried out to an extent with the limited Javascript that was u
 **PEP8 COMPLIANCE**
  - Guideline added at 79th column to ensure I did not exceed the recommended line length. Ensured all functions worked as they should even after reformatting where necessary.
  - Indentation used correctly throughout - consistently used tab method as opposed to space. 
-
-**HTML & CSS**
-- Little to no HTML CSS testing was required due to the simplicity of the web pages - listed main pages below:
-
-The W3C Markup Validator and W3C CSS Validator Services were used to validate every page of the project to ensure there were no syntax errors in the project. A few examples included below:
-
-- [W3C Markup Validator](https://validator.w3.org/nu/#textarea) :
-
-| index.html                                      | level-1.html                                        | leaderboard.html                                            |
-| ----------------------------------------------- | --------------------------------------------------- | ----------------------------------------------------------- |
-| ![index.html](assets/images/index-html-val.png) | ![level-1.html](assets/images/level-1-html-val.png) | ![leaderboard.html](assets/images/leaderboard-html-val.png) |
-
-- [W3C CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) - - all clear
-- ![style.css](assets/images/CSS-val.png)
-
-### Testing User Stories from User Experience (UX) Section
-
-#### First Time Visitor Goals
-
-
-  1. As a First Time Visitor, I want to easily understand the main purpose of the web app.
-
-     1. Upon entering the site, users are automatically greeted with a clean and easily readable navigation bar which clearly showcases the main functions of the site including "Ask a Question" and "Topics"
-     2. The addition of an About page enables users to explore a guide on the setup and purpose of the site.
-     3. Clear prompts including prompts to create account or login
-
-  2. As a First Time Visitor, I want to be able to easily navigate the app and register my account.
-
-     1. If you are not logged in you will immediately be able to see a "Sign Up" button
-     2. Additionally there is a prompt on the initial question block suggesting you register to contribute with a link taking you to sign up page
-     3. Flash messages notfiying of elements off limits unless you are logged in
-
-  3. As a First Time Visitor, I want to be able to easily understand how to submit a question or reply to others questions
-
-     1. The about page serves its purpose well here advising on how to engage in discussion
-     2. Buttons and links used to direct users to login to be able to contribute, and once logged in bright colour buttons promting a reply. 
-     3. Navigation to "Ask Question" and buttons for "reply" help users through the discussion flow
-
-#### Returning Visitor Goals
-
-  1. As a Returning Visitor, I want to see if there are new questions being asked.
-
-     1. The homepage showcases all recent questions as well as the latest urgent questions to enable users to immediately engage in the latest conversations
-
-  2. As a Returning Visitor, I want to check my questions to see if they have been answered.
-
-     1. The "View My Questions" button on the homepage under user info allows direct navigation to user specific questions.
-
-#### Frequent User Goals
-
-  1. As a Frequent User, I want to be able to engage in discussions around specific topics.
-
-     1. The ability to search different topics and discussions allows users to specifically target discussions relevant to their current needs or something they may have an answer to
-
-  2. As a Frequent User, I want to be able to update my questions and answers or delete if necessary.
-
-     1. User authentication allows users to edit and delete their own questions. 
-
-### Further Testing
-
-- The Website was tested on Google Chrome, Microsoft Edge and Safari browsers. It was also tested in Internet Explorer Mode on Microsoft Edge.
-- The website was viewed on a variety of devices such as HP Windows Desktop, Macbook, iMac, iPhone12, iPhone 14 Pro, iPhone 8, iPad Air, iPad Pro 12.9", Pixel 5, Samsung Galaxy S20 Ultra, Surface Pro 7 and Nest Hub. Responsiveness was near flawless thanks to implementing the Bootstrap column system.
-- A large amount of testing was done to ensure that all user interactions throughout the site responded as they should
-- Friends and family members were asked to review the site and documentation to point out any bugs and/or user experience issues.
-
-#### Google Lighthouse
-
-- Google Lighthouse was used to ensure compatability, best practice and accessibility as well as load times.
-
-| index.html                                        | level-1.html                                          | leaderboard.html                                              |
-| ------------------------------------------------- | ----------------------------------------------------- | ------------------------------------------------------------- |
-| ![index.html](assets/images/index-lighthouse.png) | ![level-1.html](assets/images/level-1-lighthouse.png) | ![leaderboard.html](assets/images/leaderboard-lighthouse.png) |
-
-##### Load Speed
-
-- Results were fairly good for all pages with 73% + all round. Slowest was level 1 for the obvious reason that it has the highest JS content.
-
-##### Accessibility
-
-- Accessibility sits at 100 for all pages bar the leaderboard - not a big issue but complaints of headings not being sequencial but it is not relevant for this page.
-
-##### Best Practices
-
-- Best Practices sits at 92 out of 100 - there was one error, JS error logged to console. I cannot seem to get rid of these errors.
