@@ -32,8 +32,8 @@ The purpose of this document is to identify key testing stages and instances whe
 - [User Feedback](#peer-review)
   * [Feedback Implementations](#user-feedback-implementations)
 - [Bugs](#bugs)
-    - [Resolved](#resolved)
-    - [Unresolved](#unresolved)
+- [Additional Section Testing](#section-testing)
+  
 
 # Code Validation
 
@@ -391,6 +391,10 @@ I also personally tested the website on iPhone 14 Pro, iPad Pro 2nd Generation, 
     - removed GET from route as it isn't necessary anyway but still no difference
     - Realised the form redirect was pointing to home, which is fine, but I had also included questions and user details as though I were rendering a template. Removed the additional arguments and it works perfectly now. 
 
+## Deployment Issue 
+ - App build was successful but kept getting an H10 error. Turned out to be down to the __init__ file and the way the URI was being delivered 
+
+<h2 align="center"><img src="downunder/static/testing/images/deployment-error.png"></h2>
 
 
 # SECTION TESTING
@@ -403,7 +407,7 @@ I also personally tested the website on iPhone 14 Pro, iPad Pro 2nd Generation, 
 - Decided against the use of an "about" element in the navigation as it is fairly self explanatory - however, I plan to implement an about page and include it in a footer link section
 - Modified code - originally had signup, login and logout all displaying. For user experience I decided to implement some Jinja templating to ensure that if you are logged in you only see logout and vice versa. Other nav elements are for logged in users only such as submitting a question so used python to implement that logic in routes. 
 
-#### Layout
+### Layout
 
 - Grid system was glitchy and caused elements to overlap on smaller screens and increase display past viewport width. Refactored the grid for smaller screens and now flows nicely. 
 
@@ -449,17 +453,11 @@ For this element I wanted to allow logged in users to view their profile informa
 
 - Using bootstrap I implemented a column system that allowed for questions to stack within the latest question section and also to the right in a smaller section include user profile information. 
 
-### Footer
+## Footer
 
-#### Layout
+### Layout
 
 - Decided to go for a table layout in the footer for a modern display. Played with several options including multi column for helpful links but there aren't enough navigation items to justify as this stage. 
-
-# ELEMENT TESTING
-
-## Buttons (outside of standard buttons)
-
-- All buttons functioning as expected
 
 
 
