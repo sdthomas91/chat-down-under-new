@@ -461,12 +461,12 @@ For this element I wanted to allow logged in users to view their profile informa
 
 
 
-## Unused Code
+# Unused Code
 
-#### New Question and Edit question 
+## New Question and Edit question 
 
 - I opted to not use the code to process a neew topic being added during the question submission. Having [researched](https://wpmudev.com/blog/load-posts-ajax/#:~:text=AJAX%20(Asynchronous%20JavaScript%20and%20XML,all%20without%20reloading%20the%20page.) and thinking about a modal I discoverd an AJAX process that would allow me to open a modal with the add_topic template, add the topic and then dynamically update the form so users don't have to navigate away from the form in order to update. Unused code in routes.py : 
-    ```python
+    ``` Python
         #Additional logic for new topic handling
         if 'new_topic' in selected_topic_ids:
             #added strip to make new topic compatible
@@ -483,46 +483,84 @@ For this element I wanted to allow logged in users to view their profile informa
                 most effective way of achieving this """
                 db.session.flush() 
                 new_question.topics.append(new_topic)
-
+    ```
 - Also decided against the dynamic modal I had planned on using: 
-   
-```html
-    <!-- ADD TOPIC MODAL  -->
-  <div class="modal fade" id="addTopicModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalLabel">Add New Topic</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <!-- Form for adding new topic -->
-          <form id="addTopicForm">
-            <div class="form-group">
-              <label for="topicName">Topic Name</label>
-              <input type="text" class="form-control" id="topicName" name="topicName" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Add Topic</button>
-          </form>
+    
+  ``` html
+      <!-- ADD TOPIC MODAL  -->
+    <div class="modal fade" id="addTopicModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalLabel">Add New Topic</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- Form for adding new topic -->
+            <form id="addTopicForm">
+              <div class="form-group">
+                <label for="topicName">Topic Name</label>
+                <input type="text" class="form-control" id="topicName" name="topicName" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Add Topic</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- Add topic modal -->
+    <!-- Add topic modal -->
+  ```
+## Become Admin
+
+- I was having issues with the CLI so I had to temporarily implement a form thast allowed the addition of admin status
 
 
+## Form 
 
-  ############
+``` html
+<div class="container home-container">
+  
+  <form action="{{ url_for('become_admin') }}" method="POST" class="account-form submit-question-form">
+    <h3 class="text-center account-title mb-3">Become Admin</h3>
+    
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" id="is_admin" name="is_admin">
+      <label class="form-check-label" for="is_admin">Tick to become admin</label>
+    </div>
+    <button type="submit" class="btn btn-primary acc-btn">Update</button>
+  </form>
+</div>
+```
+  
+### Link to form 
+  ``` html
+  <span><a href="{{ url_for('become_admin') }}">Become Admin</a></span>
+  ```
 
-  # Added from Readme
+### Route
+  ``` Python
+  @app.route('/become_admin', methods=['GET', 'POST'])
+@login_required
+def become_admin():
+    """
+    Route to allow a user to become an admin.
+    """
+    if request.method == 'POST':
+        is_admin_checkbox = request.form.get('is_admin') == 'on'
+        if is_admin_checkbox:
+            current_user.is_admin = True
+            db.session.commit()
+            flash('You are now an admin!', 'success')
+        else:
+            flash('No changes made.', 'info')
+        
+        return redirect(url_for('home'))
+    return render_template('become_admin.html', user=current_user)
 
 
-JEST testing was carried out to an extent with the limited Javascript that was used. Issues were encountered with tests timing out for the World clock test. Also did not need to test the Select2 implementation other than for functionality and so this was executed through user testing. 
+  ```
 
 
-**PEP8 COMPLIANCE**
- - Guideline added at 79th column to ensure I did not exceed the recommended line length. Ensured all functions worked as they should even after reformatting where necessary.
- - Indentation used correctly throughout - consistently used tab method as opposed to space. 

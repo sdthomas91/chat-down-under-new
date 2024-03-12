@@ -266,29 +266,6 @@ def delete_question(question_id):
     flash('Question has successfully been deleted')
     return redirect(url_for('home'))
 
-@app.route('/become_admin', methods=['GET', 'POST'])
-@login_required
-def become_admin():
-    """
-    Route to allow a user to become an admin.
-    """
-    if request.method == 'POST':
-        # Assuming 'is_admin' is a checkbox in your form.
-        # Checkboxes are a bit tricky as they don't appear in request.form if they're unchecked.
-        is_admin_checkbox = request.form.get('is_admin') == 'on'
-        if is_admin_checkbox:
-            # Assuming you have access to the current_user due to Flask-Login or similar.
-            current_user.is_admin = True
-            db.session.commit()
-            flash('You are now an admin!', 'success')
-        else:
-            flash('No changes made.', 'info')
-        
-        return redirect(url_for('home'))
-    # If it's a GET request, you probably want to show the form.
-    # Make sure you have a template named `become_admin.html` or change the template name below.
-    return render_template('become_admin.html', user=current_user)
-
 
 # Reply Specific Routes
 # Submit Reply
