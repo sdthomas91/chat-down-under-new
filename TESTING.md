@@ -27,7 +27,10 @@ The purpose of this document is to identify key testing stages and instances whe
       + [Site Owner](#site-owner)
 - [Manual Testing](#manual-testing)
 - [Automated Testing](#automated-testing)
-- [Peer Review](#peer-review)
+  * [Javascript Testing](#javascript-tests)
+  * [Python Testing](#python-tests)
+- [User Feedback](#peer-review)
+  * [Feedback Implementations](#user-feedback-implementations)
 - [Bugs](#bugs)
     - [Resolved](#resolved)
     - [Unresolved](#unresolved)
@@ -323,6 +326,46 @@ I also personally tested the website on iPhone 14 Pro, iPad Pro 2nd Generation, 
 * all buttons tested and proven to work 
 * responsiveness tested and proven to work
 
+# Automated Testing
+
+## Javascript Tests 
+
+- I have included a JEST document that documents the javascript testing. 
+- Some functions caused other function tests to crash so commented out and tested separately
+- All successful though did not need to JEST test Select2 JS
+
+## Python Tests
+
+- I included a test_app.py file. This was used when I encountered bugs or issues
+- Initial setup of sign-up form threw back a number of errors. Using online resources and a test_app I managed to iron out the issues and now works smoothly
+- My initial run at submitting a question proved messy so I used test_app to ensure it was all working to avoid bugs and cluttering the database
+
+
+# USER FEEDBACK 
+
+## User Feedback Implementations
+
+1. After some user feedback it was decided that a more generalised searchability would better enhance the UX of the site
+
+    - Used advanced routing and the ilike() python method to implement a more robust and flexible search experience for users allowing for the system to compare their search term to title, body and topics instead of just topics.   
+
+1. One piece of user feedback suggested implementing some sort of world clock so people could see the time in different parts of australia compared to UK time
+
+    - Utilised Javascript to display world clocks according to different parts of Australia (major cities)
+
+1. Some users fedback that they didn't fully understand the purpose or layout of the site upon first visit.
+
+    - Added an about us page to avoid confusion and aid user experience. Also added prompts and clear titles so each section was fairly transparent on it's purpose and display
+
+1. Make topic tags clickable
+
+    - Some users fedback that they would like the topic tags (on questions and on topic page) to be clickable, the click would then take them to posts related to these topics. It is a functionality I would like to implement at a later date, but it is not within the scope or timeframe of this project
+
+1. Question display on home page
+
+    - a peer advised that the bootstrap column method sets the page up nicely but when questions are of varying length it can cause an odd pattern of stacking and makes the homepage look messy. Upon review I agree and whilst implemented on urgent questions future developments will see a better question structure and display - though to change the whole structure at this stage would prove time consuming. 
+
+
 
 ## Bugs (All bugs now Resolved)
 
@@ -349,27 +392,6 @@ I also personally tested the website on iPhone 14 Pro, iPad Pro 2nd Generation, 
     - Realised the form redirect was pointing to home, which is fine, but I had also included questions and user details as though I were rendering a template. Removed the additional arguments and it works perfectly now. 
 
 
-# USER FEEDBACK 
-
-## User Feedback Implementations
-
-1. After some user feedback it was decided that a more generalised searchability would better enhance the UX of the site
-
-    - Used advanced routing and the ilike() python method to implement a more robust and flexible search experience for users allowing for the system to compare their search term to title, body and topics instead of just topics.   
-
-1. One piece of user feedback suggested implementing some sort of world clock so people could see the time in different parts of australia compared to UK time
-
-    - Utilised Javascript to display world clocks according to different parts of Australia (major cities)
-
-1. Some users fedback that they didn't fully understand the purpose or layout of the site upon first visit.
-
-    - Added an about us page to avoid confusion and aid user experience. Also added prompts and clear titles so each section was fairly transparent on it's purpose and display
-
-1. Make topic tags clickable
-    - Some users fedback that they would like the topic tags (on questions and on topic page) to be clickable, the click would then take them to posts related to these topics. It is a functionality I would like to implement at a later date, but it is not within the scope or timeframe of this project
-
-1. Question display on home page
-    - a peer advised that the bootstrap column method sets the page up nicely but when questions are of varying length it can cause an odd pattern of stacking and makes the homepage look messy. Upon review I agree and decided to make questions full width instead of multiple in one row. 
 
 # SECTION TESTING
 

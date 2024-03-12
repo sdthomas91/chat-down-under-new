@@ -57,7 +57,7 @@
       <div class="row question-container">
         {% for question in urgent_questions %}
         <div
-          class="questions col-12 {{'col-md-12 col-lg-6' if current_user.is_authenticated else 'col-md-6 col-lg-4'}}">
+          class="questions col-12">
           <div class="question-block">
             <div class="question-title">
               <h5>{{ question.question_title }} </h5>
