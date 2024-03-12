@@ -93,10 +93,59 @@ The purpose of this document is to identify key testing stages and instances whe
 
 # Wave Webaim Accessibility Checker
 
-- Used Wave Accessibility Checker to check the index page. Errors were found, but were irrelevant. They pertain to a hidden label on the search bar, empty button as an icon was used for search bar and empty links as I used icons for social links. 
+Used Wave Accessibility Checker to check the index page. Errors were found, but were irrelevant. They pertain to a hidden label on the search bar, empty button as an icon was used for search bar and empty links as I used icons for social links. 
 
  <h2 align="center"><img src="downunder/static/testing/images/webaim.png"></h2>
 
+# Google Lighthouse
+
+Lighthouse was used to check the following metrics: 
+  - Performance
+  - Accessibility
+  - Best Practices
+  - SEO
+
+- Chat Down Under encountered a surprisingly large number of issues when run on desktop. These largely centered around missing aria-labels for elements that had no text. 
+- There were some contrasting issues which came as a surprise having already audited with WebAim - it meant changing some of the main colours around but as you can see, all issues were resolved and it now performs exceptionally on Desktop. 
+
+| Errors | Resolved |
+| ------ | -------- |
+| ![Lighthouse Errors](/downunder/static/testing/images/desktop-errors.png) | ![Lighthouse resolved](/downunder/static/testing/images/desktop-resolved.png) |
+
+- Mobile passed well in all areas except performance. This is largely to do with the high demand of the masthead load time but otherwise a good browsing experience. 
+
+ <h2 align="center"><img src="downunder/static/testing/images/mobile-pass.png"></h2>
+
+
+# Browser Compatibility
+
+The site was tested in Google Chrome, Microsoft Edge and Mozilla Firefox on desktop.
+
+The site was tested in Google Chrome and Safari on mobile and tablet.
+
+During browser testing it was found that flash messages were falling behind text and not displaying well for accessibility :
+
+
+
+# Responsiveness
+
+Responsivity tests were carried out using Google Chrome DevTools. Device screen sizes covered include:
+- iPhone 6/7/8
+- iPhone XR
+- iPhone 12 Pro
+- Pixel 5
+- Samsung Galaxy S8+
+- Samsung Galaxy S20 Ultra
+- iPad Pro
+- iPad Mini
+- Surface Pro 7
+- Surface Duo
+- Galaxy Fold
+- Samsung Galaxy A51/71
+- Nest Hub
+- Macbook Pro
+
+I also personally tested the website on iPhone 14 Pro, iPad Pro 2nd Generation, Macbook Pro and HP Pavilion Desktop.
 
 ## Bugs (All bugs now Resolved)
 
