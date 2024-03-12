@@ -1,6 +1,6 @@
 <h1 align="center">Chat Down Under - Testing & Resolution</h1>
 
-[View the live project here.]()
+[View the live project here.](https://chat-down-under-6866155ac589.herokuapp.com/)
 
 The purpose of this document is to identify key testing stages and instances where decisions were made to change or keep certain features.
 
@@ -33,6 +33,7 @@ The purpose of this document is to identify key testing stages and instances whe
   * [Feedback Implementations](#user-feedback-implementations)
 - [Bugs](#bugs)
 - [Additional Section Testing](#section-testing)
+- [Unused Code](#unused-code)
   
 
 # Code Validation
