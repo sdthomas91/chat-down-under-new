@@ -125,7 +125,15 @@ The site was tested in Google Chrome and Safari on mobile and tablet.
 
 During browser testing it was found that flash messages were falling behind text and not displaying well for accessibility :
 
+| Errors | Resolved |
+| ------ | -------- |
+| ![Lighthouse Errors](/downunder/static/testing/images/mobile-flash-error.png) | ![Lighthouse resolved](/downunder/static/testing/images/mobile-flash-resolved.png) |
 
+There was also the issue that the desktop user profile was still displaying and causing UX issues : 
+
+<h2 align="center"><img src="downunder/static/testing/images/mobile-desktop-user.png"></h2>
+
+Easily resolved using bootstrap classes to hide depending on viewport
 
 # Responsiveness
 

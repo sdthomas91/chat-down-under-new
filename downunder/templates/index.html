@@ -124,7 +124,7 @@
     </div>
     <!-- DESKTOP USER PROFILE -->
     {% if current_user.is_authenticated %}
-    <div class="col-4 main-container">
+    <div class="col-4 d-none d-md-block main-container">
       <div class="home-blocks user-block">
         <div class="user-container">
           <h4>Hi, {{ current_user.fname }}</h4>
